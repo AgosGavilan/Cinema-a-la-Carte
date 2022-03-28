@@ -1,0 +1,15 @@
+AL EMPEZAR DIA DE TRABAJO:
+git pull origin main (DESDE SU RAMA, NUNCA PARARSE EN MAIN)
+PARA CREAR RAMA: git checkout -b (Nombre de la Rama nueva)
+
+AL FINALIZAR:
+git add (RUTA DE CADA ARCHIVO)
+git commit -m "Resumen de lo realizado"
+git push
+
+DESDE GITHUB:
+-Entrar al repo
+-Pull Request
+-Seleccionar rama utilizada
+-Detallar lo realizado
+-Confirmar Pull Request (NO MERGEAR!!!)
