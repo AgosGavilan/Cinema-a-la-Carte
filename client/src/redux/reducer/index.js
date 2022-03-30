@@ -12,6 +12,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 movies: action.payload
+
             };
             case TYPES.POST_MOVIE:
                 return {
@@ -28,6 +29,14 @@ const rootReducer = (state = initialState, action) => {
                     actors: action.payload
                 };
                 default:
+
+            }
+            case TYPES.GET_TITLE_MOVIE:
+                
+                return { ...state, movies: action.payload };
+        
+        default:
+
             return {
                 ...state
             };
