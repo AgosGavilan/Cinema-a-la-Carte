@@ -1,7 +1,9 @@
 import { TYPES } from "../actions/types"
 
 const initialState = {
-    movies: []
+    movies: [],
+    actors: [],
+    genres: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -10,12 +12,25 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 movies: action.payload
-            }
-        
-        default:
+            };
+            case TYPES.POST_MOVIE:
+                return {
+                  ...state,                
+                };
+                case TYPES.GET_GENRES: 
+                return {
+                    ...state,
+                    genres: action.payload
+                };
+                case TYPES.GET_ACTORS: 
+                return {
+                    ...state,
+                    actors: action.payload
+                };
+                default:
             return {
                 ...state
-            }
+            };
     }
 }
 
