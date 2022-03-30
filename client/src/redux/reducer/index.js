@@ -4,6 +4,7 @@ const initialState = {
   movies: [],
   moviesBackUp: [],
   genres: [],
+  actors: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -51,7 +52,30 @@ const rootReducer = (state = initialState, action) => {
         movies: movieSort,
         moviesBackUp: movieSort
       };
-    }
+
+
+            case TYPES.POST_MOVIE:
+                return {
+                  ...state,                
+                };
+                case TYPES.GET_GENRES: 
+                return {
+                    ...state,
+                    genres: action.payload
+                };
+                case TYPES.GET_ACTORS: 
+                return {
+                    ...state,
+                    actors: action.payload
+                };
+                
+
+            
+            case TYPES.GET_TITLE_MOVIE:
+                
+                return { ...state, movies: action.payload };
+        
+      
 
     case TYPES.FILTER_GENRES:
         const allMovies = state.moviesBackUp
