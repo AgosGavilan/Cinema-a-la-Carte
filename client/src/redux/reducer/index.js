@@ -1,7 +1,9 @@
 import { TYPES } from "../actions/types"
 
 const initialState = {
-    movies: []
+    movies: [],
+    details: []
+
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -10,6 +12,11 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 movies: action.payload
+            }
+        case TYPES.DETAILS:
+            return {
+                ...state,
+                details: action.payload
             }
         
         default:
