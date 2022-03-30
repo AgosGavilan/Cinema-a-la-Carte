@@ -1,9 +1,12 @@
+import React from "react";
 import {getMovies} from "../../redux/actions"
+import Slider from "../Slider/Slider";
 
 const Home = () => {
 return (
     <div>
-        <h1>Estoy en Home</h1>
+        
+        <Slider />
     </div>
 )
 }
