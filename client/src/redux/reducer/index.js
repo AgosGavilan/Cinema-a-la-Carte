@@ -5,6 +5,7 @@ const initialState = {
   moviesBackUp: [],
   genres: [],
   actors: [],
+  details: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -15,7 +16,11 @@ const rootReducer = (state = initialState, action) => {
         movies: action.payload,
         moviesBackUp: action.payload
       };
-
+case TYPES.DETAILS:
+            return {
+                ...state,
+                details: action.payload
+            }
     case TYPES.ORDER_MOVIES: {
       let movieSort;
       if (action.payload === "AtoZ") {
@@ -74,6 +79,7 @@ const rootReducer = (state = initialState, action) => {
             case TYPES.GET_TITLE_MOVIE:
                 
                 return { ...state, movies: action.payload };
+
         
       
 

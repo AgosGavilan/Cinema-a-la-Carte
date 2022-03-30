@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 import './App.css';
-import Home from "../src/components/Home/Home"
+import Home from "../src/components/Home/Home.jsx"
 
 import Form from "../src/components/Form/Form";
 

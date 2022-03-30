@@ -1,6 +1,10 @@
 export const TYPES = {
     GET_MOVIES: "GET_MOVIES",
 
+    DETAILS: 'DETAILS',
+    
+
+
     ORDER_MOVIES: "ORDER_MOVIES",
     FILTER_GENRES: "FILTER_GENRES",
     FILTER_YEARS: "FILTER_YEARS",
@@ -11,6 +15,7 @@ export const TYPES = {
     GET_ACTORS: "GET_ACTORS",    
 
     GET_TITLE_MOVIE: "GET_TITLE_MOVIE"    
+
 
 
 }
