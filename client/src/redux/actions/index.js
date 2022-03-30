@@ -14,3 +14,17 @@ return async dispatch => {
     }
 }
 }
+
+export function getMovieByTitle(title) {
+    return async function (dispatch) {
+      try {
+        let json = await axios.get(
+          `${URL}/movies?title=${title}`
+        );
+        return dispatch({ type: "GET_TITLE_MOVIE", payload: json.data });
+      } catch (error) {
+        //console.log(error.message);
+        alert("Sorry, not Movie found with that title");
+      }
+    };
+  }

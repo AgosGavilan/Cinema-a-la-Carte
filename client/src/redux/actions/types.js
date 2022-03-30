@@ -1,4 +1,4 @@
 export const TYPES = {
     GET_MOVIES: "GET_MOVIES",
-    
+    GET_TITLE_MOVIE: "GET_TITLE_MOVIE"    
 }

@@ -11,6 +11,9 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 movies: action.payload
             }
+            case TYPES.GET_TITLE_MOVIE:
+                
+                return { ...state, movies: action.payload };
         
         default:
             return {
