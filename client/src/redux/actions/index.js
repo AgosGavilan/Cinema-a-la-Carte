@@ -16,6 +16,19 @@ return async dispatch => {
 }
 
 
+export const orderMovies = (order) => {
+    return {type: TYPES.ORDER_MOVIES, payload: order}
+}
+
+export const filterGenres = (genre) => {
+    return {type: TYPES.FILTER_GENRES, payload: genre}
+}
+
+export const filterYears = (year) => {
+    return {type: TYPES.FILTER_YEARS, payload: year}
+}
+
+
 export const postMovie = (newMovie) => {
     return async (dispatch) => {
         try {
@@ -72,4 +85,5 @@ export function getMovieByTitle(title) {
       }
     };
   }
+
 
