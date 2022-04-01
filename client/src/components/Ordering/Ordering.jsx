@@ -1,21 +1,8 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import {getMovies, orderMovies} from "../../redux/actions/index"
+// import { useState } from "react";
+// import { useDispatch } from "react-redux";
+// import {getMovies, orderMovies} from "../../redux/actions/index"
 
-const Ordering = () => {
-    const dispatch = useDispatch();
-    let [, setOrder] = useState("")
-
-    const handleOrder = o => {
-        o.preventDefault();
-        if (o.target.value === "") {
-            dispatch(getMovies());
-        }
-        else {
-            dispatch(orderMovies(o.target.value))
-            setOrder(o.target.value)
-        }
-    } 
+const Ordering = ({handleOrder}) => {
 
     return (
         <div>
