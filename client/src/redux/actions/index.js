@@ -32,7 +32,7 @@ export const details = (id) => {
     }
 }
 
-}
+
 
 
 export const orderMovies = (order) => {
@@ -95,7 +95,7 @@ export function getMovieByTitle(title) {
     return async function (dispatch) {
       try {
         let json = await axios.get(
-          `${URL}/movies?title=${title}`
+          "https://proyect-ecommerce.herokuapp.com/api/search?name=" + title
         );
         return dispatch({ type: "GET_TITLE_MOVIE", payload: json.data });
       } catch (error) {
