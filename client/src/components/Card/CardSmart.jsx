@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../redux/actions";
 import Card from "./Card";
 import img from '../../assets/background-popcorn-film-wallpaper-preview.jpg'
+import styles from "./Cards.module.css"
 
 const CardSmart = () => {
 
@@ -15,7 +16,7 @@ const CardSmart = () => {
 
 
     return (
-        <div>
+        <div className={styles.cards}>
             {allMovies?.map(el => {
                 return (<Card
                     key={el.id}
