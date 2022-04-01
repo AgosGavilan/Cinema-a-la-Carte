@@ -20,8 +20,9 @@ const CardSmart = () => {
                 return (<Card
                     key={el.id}
                     id={el.id}
-                    image={el.image ? el.image : img}
+                    img={el.img ? el.img : img}
                     title={el.title}
+                    price={el.price}
                     genres={el.Genres?.map(g => g.name)}
                     release_date={el.release_date}
                     vote_average={el.vote_average}
