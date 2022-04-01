@@ -4,6 +4,7 @@ import {getActors, getMovies, getGenres} from "../../redux/actions"
 import Filters from "../Filters/Filters";
 import Ordering from "../Ordering/Ordering";
 import Slider from "../Slider/Slider";
+import CardSmart from '../Card/CardSmart'
 
 const Home = () => {
     let dispatch = useDispatch()
@@ -17,6 +18,7 @@ return (
         <Slider />
         <Filters />
         <Ordering />
+        <CardSmart />
     </div>
 )
 }
