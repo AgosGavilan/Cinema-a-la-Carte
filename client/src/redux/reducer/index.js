@@ -39,15 +39,15 @@ const rootReducer = (state = initialState, action) => {
       }
       if (action.payload === "HighRating") {
         movieSort = state.movies.sort((a, b) => {
-          if (a.price > b.price) return -1;
-          if (a.price < b.price) return 1;
+          if (a.vote_average > b.vote_average) return -1;
+          if (a.vote_average < b.vote_average) return 1;
           else return 0;
         });
       }
       if (action.payload === "LowRating") {
         movieSort = state.movies.sort((a, b) => {
-          if (a.price > b.price) return 1;
-          if (a.price < b.price) return -1;
+          if (a.vote_average > b.vote_average) return 1;
+          if (a.vote_average < b.vote_average) return -1;
           else return 0;
         });
       }
@@ -80,7 +80,9 @@ const rootReducer = (state = initialState, action) => {
     case TYPES.FILTER_GENRES:
       const allMovies = state.moviesBackUp;
       let filterMovieGenres = allMovies.filter((e) =>
-        e.genres.map((g) => g.name.includes(action.payload))
+
+        e.Genres?.find((g) => g.name === action.payload)
+
       );
       return {
         ...state,
@@ -90,7 +92,9 @@ const rootReducer = (state = initialState, action) => {
     case TYPES.FILTER_YEARS:
       const allMovies1 = state.moviesBackUp;
       let filterMovieYears = allMovies1.filter((e) =>
-        e.year.includes(action.payload)
+
+        e.release_date.includes(action.payload)
+
       );
       return {
         ...state,
