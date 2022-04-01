@@ -16,7 +16,7 @@ const Card = ({id, title, release_date, overview, img, original_language, vote_a
             <p>{adult}</p>
             <p>{genres}</p>
             <p>{actors}</p> */}
-            <NavLink to={`/detail/${id}`}>
+            <NavLink to={`/movies/${id}`}>
                 <span>View Details</span>
             </NavLink>
             <NavLink to={`/carrito`}>
