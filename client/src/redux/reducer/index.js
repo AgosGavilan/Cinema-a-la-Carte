@@ -80,7 +80,9 @@ const rootReducer = (state = initialState, action) => {
     case TYPES.FILTER_GENRES:
       const allMovies = state.moviesBackUp;
       let filterMovieGenres = allMovies.filter((e) =>
+
         e.Genres?.find((g) => g.name === action.payload)
+
       );
       return {
         ...state,
@@ -90,7 +92,9 @@ const rootReducer = (state = initialState, action) => {
     case TYPES.FILTER_YEARS:
       const allMovies1 = state.moviesBackUp;
       let filterMovieYears = allMovies1.filter((e) =>
+
         e.release_date.includes(action.payload)
+
       );
       return {
         ...state,

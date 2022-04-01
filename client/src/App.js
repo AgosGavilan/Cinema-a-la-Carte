@@ -16,6 +16,7 @@ function App() {
         <Route exact path="/form" element={<Form/>}/>
         <Route exact path="/movies/:id" element={<Details />}/>
       </Routes>
+
     </div>
   );
 }
