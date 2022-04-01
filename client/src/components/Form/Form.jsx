@@ -1,14 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
+// import styles from "./Form.module.css"
+import "./Form.css"
 
 import { getActors, getGenres, postMovie } from "../../redux/actions";
 
 /*
 release_date 
 title
-image
+img
 description (overview)
 generos
 actors
@@ -18,55 +20,69 @@ const validate = (input) => {
   let errors = {};
 
   if (!input.title) {
-    errors.title = "title is required";
+    errors.title = "Title is required";
   }
 
   if (!input.release_date) {
     errors.release_date = "Release date is required";
   }
 
-  if (!input.description) {
-    errors.description = "Description is required";
+  if (!input.overview) {
+    errors.overview = "Description is required";
   }
 
-  if (!input.rating) {
-    errors.rating = "rating is required";
-  } else if (input.rating <= 0) {
-    errors.rating = "Rating should be greater than 0";
+  if (!input.vote_average) {
+    errors.vote_average = "Rating is required";
+  } else if (input.vote_average <= 0) {
+    errors.vote_average = "Rating should be greater than 0";
+  } else if (input.vote_average >= 10) {
+    errors.vote_average = "Rating must be between 0 and 10";
   }
 
+  if (!input.price) {
+    errors.price = "Price is required";
+  } else if (input.price <= 0) {
+    errors.price = "Price should be greater than 0";
+  } else if (input.price >= 5) {
+    errors.price = "Price must be between $0.49 and $4.99";
+  }
 
   const regex =
     /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
-  if (input.image.length && !regex.test(input.image)) {
-    errors.image = "Image is invalid, it must be an URL";
+  if (input.img.length && !regex.test(input.img)) {
+    errors.img = "img is invalid, it must be an URL";
   }
-//poster por defecto
+  //poster por defecto
   return errors;
-}
+};
+
+
+/* className={styles.title} */
+
 
 const Form = () => {
   const [input, setInput] = useState({
     title: "",
-    image: "",
+    img: "",
     release_date: "",
-    description: "",
-    rating: "",
+    overview: "",
+    vote_average: "",
+    price: "",
     genres: [],
     actors: [],
   });
   const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
-  const genres = useSelector((state) => state.genres);
-  const actors = useSelector((state) => state.actors);
+  const allGenres = useSelector((state) => state.genres);
+  const allActors = useSelector((state) => state.actors);
 
   useEffect(() => {
     dispatch(getActors());
     dispatch(getGenres());
   }, [dispatch]);
 
-  const handleSubmit = (e)  => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     let error = Object.keys(validate(input));
     if (error.length !== 0 || !input.genres.length || !input.actors.length) {
@@ -78,20 +94,20 @@ const Form = () => {
         showConfirmButton: false,
         timerProgressBar: true,
       });
-return
-
+      return;
     } else {
       dispatch(postMovie(input));
       setInput({
         title: "",
-        image: "",
+        img: "",
         release_date: "",
-        description: "",
-        rating: "",
+        overview: "",
+        vote_average: "",
+        price: "",
         genres: [],
         actors: [],
       });
-            Swal.fire({
+      Swal.fire({
         title: "Movie created successfully",
         icon: "success",
         position: "center",
@@ -99,11 +115,11 @@ return
         showConfirmButton: false,
         timerProgressBar: true,
       });
-return
-      }
-  }
+      return;
+    }
+  };
 
-const  handleChange = (e) => {
+  const handleChange = (e) => {
     e.preventDefault();
     console.log(e.target.value);
     setInput((prev) => ({
@@ -117,10 +133,10 @@ const  handleChange = (e) => {
       })
     );
     console.log(input);
-  }
+  };
 
- const handleSelect = (e) => {
-  e.preventDefault();
+  const handleSelect = (e) => {
+    e.preventDefault();
     if (!input.genres.includes(e.target.value)) {
       console.log(e.target.value);
       setInput({
@@ -128,87 +144,159 @@ const  handleChange = (e) => {
         genres: [...input.genres, e.target.value],
       });
     }
-  }
+  };
+
+
 
   const handleList = (e) => {
     e.preventDefault();
-    if (!input.actors.includes(e.target.value)) {
-      console.log(e.target.value);
-      setInput({
-        ...input,
-        actors: [...input.actors, e.target.value],
-      });
+    let found = allActors.find((a) => a.name === e.target.value )
+    if (found) {
+      if (!input.actors.includes(e.target.value)) {
+        console.log(e.target.value);
+        setInput({
+          ...input,
+          actors: [...input.actors, e.target.value],
+        });
+        e.target.value = ""
+      }
     }
-  }
+  };
 
-
-
-  const handleDelete = (el) => {
+  const handleDeleteGenres = (el) => {
     setInput({
       ...input,
       genres: input.genres.filter((g) => g !== el),
+    });
+  };
+
+  const handleDeleteActors = (el) => {
+    setInput({
+      ...input,
       actors: input.actors.filter((a) => a !== el),
     });
-  }
-
-  // const handleDeleteActors = (t) => {
-  //   setInput({
-  //     ...input,
-  //     genres: input.genres.filter((g) => g !== t),
-  //   });
-  // }
+  };
 
   return (
-    <div>
-      <form action="" onSubmit={(e) => handleSubmit(e)}>
-        <label>Title: </label>
+    <div className="bodyForm"> 
+    {/* <div className="container_left"> </div> */}
+
+      <form className="form"  action="" onSubmit={(e) => handleSubmit(e)}> 
+      <h1 className="title">Add Movie</h1>
+    <div className="containerform"> 
+    <div className="group">
+        <label className="inputLabel">Title: </label>
         <input
+           className="inputForm"
           type="text"
           value={input.title}
           name="title"
           onChange={(e) => handleChange(e)}
         />
         <strong className="errors">{errors.title}</strong>
-        <label>Release date: </label>
+      </div>
+
+      <div className="group">
+        <label className="inputLabel">Release date: </label>
         <input
+           className="inputForm"
           type="date"
           value={input.release_date}
           name="release_date"
           onChange={(e) => handleChange(e)}
         />
         <strong className="errors">{errors.release_date}</strong>
-        <label>Description: </label>
+        </div>
+
+        <div className="group">
+        <label className="inputLabel">Description: </label>
         <input
+        className="inputForm"
           type="textarea"
-          value={input.description}
-          name="description"
+          value={input.overview}
+          name="overview"
           onChange={(e) => handleChange(e)}
         />
-        <strong className="errors">{errors.description}</strong>
+        <strong className="errors">{errors.overview}</strong>
+        </div>
+
+        <div className="group">
         <label className="inputLabel">Rating: </label>
         <input
+        className="inputForm"
           type="number"
-          placeholder="Rating"
-          value={input.rating}
-          name="rating"
+          value={input.vote_average}
+          name="vote_average"
           onChange={(e) => handleChange(e)}
           min="0"
           max="10"
         />
-        <strong className="errors">{errors.rating}</strong>
+        <strong className="errors">{errors.vote_average}</strong>
+
+        </div>
+        <div className="group">
+        <label className="inputLabel">Price: </label>
+        <input
+        className="inputForm"
+          type="number"
+          name="price"
+          placeholder="Price..."
+          step=".01"
+          min="0"
+          value={input.price === 0 ? "" : input.price}
+          onChange={(e) => handleChange(e)}
+        />
+        <strong className="errors">{errors.price}</strong>
+        </div>
+        <div className="group">
         <label className="inputLabel">Image URL: </label>
         <input
+        className="inputForm"
           type="url"
-          value={input.image}
-          name="image"
+          value={input.img}
+          name="img"
           onChange={(e) => handleChange(e)}
           autoComplete="off"
           maxLength="255"
         />
-        <strong className="errors"> {errors.image}</strong>
-        <img src={input.image} alt="poster" />
+        <strong className="errors"> {errors.img}</strong>
+        {/* <img src={input.img} alt="poster" /> */}
+    </div>
 
-        <div>
+        <div className="group">
+          <label className="inputLabel">
+            Actors:{" "}
+            </label>
+            <input
+            className="inputForm"
+              type="text"
+              list="actors"
+              name="actors"
+              onChange={(e) => handleList(e)}
+            />
+         
+          <datalist className="selectCreate" id="actors">
+            {allActors?.map((allActors) => (
+              <option className="box_opcion" value={allActors.name} key={allActors.id} name="actors">
+                {allActors.name}
+              </option>
+            ))}
+          </datalist>
+          <div >
+            {input.actors.map((a) => (
+              <div key={a}>
+                <div className="opcion_title">
+                  <p>{a}</p>
+                </div>
+                <button className="btn_remove" onClick={() => handleDeleteActors(a)} key={a} value={a}>
+                  x
+                </button>
+              </div>
+            ))}
+          </div>
+          <strong className="errors">{errors.actors}</strong>
+<br /><br />
+        <div className="group" >
           <label className="inputLabel">Genres: </label>
           <select
             defaultValue=""
@@ -218,19 +306,19 @@ const  handleChange = (e) => {
             <option value="" disabled hidden>
               Select Genres...
             </option>
-            {genres?.map((genres) => (
-              <option value={genres.name} key={genres.id} name="genres">
-                {genres}
+            {allGenres?.map((allGenres) => (
+              <option value={allGenres.name} key={allGenres.id} name="genres">
+                {allGenres.name}
               </option>
             ))}
           </select>
-          <div>
+          <div className="options" >
             {input.genres.map((g) => (
               <div key={g}>
-                <div>
+                <div className="opcion_title">
                   <p>{g}</p>
                 </div>
-                <button onClick={() => handleDelete(g)} key={g} value={g}>
+                <button  className="btn_remove"  onClick={() => handleDeleteGenres(g)} key={g} value={g}>
                   x
                 </button>
               </div>
@@ -238,44 +326,15 @@ const  handleChange = (e) => {
           </div>
           <strong className="errors">{errors.genres}</strong>
         </div>
-
-        <div>
-          <label>
-            Actors: <input type="text" list="actors" name="actors"  />
-          </label>
-          <datalist id="actors" onChange={(e) => handleList(e)}>        
-{actors?.map((actors) => (
-  <option value={actors.name} key={actors.id} name="actors">
-    {actors}
-  </option>
-  ))}
-          </datalist>
-          <div>
-            {input.actors.map((a) => (
-              <div key={a}>
-                <div>
-                  <p>{a}</p>
-                </div>
-                <button onClick={() => handleDelete(a)} key={a} value={a}>
-                  x
-                </button>
-              </div>
-            ))}
+<br />
+          <div  className="containerButtons">
+            <button className="buttonCreate" type="submit">Create</button>
           </div>
-          <strong className="errors">{errors.actors}</strong>
-
-            <div>
-              <button               
-                type="submit"               
-              >
-                Create
-              </button>          
-            </div>
-          
         </div>
+      </div>     
       </form>
     </div>
   );
-}
+};
 
-export default Form
+export default Form;
