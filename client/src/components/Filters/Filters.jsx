@@ -1,11 +1,22 @@
 import {useDispatch, useSelector} from "react-redux"
-import {filterGenres, filterYears} from "../../redux/actions/index"
+import {filterGenres, filterYears, getMovies} from "../../redux/actions/index"
 
 const Filters = () => {
 
   const movies = useSelector((state) => state.movies);
   const genres = useSelector((state) => state.genres);
   const dispatch = useDispatch();
+  let list = []
+
+  let yearsList = movies?.map((e) => {
+    let year = e.release_date.split("-")[0]
+    list.push(year)
+    return
+  })
+
+  let filterlist = list.filter((element, index, arr) => {
+    return arr.indexOf(element) === index;
+  });
 
   const handleYears = (e) => {
     e.preventDefault();
@@ -26,10 +37,10 @@ const Filters = () => {
 
   return (
     <div>
-      <p>Filter by</p>
+      <p>Sort by</p>
       <div>
         <select onChange={handleGenres}>
-          <option value="Genres">All Genres</option>
+          <option value="Genres">Genre</option>
           {genres?.map((e) => {
             return (
               <option key={e.id} value={e.name}>
@@ -43,18 +54,14 @@ const Filters = () => {
       <div>
         <select onChange={handleYears}>
           <option value="Years" hidden>
-            All Years
+            Year
           </option>
-          {movies?.map((e) => {
+          {filterlist?.map(f => {
             return (
-              <option key={e.id} value={e.year}>
-                {e.year}
+              <option key={f} value={f}>
+                {f}
               </option>
-              // array.filter((element, index, arr) => {
-              //   return arr.indexOf(element) === index;
-              // });
-            );
-          })}
+            )})}
         </select>
       </div>
 

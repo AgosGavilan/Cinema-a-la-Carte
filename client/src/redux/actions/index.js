@@ -1,7 +1,7 @@
 import { TYPES } from "./types"
 import axios from "axios"
 
-const URL = "http://localhost:3001"
+const URL = "https://proyect-ecommerce.herokuapp.com/api"
 
 export const getMovies = () => {
     return async dispatch => {
@@ -30,8 +30,6 @@ export const details = (id) => {
             console.log('error in details', e)
         }
     }
-}
-
 }
 
 
