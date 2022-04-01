@@ -8,12 +8,12 @@ const Ordering = () => {
 
     const handleOrder = o => {
         o.preventDefault();
-        if (o.target.value !== "") {
-            dispatch(orderMovies(o.target.value))
-            setOrder(o.target.value)
+        if (o.target.value === "") {
+            dispatch(getMovies());
         }
         else {
-            dispatch(getMovies());
+            dispatch(orderMovies(o.target.value))
+            setOrder(o.target.value)
         }
     } 
 

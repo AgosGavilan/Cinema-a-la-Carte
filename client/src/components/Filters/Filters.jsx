@@ -3,12 +3,12 @@ import {filterGenres, filterYears, getMovies} from "../../redux/actions/index"
 
 const Filters = () => {
 
-  const movies = useSelector((state) => state.movies);
+  const movies = useSelector((state) => state.moviesBackUp);
   const genres = useSelector((state) => state.genres);
   const dispatch = useDispatch();
   let list = []
 
-  let yearsList = movies?.map((e) => {
+  movies?.map((e) => {
     let year = e.release_date.split("-")[0]
     list.push(year)
     return
@@ -20,14 +20,24 @@ const Filters = () => {
 
   const handleYears = (e) => {
     e.preventDefault();
-    dispatch(filterYears(e.target.value));
-    //   dispatch(changePage(1));  Agregar aqui el paginado
+    if(e.target.value === "Years") {
+      dispatch(getMovies())
+    }
+    else {
+      dispatch(filterYears(e.target.value));
+      //   dispatch(changePage(1));  Agregar aqui el paginado
+    }
   };
 
   const handleGenres = (e) => {
     e.preventDefault();
+    if(e.target.value === "Genres") {
+      dispatch(getMovies())
+    }
+    else {
     dispatch(filterGenres(e.target.value));
     //   dispatch(changePage(1));
+    }
   };
 
   const handleClick = (e) => {
@@ -53,7 +63,7 @@ const Filters = () => {
 
       <div>
         <select onChange={handleYears}>
-          <option value="Years" hidden>
+          <option value="Years">
             Year
           </option>
           {filterlist?.map(f => {
