@@ -1,0 +1,154 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+
+
+.bodyForm {
+    min-height: 90vh;
+    width: 100%;
+    display: flex;    
+    background-position: 0 0, 10px, 10px ;
+}
+
+.containerform{
+    margin-top: 3em;
+    display: grid;
+    gap: 2.5em;
+   
+   }
+
+.title{
+    font-family: "gabriola";
+    font-size: 4rem;
+    margin-bottom: .5em;
+    color: #fff
+}
+
+.form{
+    background: #2b2828;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(1rem);
+    margin: auto;
+    width: 150%;
+    max-width: 700px; 
+    padding: 2.5em 3em;
+}
+
+.group{
+    position: relative;
+}
+
+.containerButtons{
+    display: flex; 
+   
+    justify-content: space-evenly; 
+    align-items: center;
+ 
+}
+
+
+.buttonCreate {
+    margin: 0; 
+    padding: 0;
+    bottom: -20%;
+    font-family:"Carlito";
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    transition: 0.2s;
+      background-color:  #807475;
+    
+    color:#161515;
+    width: 140px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 7px;
+    text-transform: uppercase;
+    font-size: 20px;
+    border: solid 3px;
+    letter-spacing: 4px;
+    transition: .5;
+    margin-right: 100px;
+    font-weight: 4px;
+   
+    }
+    
+    .buttonCreate:hover{
+        background-color:  #ebbfc3;
+        color: black;     }
+
+.inputLabel{
+    cursor: pointer;
+    position: absolute;
+    top: -22px;
+    left: 5px;
+    font-family:"Carlito";
+        font-size: 135%; 
+        color: #fff;
+}
+
+.inputForm{
+    width: 100%;
+    font-size: 1rem;
+    padding: .8em .5em;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid; ;
+    background: none;
+    color: white
+}
+
+.selectCreate{
+    padding: .6em .3em;
+    background: none;
+    width: 50%;
+    font-size: 18px;
+    outline: none;
+    color: #6b5c5c;
+}
+
+.options{
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;
+    font-size: 18px;
+}
+
+.opcion_title {
+    color: #f1e7e7;
+
+}
+.errors{
+    color:#a4133c
+}
+
+.box_opcion {
+    display: flex;
+ margin-right: 9px;
+ margin-top: 9px;
+ justify-content: space-evenly;
+ margin-bottom: 15px;
+ background-color: #a07973;
+ padding: 14px;
+
+ border-radius: 5px;
+ width: 184px;
+ border: solid 2px;
+}
+
+
+.btn_remove{
+    display: flex;
+    
+    justify-content: center;
+    border-radius: 4px;
+    width: 25px;
+    height: auto;
+    text-align: center;
+    font-size: 14px;
+    padding: 0;
+   
+    background: #ece3e6;
+}

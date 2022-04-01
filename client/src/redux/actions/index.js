@@ -33,6 +33,7 @@ export const details = (id) => {
 }
 
 
+
 export const orderMovies = (order) => {
     return {
         type: TYPES.ORDER_MOVIES, 
