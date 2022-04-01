@@ -10,12 +10,12 @@ import NavBar from "./components/NavBar/NavBar";
 function App() {
   return (
     <div className="App">
+      <NavBar />
       <Routes>
         <Route exact path="/home" element={<Home/>}/>
         <Route exact path="/form" element={<Form/>}/>
       </Routes>
-      <NavBar />
-      <Home />
+  
     </div>
   );
 }
