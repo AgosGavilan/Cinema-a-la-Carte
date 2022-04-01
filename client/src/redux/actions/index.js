@@ -1,7 +1,7 @@
 import { TYPES } from "./types"
 import axios from "axios"
 
-const URL = "http://localhost:3001"
+const URL = "https://proyect-ecommerce.herokuapp.com/api"
 
 export const getMovies = () => {
     return async dispatch => {
@@ -32,19 +32,26 @@ export const details = (id) => {
     }
 }
 
-}
-
 
 export const orderMovies = (order) => {
-    return {type: TYPES.ORDER_MOVIES, payload: order}
+    return {
+        type: TYPES.ORDER_MOVIES, 
+        payload: order
+    }
 }
 
 export const filterGenres = (genre) => {
-    return {type: TYPES.FILTER_GENRES, payload: genre}
+    return {
+        type: TYPES.FILTER_GENRES, 
+        payload: genre
+    }
 }
 
 export const filterYears = (year) => {
-    return {type: TYPES.FILTER_YEARS, payload: year}
+    return {
+        type: TYPES.FILTER_YEARS, 
+        payload: year
+    }
 }
 
 
