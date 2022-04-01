@@ -5,7 +5,7 @@ const initialState = {
   moviesBackUp: [],
   genres: [],
   actors: [],
-  details: []
+  details: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -14,13 +14,13 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         movies: action.payload,
-        moviesBackUp: action.payload
+        moviesBackUp: action.payload,
       };
-case TYPES.DETAILS:
-            return {
-                ...state,
-                details: action.payload
-            }
+    case TYPES.DETAILS:
+      return {
+        ...state,
+        details: action.payload,
+      };
     case TYPES.ORDER_MOVIES: {
       let movieSort;
       if (action.payload === "AtoZ") {
@@ -55,50 +55,47 @@ case TYPES.DETAILS:
       return {
         ...state,
         movies: movieSort,
-        moviesBackUp: movieSort
+        moviesBackUp: movieSort,
       };
-      }
+    }
 
+    case TYPES.POST_MOVIE:
+      return {
+        ...state,
+      };
+    case TYPES.GET_GENRES:
+      return {
+        ...state,
+        genres: action.payload,
+      };
+    case TYPES.GET_ACTORS:
+      return {
+        ...state,
+        actors: action.payload,
+      };
 
-            case TYPES.POST_MOVIE:
-                return {
-                  ...state,                
-                };
-                case TYPES.GET_GENRES: 
-                return {
-                    ...state,
-                    genres: action.payload
-                };
-                case TYPES.GET_ACTORS: 
-                return {
-                    ...state,
-                    actors: action.payload
-                };
-                
-
-            
-            case TYPES.GET_TITLE_MOVIE:
-                
-                return { ...state, movies: action.payload };
-
-        
-      
+    case TYPES.GET_TITLE_MOVIE:
+      return { ...state, movies: action.payload };
 
     case TYPES.FILTER_GENRES:
-        const allMovies = state.moviesBackUp
-        let filterMovieGenres = allMovies.filter((e) => e.genres.map(g => g.name.includes(action.payload)))
-        return {
-            ...state,
-            movies: filterMovieGenres
-        }
+      const allMovies = state.moviesBackUp;
+      let filterMovieGenres = allMovies.filter((e) =>
+        e.Genres.map((g) => g.name.includes(action.payload))
+      );
+      return {
+        ...state,
+        movies: filterMovieGenres,
+      };
 
     case TYPES.FILTER_YEARS:
-        const allMovies1 = state.moviesBackUp
-        let filterMovieYears = allMovies1.filter((e) => e.year.includes(action.payload))
-        return {
-            ...state,
-            movies: filterMovieYears
-        }
+      const allMovies1 = state.moviesBackUp;
+      let filterMovieYears = allMovies1.filter((e) =>
+        e.release_date.includes(action.payload)
+      );
+      return {
+        ...state,
+        movies: filterMovieYears,
+      };
 
     default:
       return {
