@@ -8,6 +8,8 @@ import CardSmart from '../Card/CardSmart'
 import styles from "./Home.module.css"
 import Paginate from "../Paginate/Paginate";
 import SideBar from "../NavBar/SideBar";
+import NavBar from "../NavBar/NavBar";
+
 
 const Home = () => {
 
@@ -109,12 +111,13 @@ const Home = () => {
 
 return (
     <div className={styles.home}>
-        <SideBar handleOrder={handleOrder} handleYears={handleYears} handleGenres={handleGenres} handleClick={handleClick}/>
+      <NavBar />
+        {/* <SideBar handleOrder={handleOrder} handleYears={handleYears} handleGenres={handleGenres} handleClick={handleClick}/> */}
         <CardSmart currentMovie={currentMovie}/>
             <div className="containerPaginado">
               <div className="paginado">
                 <button className="numberButton" onClick={handlePrev}>
-                  Previous
+                  {"<<"}
                 </button>
                 {/* <div className="textPage"> */}
                   {/* <p className="pageNumber">
@@ -127,7 +130,7 @@ return (
               />
                 {/* </div> */}
                 <button className="numberButton" onClick={handleNext}>
-                  Next
+                  {">>"}
                 </button>
               </div>
               </div>

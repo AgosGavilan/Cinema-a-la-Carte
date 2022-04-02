@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { details } from "../../redux/actions";
-import img from '../../assets/background-popcorn-film-wallpaper-preview.jpg'
+import image from '../../assets/background-popcorn-film-wallpaper-preview.jpg'
 
 const Details = () => {
     const {id} = useParams()
