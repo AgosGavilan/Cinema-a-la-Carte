@@ -20,7 +20,7 @@ const Filters = ({handleGenres, handleYears, handleClick}) => {
 
   return (
     <div>
-      <p>Sort by</p>
+      <h4>Filter by</h4>
       <div>
         <select onChange={handleGenres}>
           <option value="Genres">Genre</option>

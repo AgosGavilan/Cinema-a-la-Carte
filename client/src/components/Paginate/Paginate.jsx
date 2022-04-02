@@ -1,7 +1,7 @@
 
 import "./Paginate.css"
 
-const Paginate = (moviesPerPage, allMovies, paginate) => {
+const Paginate = ({moviesPerPage, allMovies, paginate}) => {
 
       const pageNumbers = [];
     

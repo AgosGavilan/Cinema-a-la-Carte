@@ -5,7 +5,7 @@ import Card from "./Card";
 import img from '../../assets/background-popcorn-film-wallpaper-preview.jpg'
 import styles from "./Cards.module.css"
 
-const CardSmart = () => {
+const CardSmart = ({currentMovie}) => {
 
     const dispatch = useDispatch()
     const allMovies = useSelector(state => state.movies)
@@ -17,7 +17,7 @@ const CardSmart = () => {
 
     return (
         <div className={styles.cards}>
-            {allMovies?.map(el => {
+            {currentMovie?.map(el => {
                 return (<Card
                     key={el.id}
                     id={el.id}
