@@ -29,7 +29,7 @@ const CardSmart = ({currentMovie}) => {
                     vote_average={el.vote_average}
                     overview={el.overview}
                     original_language={el.original_language}
-                    adult={el.false}
+                    adult={el.adult}
                     actors={el.Actors?.map(a => a.name)}
                     />)
             })}
