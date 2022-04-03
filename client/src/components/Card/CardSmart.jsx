@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../redux/actions";
 import Card from "./Card";
 import img from '../../assets/background-popcorn-film-wallpaper-preview.jpg'
+import styles from "./Cards.module.css"
 
-const CardSmart = () => {
+const CardSmart = ({currentMovie}) => {
 
     const dispatch = useDispatch()
     const allMovies = useSelector(state => state.movies)
@@ -15,8 +16,8 @@ const CardSmart = () => {
 
 
     return (
-        <div>
-            {allMovies?.map(el => {
+        <div className={styles.cards}>
+            {currentMovie?.map(el => {
                 return (<Card
                     key={el.id}
                     id={el.id}

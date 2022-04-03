@@ -5,6 +5,7 @@
     background-color: rgb(24, 24, 24);
     padding: 0.1px;
     padding-top: 0;
+    border-bottom: 1px solid rgb(95, 95, 95);
 }
 
 .cart {
@@ -72,6 +73,7 @@
 
 .movieIcon:hover {
     color: goldenrod;
+    transform: scale(1.5);
    /*  height: 30px;
     -webkit-filter: drop-shadow(3px 3px 0 whitesmoke)
     drop-shadow(3px 3px 0 whitesmoke);

@@ -1,30 +1,44 @@
 import React from "react";
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
+import styles from "./Cards.module.css";
 
-const Card = ({id, title, release_date, overview, img, original_language, vote_average, adult, genres, actors, price}) => {
-    
-
-    return (
-        <div>
-            <img src={img} width="250px" height="350px" alt=""/>
-            <h3>{title}</h3>
-            <p>{vote_average}</p>
-            <p>US$ {price}</p>
-            {/* <p>{original_language}</p>
-            <p>{release_date}</p>
-            <p>{overview}</p>
-            <p>{adult}</p>
-            <p>{genres}</p>
-            <p>{actors}</p> */}
-            <NavLink to={`/movies/${id}`}>
-                <span>View Details</span>
-            </NavLink>
-            <NavLink to={`/carrito`}>
-                <span>Add To Cart</span>
-            </NavLink>
-
+const Card = ({
+  id,
+  title,
+  release_date,
+  overview,
+  img,
+  original_language,
+  vote_average,
+  adult,
+  genres,
+  actors,
+  price,
+}) => {
+  return (
+    <div className={styles.eachCard}>
+      <img
+        src={img}
+        className={styles.poster}
+        width="auto"
+        height="350px"
+        alt="Poster"
+      />
+      <div className={styles.info}>
+        <h3>{title}</h3>
+        <p>{vote_average} ⭐</p>
+        <p>US$ {price}</p>
+        <div className={styles.buttons}>
+          <NavLink to={`/movies/${id}`}>
+            <button>View Details</button>
+          </NavLink>
+          <NavLink to={`/cart`}>
+            <button>Add To Cart</button>
+          </NavLink>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default Card
+export default Card;

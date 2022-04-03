@@ -1,0 +1,31 @@
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.eachCard {
+    padding: 25px;
+}
+
+.poster {
+    border-radius: 5px;
+    -webkit-box-reflect: below 5px
+		linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.4));
+        -webkit-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+}
+.poster:hover {
+    -webkit-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+.poster:hover + .info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    transition: all .7s ease-in-out;
+    clip-path: circle(75%);
+}

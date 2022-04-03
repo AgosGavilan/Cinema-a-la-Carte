@@ -6,8 +6,9 @@ const Ordering = ({handleOrder}) => {
 
     return (
         <div>
+            <h4>Sort by</h4>
             <select defaultValue="" onChange={handleOrder}>
-                <option value="">Default</option>
+                <option value="">Recently Added</option>
                 <option value="AtoZ">Name (A - Z)</option>
                 <option value="ZtoA">Name (Z - A)</option>
                 <option value="HighRating">Rating (High to Low)</option>
