@@ -1,35 +1,29 @@
-import {useDispatch, useSelector} from "react-redux"
-import {filterGenres, filterYears} from "../../redux/actions/index"
+import {useSelector} from "react-redux"
+// import {filterGenres, filterYears, getMovies} from "../../redux/actions/index"
 
-const Filters = () => {
+const Filters = ({handleGenres, handleYears, handleClick}) => {
 
-  const movies = useSelector((state) => state.movies);
+  const movies = useSelector((state) => state.moviesBackUp);
   const genres = useSelector((state) => state.genres);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  let list = []
 
-  const handleYears = (e) => {
-    e.preventDefault();
-    dispatch(filterYears(e.target.value));
-    //   dispatch(changePage(1));  Agregar aqui el paginado
-  };
+  movies?.map((e) => {
+    let year = e.release_date.split("-")[0]
+    list.push(year)
+    return list
+  })
 
-  const handleGenres = (e) => {
-    e.preventDefault();
-    dispatch(filterGenres(e.target.value));
-    //   dispatch(changePage(1));
-  };
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    dispatch(getMovies());
-  };
+  let filterlist = list.filter((element, index, arr) => {
+    return arr.indexOf(element) === index;
+  });
 
   return (
     <div>
-      <p>Filter by</p>
+      <h4>Filter by</h4>
       <div>
         <select onChange={handleGenres}>
-          <option value="Genres">All Genres</option>
+          <option value="Genres">Genre</option>
           {genres?.map((e) => {
             return (
               <option key={e.id} value={e.name}>
@@ -42,19 +36,15 @@ const Filters = () => {
 
       <div>
         <select onChange={handleYears}>
-          <option value="Years" hidden>
-            All Years
+          <option value="Years">
+            Year
           </option>
-          {movies?.map((e) => {
+          {filterlist?.map(f => {
             return (
-              <option key={e.id} value={e.year}>
-                {e.year}
+              <option key={f} value={f}>
+                {f}
               </option>
-              // array.filter((element, index, arr) => {
-              //   return arr.indexOf(element) === index;
-              // });
-            );
-          })}
+            )})}
         </select>
       </div>
 

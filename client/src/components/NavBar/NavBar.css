@@ -5,6 +5,7 @@
     background-color: rgb(24, 24, 24);
     padding: 0.1px;
     padding-top: 0;
+    border-bottom: 1px solid rgb(95, 95, 95);
 }
 
 .cart {
@@ -53,12 +54,16 @@
     margin-bottom: 3.5vh;
 }
 
-.a {
+
+
+
+/* a {
+>>>>>>> be9f95e7e7613a72e2b74cf1897c210d9e5e274e
     color: whitesmoke;
   }
   .a:hover {
      color: whitesmoke;
-  }
+  } */
 
 .movieIcon {
     margin-left: 5px;
@@ -72,6 +77,7 @@
 
 .movieIcon:hover {
     color: goldenrod;
+    transform: scale(1.5);
    /*  height: 30px;
     -webkit-filter: drop-shadow(3px 3px 0 whitesmoke)
     drop-shadow(3px 3px 0 whitesmoke);
