@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getMovieByTitle } from "../../redux/actions/index" ;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
-//import "./SearchBar.css";
+import "./SearchBar.css";
 
 export default function SearchBar() {
   const dispatch = useDispatch();

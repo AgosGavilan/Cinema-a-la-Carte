@@ -1,4 +1,4 @@
-.nav {
+.nav {  
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -53,10 +53,10 @@
     margin-bottom: 3.5vh;
 }
 
-a {
+.a {
     color: whitesmoke;
   }
-  a:hover {
+  .a:hover {
      color: whitesmoke;
   }
 

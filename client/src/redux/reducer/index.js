@@ -57,7 +57,7 @@ case TYPES.DETAILS:
         movies: movieSort,
         moviesBackUp: movieSort
       };
-
+    }
 
             case TYPES.POST_MOVIE:
                 return {
