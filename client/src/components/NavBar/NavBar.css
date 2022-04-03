@@ -84,3 +84,8 @@
     filter: drop-shadow(3px 3px 0 whitesmoke) 
     drop-shadow(3px 3px 0 whitesmoke); */
 }
+
+.backButton{
+    width: 25px;
+    height: 20px;
+}
