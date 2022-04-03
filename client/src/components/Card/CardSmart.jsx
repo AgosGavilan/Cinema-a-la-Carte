@@ -8,7 +8,7 @@ import styles from "./Cards.module.css"
 const CardSmart = ({currentMovie}) => {
 
     const dispatch = useDispatch()
-    const allMovies = useSelector(state => state.movies)
+    //const allMovies = useSelector(state => state.movies)
 
     React.useEffect(() => {
          dispatch(getMovies())
