@@ -8,7 +8,7 @@ import Form from "../src/components/Form/Form";
 function App() {
   return (
     <div className="App">
-      <NavBar />
+     {/*  <NavBar /> */}
       <Routes>
         <Route exact path="/home" element={<Home/>}/>
         <Route exact path="/form" element={<Form/>}/>

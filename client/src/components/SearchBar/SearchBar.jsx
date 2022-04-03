@@ -19,7 +19,7 @@ export default function SearchBar() {
     if (title.length < 1) {
       alert("Field is empty");
     }
-    //dispatch(getRecipeName(title));
+    dispatch(getMovieByTitle(title));
     console.log(title);
   }
 
