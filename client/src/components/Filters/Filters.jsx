@@ -1,5 +1,6 @@
 import {useSelector} from "react-redux"
 // import {filterGenres, filterYears, getMovies} from "../../redux/actions/index"
+import styles from "./Filters.module.css"
 
 const Filters = ({handleGenres, handleYears, handleClick}) => {
 
@@ -19,11 +20,11 @@ const Filters = ({handleGenres, handleYears, handleClick}) => {
   });
 
   return (
-    <div>
-      <h4>Filter by</h4>
+    <div className={styles.filters}>
+      <h4 className={styles.text}>Filter by</h4>
       <div>
-        <select onChange={handleGenres}>
-          <option value="Genres">Genre</option>
+        <select onChange={handleGenres} className={styles.selectGenre}>
+          <option value="">Genre</option>
           {genres?.map((e) => {
             return (
               <option key={e.id} value={e.name}>
@@ -35,8 +36,8 @@ const Filters = ({handleGenres, handleYears, handleClick}) => {
       </div>
 
       <div>
-        <select onChange={handleYears}>
-          <option value="Years">
+        <select onChange={handleYears} className={styles.selectGenre}>
+          <option value="">
             Year
           </option>
           {filterlist?.map(f => {
@@ -48,7 +49,7 @@ const Filters = ({handleGenres, handleYears, handleClick}) => {
         </select>
       </div>
 
-      <button onClick={handleClick}>All Movies!</button>
+      {/* <button onClick={handleClick} className={styles.btnMovies}>All Movies!</button> */}
     </div>
   );
 };

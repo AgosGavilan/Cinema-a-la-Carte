@@ -1,0 +1,59 @@
+.filters {
+    display: flex;
+    align-items: center;
+}
+
+.text {
+    margin: 5px;
+    font-size: 20px;
+}
+
+.selectGenre {
+    -webkit-appearance: none;
+    padding: 6px 40px 6px 12px;
+    border: 1px solid #e8eaed;
+    border-radius: 5px;
+    background: #242424;
+    box-shadow: 0 1px 3px -2px #9098a9;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 150ms ease;
+    color: white;
+    margin: 5px;
+}
+
+.btnMovies {
+    background-color: #242424;
+    border-radius: 6px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    height: 35px;
+    width: 120px;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 5px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-left: 5px;
+    border: 1px solid #e8eaed;
+}
+
+.btnMovies:hover {
+  background-color: transparent;
+  border: 2px solid white;
+}
