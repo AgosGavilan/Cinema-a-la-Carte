@@ -1,4 +1,4 @@
-.nav {
+.nav {  
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -61,10 +61,14 @@
     font-weight: 100;
 }
 
+
+
+
 /* a {
+>>>>>>> be9f95e7e7613a72e2b74cf1897c210d9e5e274e
     color: whitesmoke;
   }
-  a:hover {
+  .a:hover {
      color: whitesmoke;
   } */
 
@@ -86,4 +90,9 @@
     drop-shadow(3px 3px 0 whitesmoke);
     filter: drop-shadow(3px 3px 0 whitesmoke) 
     drop-shadow(3px 3px 0 whitesmoke); */
+}
+
+.backButton{
+    width: 25px;
+    height: 20px;
 }

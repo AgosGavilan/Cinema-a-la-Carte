@@ -59,6 +59,7 @@ const rootReducer = (state = initialState, action) => {
       };
     }
 
+
     case TYPES.POST_MOVIE:
       return {
         ...state,
