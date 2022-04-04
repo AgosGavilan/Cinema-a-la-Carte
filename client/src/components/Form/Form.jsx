@@ -2,13 +2,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import image from "../../assets/poster.jpg"
 // import styles from "./Form.module.css"
 import "./Form.css"
 
+
 import { getActors, getGenres, postMovie } from "../../redux/actions";
 
-/*
-release_date 
+/*release_date 
 title
 img
 description (overview)
@@ -52,7 +53,7 @@ const validate = (input) => {
   if (input.img.length && !regex.test(input.img)) {
     errors.img = "img is invalid, it must be an URL";
   }
-  //poster por defecto
+
   return errors;
 };
 
@@ -67,6 +68,7 @@ const Form = () => {
     release_date: "",
     overview: "",
     vote_average: "",
+    original_language: "",
     price: "",
     genres: [],
     actors: [],
@@ -82,6 +84,9 @@ const Form = () => {
     dispatch(getGenres());
   }, [dispatch]);
 
+
+/* id,title,adult (true o false), img (url), overview (descripcion de la pelicula), release_date (fecha de lanzamiento), original_language ("en" si es en ingles o "es" si es en español), vote_average (numero del 1 al 10),price (numero entre 0,5 y 4,99)] */
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let error = Object.keys(validate(input));
@@ -90,7 +95,7 @@ const Form = () => {
         title: "Some fields are wrong or empty",
         icon: "error",
         position: "center",
-        timer: 3000,
+        timer: 2000,
         showConfirmButton: false,
         timerProgressBar: true,
       });
@@ -99,10 +104,12 @@ const Form = () => {
       dispatch(postMovie(input));
       setInput({
         title: "",
-        img: "",
+        img: "" || image,
         release_date: "",
-        overview: "",
+        Overview: "",
         vote_average: "",
+        adult: false,
+        original_language: "en",
         price: "",
         genres: [],
         actors: [],
@@ -111,7 +118,7 @@ const Form = () => {
         title: "Movie created successfully",
         icon: "success",
         position: "center",
-        timer: 3000,
+        timer: 2000,
         showConfirmButton: false,
         timerProgressBar: true,
       });
@@ -145,8 +152,6 @@ const Form = () => {
       });
     }
   };
-
-
 
   const handleList = (e) => {
     e.preventDefault();
@@ -210,16 +215,13 @@ const Form = () => {
 
         <div className="group">
         <label className="inputLabel">Description: </label>
-        <input
-        className="inputForm"
-          type="textarea"
-          value={input.overview}
+        <textarea autoCapitalize="sentences" autoComplete="off"
+          maxLength="255" className="textarea" id="" cols="30" rows="10"  value={input.overview}
           name="overview"
-          onChange={(e) => handleChange(e)}
-        />
+          onChange={(e) => handleChange(e)}></textarea>     
         <strong className="errors">{errors.overview}</strong>
         </div>
-
+    
         <div className="group">
         <label className="inputLabel">Rating: </label>
         <input
@@ -228,8 +230,10 @@ const Form = () => {
           value={input.vote_average}
           name="vote_average"
           onChange={(e) => handleChange(e)}
+          step="0.1"
           min="0"
           max="10"
+          placeholder="1.7"
         />
         <strong className="errors">{errors.vote_average}</strong>
 
@@ -240,9 +244,10 @@ const Form = () => {
         className="inputForm"
           type="number"
           name="price"
-          placeholder="Price..."
-          step=".01"
-          min="0"
+          placeholder="1,99"
+          step="0.49"
+          min="0.49"
+          max="4.00"          
           value={input.price === 0 ? "" : input.price}
           onChange={(e) => handleChange(e)}
         />
@@ -259,8 +264,11 @@ const Form = () => {
           autoComplete="off"
           maxLength="255"
         />
+        <br />
+        <div className="container_image">
+        <img src={input.img || image } alt="poster" width="200px" />
+        </div>
         <strong className="errors"> {errors.img}</strong>
-        {/* <img src={input.img} alt="poster" /> */}
     </div>
 
         <div className="group">
@@ -282,12 +290,13 @@ const Form = () => {
               </option>
             ))}
           </datalist>
-          <div >
+          <div className="options" >
             {input.actors.map((a) => (
-              <div key={a}>
+              <div className="box_opcion"  key={a}>
                 <div className="opcion_title">
                   <p>{a}</p>
                 </div>
+                {" "}
                 <button className="btn_remove" onClick={() => handleDeleteActors(a)} key={a} value={a}>
                   x
                 </button>
@@ -314,7 +323,7 @@ const Form = () => {
           </select>
           <div className="options" >
             {input.genres.map((g) => (
-              <div key={g}>
+              <div className="box_opcion" key={g}>
                 <div className="opcion_title">
                   <p>{g}</p>
                 </div>

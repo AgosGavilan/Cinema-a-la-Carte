@@ -58,7 +58,7 @@ export const filterYears = (year) => {
 export const postMovie = (newMovie) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.post(`${URL}/movie`, newMovie)
+            const { data } = await axios.post(`${URL}/movies`, newMovie)
             return dispatch({
                 type: TYPES.POST_MOVIE,
                 payload: data

@@ -9,6 +9,8 @@ import styles from "./Home.module.css"
 import Paginate from "../Paginate/Paginate";
 import SideBar from "../NavBar/SideBar";
 import NavBar from "../NavBar/NavBar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 
 const Home = () => {
@@ -113,9 +115,9 @@ return (
       <NavBar />
         <SideBar handleOrder={handleOrder} handleYears={handleYears} handleGenres={handleGenres} handleClick={handleClick}/>
         <CardSmart currentMovie={currentMovie}/>
-            <div className="containerPaginado">
-              <div className="paginado">
-                <button className="numberButton" onClick={handlePrev}>
+            <div className={styles.containerPaginado}>
+              <div className={styles.paginado}>
+                <button className= {styles.numberButton}  onClick={handlePrev}>
                   {"<<"}
                 </button>
                 {/* <div className="textPage"> */}
@@ -128,7 +130,7 @@ return (
                 paginate={paginate}
               />
                 {/* </div> */}
-                <button className="numberButton" onClick={handleNext}>
+                <button className= {styles.numberButton} onClick={handleNext}>
                   {">>"}
                 </button>
               </div>
