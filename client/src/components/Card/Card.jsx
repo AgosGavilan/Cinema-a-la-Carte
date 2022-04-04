@@ -38,7 +38,7 @@ const Card = ({
             <img
               src={img}
               className={styles.poster}
-              width="auto"
+              width="225px"
               height="350px"
               alt="Poster"
             />
@@ -48,12 +48,12 @@ const Card = ({
               <h3>{title}</h3>
               <p>{vote_average} ⭐</p>
               <p>US$ {price}</p>
-              <div className={styles.buttons}>
-                <NavLink to={`/movies/${id}`}>
-                  <button>View Details</button>
+              <div>
+                <NavLink  to={`/movies/${id}`}>
+                  <button className={styles.buttons}>View Details</button>
                 </NavLink>
-                <NavLink to={`/cart`}>
-                  <button>Add To Cart</button>
+                <NavLink  to={`/cart`}>
+                  <button className={styles.buttons}>Add To Cart</button>
                 </NavLink>
             </div>
             </div>

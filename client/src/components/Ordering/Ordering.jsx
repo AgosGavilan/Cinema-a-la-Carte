@@ -1,13 +1,14 @@
 // import { useState } from "react";
 // import { useDispatch } from "react-redux";
 // import {getMovies, orderMovies} from "../../redux/actions/index"
+import styles from "./Ordering.module.css"
 
 const Ordering = ({handleOrder}) => {
 
     return (
-        <div>
-            <h4>Sort by</h4>
-            <select defaultValue="" onChange={handleOrder}>
+        <div className={styles.order}>
+            <h4 className={styles.text}>Sort by</h4>
+            <select defaultValue="" onChange={handleOrder} className={styles.selectOrder}>
                 <option value="">Recently Added</option>
                 <option value="AtoZ">Name (A - Z)</option>
                 <option value="ZtoA">Name (Z - A)</option>

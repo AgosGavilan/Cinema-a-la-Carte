@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { getMovieByTitle } from "../../redux/actions/index" ;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
-//import "./SearchBar.css";
+import styles from "./SearchBar.module.css";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -19,20 +19,19 @@ export default function SearchBar() {
     if (title.length < 1) {
       alert("Field is empty");
     }
-    //dispatch(getRecipeName(title));
-    console.log(title);
+    dispatch(getMovieByTitle(title));
   }
 
   return (
-    <div className="searchBar">
+    <div className={styles.searchBar}>
       <input
         type="text"
         placeholder="Ej: 'The Godfather'"
         value={title}
         onChange={(e) => handleInput(e)}
-        className="input"
+        className={styles.inputSearch}
       ></input>
-      <button className="btnSearch"  type="submit" onClick={(e) => handleSubmit(e)}><FontAwesomeIcon icon={faSearch} />
+      <button className={styles.btnSearch}  type="submit" onClick={(e) => handleSubmit(e)}><FontAwesomeIcon icon={faSearch} />
       </button>
     
     </div>
