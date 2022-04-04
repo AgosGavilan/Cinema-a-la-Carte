@@ -13,14 +13,12 @@ const Paginate = ({moviesPerPage, allMovies, paginate}) => {
         
         <div className="containerPaginado">
           <div className="paginado">
-    
-    
+       
             {pageNumbers &&
               pageNumbers.map((number) => (
                 <div className="number" key={number}>
                   <button className="numberButton" onClick={() => paginate(number)}>
-                    {" "}
-                    {number}{" "}
+                    {" "}{number}{" "}
                   </button>
                 </div>
               ))}

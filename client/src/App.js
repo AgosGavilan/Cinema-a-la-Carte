@@ -8,8 +8,9 @@ import Form from "../src/components/Form/Form";
 function App() {
   return (
     <div className="App">
+     {/*  <NavBar /> */}
       <Routes>
-        <Route exact path="/home" element={<Home/>}/>
+        <Route exact path="/" element={<Home/>}/>
         <Route exact path="/form" element={<Form/>}/>
         <Route exact path="/movies/:id" element={<Details/>} />
       </Routes>

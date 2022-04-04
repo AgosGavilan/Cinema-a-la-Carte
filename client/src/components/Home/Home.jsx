@@ -9,6 +9,8 @@ import styles from "./Home.module.css"
 import Paginate from "../Paginate/Paginate";
 import SideBar from "../NavBar/SideBar";
 import NavBar from "../NavBar/NavBar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 
 const Home = () => {
@@ -32,7 +34,7 @@ const Home = () => {
 
     const handleYears = (e) => {
         e.preventDefault();
-        if(e.target.value === "Years") {
+        if(e.target.value === "") {
           dispatch(getMovies())
             setCurrentPage(1)
             window.scrollTo(0, 0);
@@ -46,7 +48,7 @@ const Home = () => {
     
       const handleGenres = (e) => {
         e.preventDefault();
-        if(e.target.value === "Genres") {
+        if(e.target.value === "") {
           dispatch(getMovies())
           window.scrollTo(0, 0);
         }
@@ -62,7 +64,6 @@ const Home = () => {
         dispatch(getMovies());
         setCurrentPage(1)
         window.scrollTo(0, 0);
-        e.target.value=""
       };
 
       const handleOrder = o => {
@@ -112,11 +113,11 @@ const Home = () => {
 return (
     <div className={styles.home}>
       <NavBar />
-        {/* <SideBar handleOrder={handleOrder} handleYears={handleYears} handleGenres={handleGenres} handleClick={handleClick}/> */}
+        <SideBar handleOrder={handleOrder} handleYears={handleYears} handleGenres={handleGenres} handleClick={handleClick}/>
         <CardSmart currentMovie={currentMovie}/>
-            <div className="containerPaginado">
-              <div className="paginado">
-                <button className="numberButton" onClick={handlePrev}>
+            <div className={styles.containerPaginado}>
+              <div className={styles.paginado}>
+                <button className= {styles.numberButton}  onClick={handlePrev}>
                   {"<<"}
                 </button>
                 {/* <div className="textPage"> */}
@@ -129,7 +130,7 @@ return (
                 paginate={paginate}
               />
                 {/* </div> */}
-                <button className="numberButton" onClick={handleNext}>
+                <button className= {styles.numberButton} onClick={handleNext}>
                   {">>"}
                 </button>
               </div>
