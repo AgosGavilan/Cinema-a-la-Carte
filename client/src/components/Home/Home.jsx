@@ -21,6 +21,7 @@ const Home = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [moviesPerPage, setMoviesPerPage] = useState(12);
+    const [loading, setLoading] = useState(true)
     const lastMovie = currentPage * moviesPerPage;
     const firstMovie = lastMovie - moviesPerPage;
     const currentMovie = allMovies.slice(firstMovie, lastMovie);
@@ -30,11 +31,12 @@ const Home = () => {
         dispatch(getGenres())
         dispatch(getActors())
         window.scrollTo(0, 0);
+        setLoading(false)
     }, [currentPage])
 
     const handleYears = (e) => {
         e.preventDefault();
-        if(e.target.value === "") {
+        if(e.target.value === "Year") {
           dispatch(getMovies())
             setCurrentPage(1)
             window.scrollTo(0, 0);
@@ -48,7 +50,7 @@ const Home = () => {
     
       const handleGenres = (e) => {
         e.preventDefault();
-        if(e.target.value === "") {
+        if(e.target.value === "Genre") {
           dispatch(getMovies())
           window.scrollTo(0, 0);
         }
@@ -109,10 +111,9 @@ const Home = () => {
 
   
       
-
+// if(loading) return <img src="https://loading.io/asset/562325" alt="Loading"/>
 return (
     <div className={styles.home}>
-      <NavBar />
         <SideBar handleOrder={handleOrder} handleYears={handleYears} handleGenres={handleGenres} handleClick={handleClick}/>
         <CardSmart currentMovie={currentMovie}/>
             <div className={styles.containerPaginado}>

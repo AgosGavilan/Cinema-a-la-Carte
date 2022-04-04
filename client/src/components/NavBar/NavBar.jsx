@@ -33,10 +33,10 @@ export default function NavBar() {
   return (
     <div className="nav">
       <div className="divHome">
-      <Link to="/home" style={{ textDecoration: "none" }}>
+      <Link to="/" style={{ textDecoration: "none" }}>
         <img src={logo} alt="Logo" width="70px"/>
       </Link>
-      <Link to="/home" style={{ textDecoration: "none" }}>
+      <Link to="/" style={{ textDecoration: "none" }}>
         <h1 className="btnHome">Cinéma á laCarte</h1>
       </Link>
       </div>
