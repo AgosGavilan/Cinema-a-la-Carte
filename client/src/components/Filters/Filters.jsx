@@ -19,7 +19,6 @@ const Filters = ({handleGenres, handleYears, handleClick}) => {
     return arr.indexOf(element) === index;
   });
 
-  console.log(filterlist)
   return (
     <div className={styles.filters}>
       <h4 className={styles.text}>Filter by</h4>
