@@ -32,7 +32,7 @@ const Home = () => {
 
     const handleYears = (e) => {
         e.preventDefault();
-        if(e.target.value === "Years") {
+        if(e.target.value === "") {
           dispatch(getMovies())
             setCurrentPage(1)
             window.scrollTo(0, 0);
@@ -46,7 +46,7 @@ const Home = () => {
     
       const handleGenres = (e) => {
         e.preventDefault();
-        if(e.target.value === "Genres") {
+        if(e.target.value === "") {
           dispatch(getMovies())
           window.scrollTo(0, 0);
         }
@@ -62,7 +62,6 @@ const Home = () => {
         dispatch(getMovies());
         setCurrentPage(1)
         window.scrollTo(0, 0);
-        e.target.value=""
       };
 
       const handleOrder = o => {
@@ -112,7 +111,7 @@ const Home = () => {
 return (
     <div className={styles.home}>
       <NavBar />
-        {/* <SideBar handleOrder={handleOrder} handleYears={handleYears} handleGenres={handleGenres} handleClick={handleClick}/> */}
+        <SideBar handleOrder={handleOrder} handleYears={handleYears} handleGenres={handleGenres} handleClick={handleClick}/>
         <CardSmart currentMovie={currentMovie}/>
             <div className="containerPaginado">
               <div className="paginado">
