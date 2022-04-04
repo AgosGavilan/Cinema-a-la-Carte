@@ -52,9 +52,8 @@ const Card = ({
                 <NavLink to={`/movies/${id}`}>
                   <button>View Details</button>
                 </NavLink>
-                <NavLink to={`/cart`}>
-                  <button>Add To Cart</button>
-                </NavLink>
+               {/*Aca no quiero que me lleve al carrito sino que solo añada la peli a el carrito*/}
+                <button>Add To Cart</button>
             </div>
             </div>
           </div>
