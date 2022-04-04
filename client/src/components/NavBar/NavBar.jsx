@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getMovies } from "../../redux/actions/index"
+
 import {
   faAngleLeft,
   faAngleRight,
@@ -18,12 +19,15 @@ import "./NavBar.css";
 
 
 export default function NavBar() {
-
+  const allMoviesBackup = useSelector((state) => state.moviesBackUp);
+  const allMovies = useSelector((state) => state.movies);
   const dispatch = useDispatch();
 
   const handleClick = () => {
     dispatch(getMovies());
   }
+
+
 
   return (
     <div className="nav">
@@ -40,9 +44,12 @@ export default function NavBar() {
       <Link to="/cart">
         <FontAwesomeIcon className="cart" icon={faCartShopping} />
       </Link>
-      <button onClick={handleClick} className="backButton">
+      {
+        allMovies.length !== allMoviesBackup.length && <button onClick={handleClick} className="backButton">
         <FontAwesomeIcon className="back" icon={faAngleLeft} />
-      </button>
+      </button> 
+      
+      }
     </div>
   );
 }
