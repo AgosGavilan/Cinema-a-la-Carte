@@ -23,8 +23,8 @@ const Filters = ({handleGenres, handleYears, handleClick}) => {
     <div className={styles.filters}>
       <h4 className={styles.text}>Filter by</h4>
       <div>
-        <select onChange={handleGenres} className={styles.selectGenre}>
-          <option value="">Genre</option>
+        <select defaultValue="Genre" onChange={handleGenres} className={styles.selectGenre}>
+          <option value="Genre">Genre</option>
           {genres?.map((e) => {
             return (
               <option key={e.id} value={e.name}>
@@ -36,8 +36,8 @@ const Filters = ({handleGenres, handleYears, handleClick}) => {
       </div>
 
       <div>
-        <select onChange={handleYears} className={styles.selectGenre}>
-          <option value="">
+        <select defaultValue="Year" onChange={handleYears} className={styles.selectGenre}>
+          <option value="Year">
             Year
           </option>
           {filterlist?.map(f => {
