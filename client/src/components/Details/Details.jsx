@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { details } from "../../redux/actions";
-import image from '../../assets/background-popcorn-film-wallpaper-preview.jpg'
+import poster from '../../assets/poster.jpg'
+import s from "./Details.module.css"
 
 const Details = () => {
     const {id} = useParams()
@@ -15,14 +16,55 @@ const Details = () => {
 
     return (
         <div>
-            <h1>{movieDetail.title}</h1>
-            <img src={movieDetail.img ? movieDetail.img : image} alt={`${movieDetail.name}'s`} width="300px" height="150px"/>
+            {/* <h1>{movieDetail.title}</h1> *
+            <img src={movieDetail.img ? movieDetail.img : image} alt={`${movieDetail.name}'s`}/> *
             <p>Vote: {movieDetail.vote_average}</p>
-            <p>Genres: {movieDetail.Genres?.map(g => g.name).join(' | ')}</p>
-            <p>Release: {movieDetail.release_date}</p>
-            <p>Description: {movieDetail.overview}</p>
-            <p>Price: u$d{movieDetail.price}</p>
+            <p>Genres: {movieDetail.Genres?.map(g => g.name).join(' | ')}</p> *
+            <p>Release: {movieDetail.release_date}</p> *
+            <p>Description: {movieDetail.overview}</p> *
+            <p>Price: u$d{movieDetail.price}</p> *
             <p>Actores: {movieDetail.Actors?.map(a => a.name).join(', ')}</p>
+            <button>Add to cart</button> */}
+
+<div className={s.wrapper}>
+  <div className={s.card}>
+    <div className={s.product_left}>
+        <NavLink to="/" className={s.nav}>
+          <span className={s.navspan}>⇦</span>
+        </NavLink>
+      <div className={s.header}>
+        <h1>{movieDetail.title}</h1>
+        <h2>{movieDetail.Genres?.map(g => g.name).join(' | ')}</h2>
+      </div>
+      
+      <div className={s.product_main}>
+        <div className={s.focus}>
+          <span>Description</span>
+          <span>Review</span>
+        </div>
+        <p>{movieDetail.overview}</p>
+        <p>{movieDetail.Actors?.map(a => a.name).join(', ')}</p>
+        <p>Release: {movieDetail.release_date}</p>
+      </div>
+      
+      <div className={s.product_details}>
+        
+        
+        <div className={s.product_total}>
+          <h3>Total Price</h3>
+          <p>US$ {movieDetail.price}</p>
+        </div>
+      </div>
+      
+      <div className={s.product_btns}>
+        <a href="#" className={s.product_add}>Add To Cart</a>
+      </div>
+    </div>
+    <div className={s.product_right}>
+      <img src={movieDetail.img ? movieDetail.img : poster} alt="" />
+    </div>
+  </div>
+</div>
         </div>
     )
 }

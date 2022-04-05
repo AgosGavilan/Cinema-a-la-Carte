@@ -21,6 +21,7 @@ const Home = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [moviesPerPage, setMoviesPerPage] = useState(12);
+    // const [loading, setLoading] = useState(true)
     const lastMovie = currentPage * moviesPerPage;
     const firstMovie = lastMovie - moviesPerPage;
     const currentMovie = allMovies.slice(firstMovie, lastMovie);
@@ -29,12 +30,11 @@ const Home = () => {
         dispatch(getMovies())
         dispatch(getGenres())
         dispatch(getActors())
-        window.scrollTo(0, 0);
-    }, [currentPage])
+    }, [])
 
     const handleYears = (e) => {
         e.preventDefault();
-        if(e.target.value === "Years") {
+        if(e.target.value === "Year") {
           dispatch(getMovies())
             setCurrentPage(1)
             window.scrollTo(0, 0);
@@ -48,7 +48,7 @@ const Home = () => {
     
       const handleGenres = (e) => {
         e.preventDefault();
-        if(e.target.value === "Genres") {
+        if(e.target.value === "Genre") {
           dispatch(getMovies())
           window.scrollTo(0, 0);
         }
@@ -64,7 +64,6 @@ const Home = () => {
         dispatch(getMovies());
         setCurrentPage(1)
         window.scrollTo(0, 0);
-        e.target.value=""
       };
 
       const handleOrder = o => {
@@ -110,34 +109,40 @@ const Home = () => {
 
   
       
+// if(loading) {
+//   return (
+// <div>
+// <img src="https://i.stack.imgur.com/kOnzy.gif" alt="Loading"/>
+// </div>)
+// }
+// else {
 
-return (
-    <div className={styles.home}>
-      <NavBar />
-        {/* <SideBar handleOrder={handleOrder} handleYears={handleYears} handleGenres={handleGenres} handleClick={handleClick}/> */}
-        <CardSmart currentMovie={currentMovie}/>
-            <div className={styles.containerPaginado}>
-              <div className={styles.paginado}>
-                <button className= {styles.numberButton}  onClick={handlePrev}>
-                  {"<<"}
-                </button>
-                {/* <div className="textPage"> */}
-                  {/* <p className="pageNumber">
-                    {currentPage} of {totalPage}{" "}
-                  </p> */}
-                <Paginate
-                moviesPerPage={moviesPerPage}
-                allMovies={allMovies.length}
-                paginate={paginate}
-              />
-                {/* </div> */}
-                <button className= {styles.numberButton} onClick={handleNext}>
-                  {">>"}
-                </button>
-              </div>
-              </div>
-    </div>
-)
+  return (
+      <div className={styles.home}>
+          <SideBar handleOrder={handleOrder} handleYears={handleYears} handleGenres={handleGenres} handleClick={handleClick}/>
+          <CardSmart currentMovie={currentMovie}/>
+              <div className={styles.containerPaginado}>
+                <div className={styles.paginado}>
+                  <button className= {styles.numberButton}  onClick={handlePrev}>
+                    {"<<"}
+                  </button>
+                  {/* <div className="textPage"> */}
+                    {/* <p className="pageNumber">
+                      {currentPage} of {totalPage}{" "}
+                    </p> */}
+                  <Paginate
+                  moviesPerPage={moviesPerPage}
+                  allMovies={allMovies.length}
+                  paginate={paginate}
+                />
+                  {/* </div> */}
+                  <button className= {styles.numberButton} onClick={handleNext}>
+                    {">>"}
+                  </button>
+                </div>
+                </div>
+      </div>
+  )
 }
 
 export default Home

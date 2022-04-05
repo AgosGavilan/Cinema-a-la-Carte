@@ -244,8 +244,8 @@ const Form = () => {
         className="inputForm"
           type="number"
           name="price"
-          placeholder="1,99"
-          step="0.49"
+          placeholder="1.99"
+          step=".01"
           min="0.49"
           max="4.00"          
           value={input.price === 0 ? "" : input.price}
@@ -266,7 +266,7 @@ const Form = () => {
         />
         <br />
         <div className="container_image">
-        <img src={input.img || image } alt="poster" width="200px" />
+        <img src={input.img || image } alt="poster" width="auto" height="300px" />
         </div>
         <strong className="errors"> {errors.img}</strong>
     </div>
@@ -298,7 +298,7 @@ const Form = () => {
                 </div>
                 {" "}
                 <button className="btn_remove" onClick={() => handleDeleteActors(a)} key={a} value={a}>
-                  x
+                  X
                 </button>
               </div>
             ))}
@@ -328,7 +328,7 @@ const Form = () => {
                   <p>{g}</p>
                 </div>
                 <button  className="btn_remove"  onClick={() => handleDeleteGenres(g)} key={g} value={g}>
-                  x
+                  X
                 </button>
               </div>
             ))}
