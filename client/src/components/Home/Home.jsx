@@ -50,6 +50,7 @@ const Home = () => {
         e.preventDefault();
         if(e.target.value === "Genre") {
           dispatch(getMovies())
+          setCurrentPage(1)
           window.scrollTo(0, 0);
         }
         else {
@@ -123,22 +124,13 @@ const Home = () => {
           <CardSmart currentMovie={currentMovie}/>
               <div className={styles.containerPaginado}>
                 <div className={styles.paginado}>
-                  <button className= {styles.numberButton}  onClick={handlePrev}>
-                    {"<<"}
-                  </button>
-                  {/* <div className="textPage"> */}
-                    {/* <p className="pageNumber">
-                      {currentPage} of {totalPage}{" "}
-                    </p> */}
                   <Paginate
                   moviesPerPage={moviesPerPage}
                   allMovies={allMovies.length}
                   paginate={paginate}
+                  handlePrev={handlePrev}
+                  handleNext={handleNext}
                 />
-                  {/* </div> */}
-                  <button className= {styles.numberButton} onClick={handleNext}>
-                    {">>"}
-                  </button>
                 </div>
                 </div>
       </div>
