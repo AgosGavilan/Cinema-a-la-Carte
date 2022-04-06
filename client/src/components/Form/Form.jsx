@@ -180,8 +180,8 @@ const Form = () => {
 
   return (
     <div className="bodyForm">
-      <div className="posterImg">
-        <img src={input.img || image} alt="Poster"/>
+      <div>
+        <img src={input.img || image} className="posterImg" alt="Poster"/>
       </div>
       <form className="form" action="" onSubmit={(e) => handleSubmit(e)}>
         <h1 className="title">Add Movie</h1>
