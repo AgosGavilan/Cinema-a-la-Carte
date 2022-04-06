@@ -1,0 +1,48 @@
+.containerPaginado {
+  display: flex;
+  direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.paginado {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.numberButton {
+  border-radius: 4px;
+  width: 30px;
+  height: 25px;
+  background-color: #2b2725;
+  color: antiquewhite;
+  font-size: 18px;
+}
+
+.numberButton:hover {
+  background-color: rgb(116, 106, 106);
+  color: black;
+}
+
+.numberButton:focus {
+  background-color: antiquewhite;
+  color: black;
+}
+
+.passButton {
+  border-radius: 4px;
+  width: 30px;
+  height: 25px;
+  background-color: #2b2725;
+  color: antiquewhite;
+  font-size: 18px;
+}
+
+.passButton:hover {
+  background-color: rgb(116, 106, 106);
+  color: black;
+}
