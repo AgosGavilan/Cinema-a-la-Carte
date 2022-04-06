@@ -3,12 +3,13 @@ import './App.css';
 import Home from "../src/components/Home/Home"
 import Details from "./components/Details/Details"
 import Form from "../src/components/Form/Form";
+import NavBar from "./components/NavBar/NavBar";
 
 
 function App() {
   return (
     <div className="App">
-     {/*  <NavBar /> */}
+      <NavBar />
       <Routes>
         <Route exact path="/" element={<Home/>}/>
         <Route exact path="/form" element={<Form/>}/>
