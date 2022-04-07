@@ -1,19 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { details } from "../../redux/actions";
+import LoadScreen from "../Loading/LoadScreen";
 import poster from '../../assets/poster.jpg'
 import s from "./Details.module.css"
 
 const Details = () => {
     const {id} = useParams()
     const dispatch = useDispatch()
+    const [loadScreen, setLoadScreen] = useState(true);
     const movieDetail = useSelector(state => state.details)
 
     React.useEffect(() => {
-        dispatch(details(id))
+        dispatch(details(id)).then(() => setLoadScreen(false));
     }, [dispatch, id])
 
+    if (loadScreen) return <LoadScreen />;
     return (
         <div>
             {/* <h1>{movieDetail.title}</h1> *

@@ -107,6 +107,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         details: []
       }
+    
+    case TYPES.MODIFY_MOVIE:
+      return {
+        ...state
+      }
+
+    case TYPES.DELETE_MOVIE:
+      return {
+        ...state
+      }
 
     default:
       return {

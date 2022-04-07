@@ -19,7 +19,7 @@ import logo from "../../assets/Cinema.png"
 // import hola from "./hola.png"
 
 
-export default function NavBar() {
+const NavBar = () => {
   const allMoviesBackup = useSelector((state) => state.moviesBackUp);
   const allMovies = useSelector((state) => state.movies);
   const dispatch = useDispatch();
@@ -40,7 +40,9 @@ export default function NavBar() {
         <h1 className="btnHome">Cinéma á laCarte</h1>
       </Link>
       </div>
+      <Link to="/" style={{ textDecoration: "none" }}>
       <SearchBar />
+      </Link>
       <Link to="/form">
         <FontAwesomeIcon className="movieIcon" icon={faClapperboard} />
       </Link>
@@ -50,12 +52,14 @@ export default function NavBar() {
       <Link to="/cart">
         <FontAwesomeIcon className="cart" icon={faCartShopping} />
       </Link>
-      {
+      {/* {
         allMovies.length !== allMoviesBackup.length && <button onClick={handleClick} className="backButton">
         <FontAwesomeIcon className="back" icon={faAngleLeft} />
       </button> 
       
-      }
+      } */}
     </div>
   );
 }
+
+export default NavBar

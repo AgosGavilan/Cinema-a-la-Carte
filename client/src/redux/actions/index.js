@@ -139,4 +139,33 @@ export function getMovieByTitle(title) {
     };
   };
 
+  export const modifyMovie = (movie) => {
+    return async (dispatch) => {
+      try {
+        const { data } = axios.put(`${URL}/...`, movie);
+        dispatch({
+          type: TYPES.MODIFY_MOVIE,
+          payload: data,
+        });
+        console.log(data);
+      } catch (e) {
+        console.log("Error in modifyMovie");
+        console.log(e);
+      }
+    };
+  };
+  
+  export const deleteMovie = (id) => {
+    return async (dispatch) => {
+      try {
+        const { data } = await axios.delete(
+          `${URL}/.../${id}`
+        );
+        dispatch({ type: TYPES.DELETE_MOVIE, payload: data });
+      } catch (error) {
+        console.log("error in deleteMovie", error);
+      }
+    };
+  };
+
 
