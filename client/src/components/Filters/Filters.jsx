@@ -19,6 +19,8 @@ const Filters = ({handleGenres, handleYears, handleClick}) => {
     return arr.indexOf(element) === index;
   });
 
+  let finalList = filterlist.filter(e => e !== "")
+
   return (
     <div className={styles.filters}>
       <h4 className={styles.text}>Filter by</h4>
@@ -40,7 +42,7 @@ const Filters = ({handleGenres, handleYears, handleClick}) => {
           <option value="Year">
             Year
           </option>
-          {filterlist?.map(f => {
+          {finalList?.map(f => {
             return (
               <option key={f} value={f}>
                 {f}

@@ -2,9 +2,9 @@
 
 .wrapper {
     /* height: 100vh; */
-    height: 870px;
+    height: 1000px;
     position: relative;
-    background-color: #ccc5b9;
+    background-color: rgb(24,24,24);
   }
   
   .card {
@@ -41,7 +41,8 @@
   }
   
   .product_right img {
-    height: 30rem;
+    height: 70%;
+    border-radius: 0.5rem;
   }
   
   .header h1 {

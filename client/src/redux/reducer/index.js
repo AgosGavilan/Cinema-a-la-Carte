@@ -102,6 +102,12 @@ const rootReducer = (state = initialState, action) => {
         movies: filterMovieYears,
       };
 
+    case TYPES.CLEAR_MOVIE:
+      return {
+        ...state,
+        details: []
+      }
+
     default:
       return {
         ...state,

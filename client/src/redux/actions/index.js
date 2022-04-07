@@ -125,13 +125,18 @@ export function getMovieByTitle(title) {
             }
          })
          console.log(arr);
-         return dispatch({type: "GET_TITLE_MOVIE", payload: arr})
+         return dispatch({type: TYPES.GET_TITLE_MOVIE, payload: arr})
       }
       else {
-        return dispatch({ type: "GET_TITLE_MOVIE", payload: json.data });
+        return dispatch({ type: TYPES.GET_TITLE_MOVIE, payload: json.data });
       }
     };
   }
 
+  export const clearMovieById = () => {
+    return (dispatch) => {
+      dispatch({ type: TYPES.CLEAR_MOVIE });
+    };
+  };
 
 

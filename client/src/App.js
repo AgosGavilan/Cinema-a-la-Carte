@@ -5,6 +5,7 @@ import Details from "./components/Details/Details"
 import Form from "../src/components/Form/Form";
 import NavBar from "./components/NavBar/NavBar";
 import Slider from "../src/components/Slider/Slider"
+import AdminPanel from "../src/components/AdminPanel/AdminPanel"
 
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
       <Route exact path="/home" element={<Slider/>}/>
         <Route exact path="/" element={<Home/>}/>
         <Route exact path="/form" element={<Form/>}/>
-        <Route exact path="/movies/:id" element={<Details/>} />
+        <Route exact path="/movies/:id" element={<Details/>}/>
+        <Route exact path="/admin" element={<AdminPanel/>}/>
       </Routes>
 
     </div>

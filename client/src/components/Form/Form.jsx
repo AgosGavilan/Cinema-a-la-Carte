@@ -65,7 +65,8 @@ const Form = () => {
     release_date: "",
     overview: "",
     vote_average: "",
-    original_language: "",
+    adult: false,
+    original_language: "en",
     price: "",
     genres: [],
     actors: [],
@@ -100,9 +101,9 @@ const Form = () => {
       dispatch(postMovie(input));
       setInput({
         title: "",
-        img: "" || image,
+        img: "",
         release_date: "",
-        Overview: "",
+        overview: "",
         vote_average: "",
         adult: false,
         original_language: "en",
@@ -146,6 +147,7 @@ const Form = () => {
         ...input,
         genres: [...input.genres, e.target.value],
       });
+      e.target.value=""
     }
   };
 
