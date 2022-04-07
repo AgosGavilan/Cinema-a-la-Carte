@@ -7,6 +7,9 @@ import NavBar from "./components/NavBar/NavBar";
 import Slider from "../src/components/Slider/Slider"
 
 
+import User from "./components/User/User";
+
+
 function App() {
   return (
     <div className="App">
@@ -15,6 +18,9 @@ function App() {
       <Route exact path="/home" element={<Slider/>}/>
         <Route exact path="/" element={<Home/>}/>
         <Route exact path="/form" element={<Form/>}/>
+
+        <Route exact path="/user" element={<User/>}/>
+
         <Route exact path="/movies/:id" element={<Details/>} />
       </Routes>
 
