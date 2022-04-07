@@ -1,10 +1,9 @@
-
+import styles from "./LoadScreen.module.css"
 
 const LoadScreen = () => {
     return (
-        <div>
-        <h1>Loading...</h1>
-        <img src="https://starringcinemas.co.za/wp-content/uploads/2018/02/giphy.gif" alt="Loading" />
+        <div className={styles.loadBack}>
+        <img src="https://steamuserimages-a.akamaihd.net/ugc/469792325891242764/088BC200E01563E6832AB0C414B8AE9BF6FDDA5B/" className={styles.tape} alt="Loading" />
         </div>
     )
 }
