@@ -1,17 +1,19 @@
 import { TYPES } from "./types"
 import axios from "axios"
 
-const URL = "https://proyect-ecommerce.herokuapp.com/api"
+//const URL = "https://proyect-ecommerce.herokuapp.com/api"
 
 export const getMovies = () => {
     return async dispatch => {
         try {
-            const {data} = await axios.get(`${URL}/movies`)
+
+            const {data} = await axios.get(`/api/movies`)
             return dispatch({
-                type: TYPES.GET_MOVIES, 
-                payload: data})
+                type: TYPES.GET_MOVIES,
+                payload: data
+            })
         }
-        catch(e) {
+        catch (e) {
             console.log("error in getMovies", e)
         }
     }
@@ -21,12 +23,12 @@ export const getMovies = () => {
 export const details = (id) => {
     return async (dispatch) => {
         try {
-            const {data} = await axios.get(`${URL}/movies/${id}`)
+            const {data} = await axios.get(`/api/movies/${id}`)
             return dispatch({
                 type: TYPES.DETAILS,
                 payload: data
             })
-        } catch(e) {
+        } catch (e) {
             console.log('error in details', e)
         }
     }
@@ -35,21 +37,21 @@ export const details = (id) => {
 
 export const orderMovies = (order) => {
     return {
-        type: TYPES.ORDER_MOVIES, 
+        type: TYPES.ORDER_MOVIES,
         payload: order
     }
 }
 
 export const filterGenres = (genre) => {
     return {
-        type: TYPES.FILTER_GENRES, 
+        type: TYPES.FILTER_GENRES,
         payload: genre
     }
 }
 
 export const filterYears = (year) => {
     return {
-        type: TYPES.FILTER_YEARS, 
+        type: TYPES.FILTER_YEARS,
         payload: year
     }
 }
@@ -58,41 +60,41 @@ export const filterYears = (year) => {
 export const postMovie = (newMovie) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.post(`${URL}/movies`, newMovie)
+            const { data } = await axios.post(`/api/movies`, newMovie)
             return dispatch({
                 type: TYPES.POST_MOVIE,
                 payload: data
             })
-        } catch(e) {
+        } catch (e) {
             console.log("error in postMovie", e)
         }
     }
 }
 
 
-export const getGenres= () => {
+export const getGenres = () => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`${URL}/genres`)
+            const { data } = await axios.get(`/api/genres`)
             return dispatch({
                 type: TYPES.GET_GENRES,
                 payload: data
             })
-        } catch(e) {
+        } catch (e) {
             console.log("error in getGenres", e)
         }
     }
 }
 
-export const getActors= () => {
+export const getActors = () => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`${URL}/actors`)
+            const { data } = await axios.get(`/api/actors`)
             return dispatch({
                 type: TYPES.GET_ACTORS,
                 payload: data
             })
-        } catch(e) {
+        } catch (e) {
             console.log("error in getActors", e)
         }
     }
@@ -100,17 +102,26 @@ export const getActors= () => {
 
 export function getMovieByTitle(title) {
     return async function (dispatch) {
-     /*  try {
+        /*  try {
+           let json = await axios.get(
+             "https://proyect-ecommerce.herokuapp.com/api/search?name=" + title
+           );
+           return dispatch({ type: "GET_TITLE_MOVIE", payload: json.data });
+         } catch (error) {
+           //console.log(error.message);
+           alert("Sorry, not Movie found with that title");
+         } */
         let json = await axios.get(
-          "https://proyect-ecommerce.herokuapp.com/api/search?name=" + title
+            "https://proyect-ecommerce.herokuapp.com/api/search?name=" + title
         );
+      
         return dispatch({ type: "GET_TITLE_MOVIE", payload: json.data });
       } catch (error) {
         //console.log(error.message);
         alert("Sorry, not Movie found with that title");
       } */
       let json = await axios.get(
-        "https://proyect-ecommerce.herokuapp.com/api/search?name=" + title
+        "/api/search?name=" + title
       );
       
       if(json.data[0].name){
@@ -131,13 +142,14 @@ export function getMovieByTitle(title) {
         return dispatch({ type: TYPES.GET_TITLE_MOVIE, payload: json.data });
       }
     };
-  }
+}
 
   export const clearMovieById = () => {
     return (dispatch) => {
       dispatch({ type: TYPES.CLEAR_MOVIE });
     };
   };
+
 
   export const modifyMovie = (movie) => {
     return async (dispatch) => {
@@ -168,4 +180,39 @@ export function getMovieByTitle(title) {
     };
   };
 
+export const addToCart = (itemId) => {
+    return {
+        type: TYPES.ADD_TO_CART,
+        payload: {
+            id: itemId
+        }
+    }
+}
 
+export const removeFromCart = (itemId) => {
+    return {
+        type: TYPES.REMOVE_FROM_CART,
+        payload: {
+            id: itemId
+        }
+    }
+}
+
+export const adjustQty = (itemId, value) => {
+    return {
+        type: TYPES.ADJUST_QTY,
+        payload: {
+            id: itemId,
+            qty: value
+        }
+    }
+}
+
+export const loadCurrentItem = (item) => {
+    return {
+        type: TYPES.LOAD_CURRENT_ITEM,
+        payload: {
+            id: item
+        }
+    }
+}

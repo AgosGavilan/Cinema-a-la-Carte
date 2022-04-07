@@ -6,6 +6,9 @@ import SearchBar from "../SearchBar/SearchBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getMovies } from "../../redux/actions/index"
 
+import { useAuth0 } from "@auth0/auth0-react";
+import LogIn from "../LogIn/LogIn"
+
 import {
   faAngleLeft,
   faAngleRight,
@@ -29,6 +32,8 @@ const NavBar = () => {
   }
 
 
+  const { isAuthenticated } = useAuth0();
+
 
   return (
     <div className="nav">
@@ -46,9 +51,12 @@ const NavBar = () => {
       <Link to="/form">
         <FontAwesomeIcon className="movieIcon" icon={faClapperboard} />
       </Link>
-      {/* <Link to="/"> */}
+{isAuthenticated ?
+      <Link to="/user">
       <FontAwesomeIcon className="user" icon={faUser} />
-      {/* </Link> */}
+      </Link>
+: <LogIn/>
+}
       <Link to="/cart">
         <FontAwesomeIcon className="cart" icon={faCartShopping} />
       </Link>

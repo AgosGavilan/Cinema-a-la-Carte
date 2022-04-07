@@ -6,6 +6,8 @@ const initialState = {
   genres: [],
   actors: [],
   details: [],
+  cart: [],
+  currentItem: null
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -100,6 +102,53 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         movies: filterMovieYears,
+      };
+
+    case TYPES.ADD_TO_CART:
+
+
+      //checkear si el item ya esta en el carritp
+      /*       const inCart = state.cart(item => item.id === action.payload.id ? true : false); */
+      const item = state.movies.find(movie => movie.id === action.payload.id);
+      const inCart = state.cart.find(item => item.id === action.payload.id ? true : false);
+
+      return {
+        ...state,
+        cart: inCart ? state.cart.map(item => item.id === action.payload.id ? { ...item, qty: item.qty + 1 } : item) : [...state.cart, { ...item, qty: 1 }]
+        //         : item)
+      }
+    // return {
+    //   ...state,
+    //   cart: [...state.cart, item] /* inCart
+    //     ? state.cart.map((item) =>
+    //       item.id === action.payload.id
+    //         ? { ...item, qty: item.qty + 1 }
+    //         : item
+    //     )
+    //     : [...state.cart, { ...item, qty: 1 }], */
+    // };
+
+
+    case TYPES.REMOVE_FROM_CART:
+      return {
+        ...state,
+        cart: state.cart.filter(item => item.id !== action.payload.id)
+      };
+
+    case TYPES.ADJUST_QTY:
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, qty: action.payload.qty }
+            : item
+        ),
+      };
+
+    case TYPES.LOAD_CURRENT_ITEM:
+      return {
+        ...state,
+        currentItem: action.payload,
       };
 
     case TYPES.CLEAR_MOVIE:

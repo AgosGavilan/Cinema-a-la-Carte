@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
-import { details } from "../../redux/actions";
 import LoadScreen from "../Loading/LoadScreen";
+import { details, addToCart } from "../../redux/actions";
 import poster from '../../assets/poster.jpg'
 import s from "./Details.module.css"
 
@@ -11,12 +11,17 @@ const Details = () => {
     const dispatch = useDispatch()
     const [loadScreen, setLoadScreen] = useState(true);
     const movieDetail = useSelector(state => state.details)
-
+    console.log(movieDetail)
     React.useEffect(() => {
         dispatch(details(id)).then(() => setLoadScreen(false));
     }, [dispatch, id])
 
     if (loadScreen) return <LoadScreen />;
+
+    function addCart(e){
+      e.preventDefault();
+      dispatch(addToCart(movieDetail.id))
+    }
     return (
         <div>
             {/* <h1>{movieDetail.title}</h1> *
@@ -60,7 +65,10 @@ const Details = () => {
       </div>
       
       <div className={s.product_btns}>
-        <a href="#" className={s.product_add}>Add To Cart</a>
+        <a href="#" className={s.product_add} onClick={e => addCart(e)}>
+          Add to Cart
+          </a>
+ 
       </div>
     </div>
     <div className={s.product_right}>
