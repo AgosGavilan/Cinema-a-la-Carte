@@ -102,24 +102,7 @@ export const getActors = () => {
 
 export function getMovieByTitle(title) {
     return async function (dispatch) {
-        /*  try {
-           let json = await axios.get(
-             "https://proyect-ecommerce.herokuapp.com/api/search?name=" + title
-           );
-           return dispatch({ type: "GET_TITLE_MOVIE", payload: json.data });
-         } catch (error) {
-           //console.log(error.message);
-           alert("Sorry, not Movie found with that title");
-         } */
-        let json = await axios.get(
-            "https://proyect-ecommerce.herokuapp.com/api/search?name=" + title
-        );
-      
-        return dispatch({ type: "GET_TITLE_MOVIE", payload: json.data });
-      } catch (error) {
-        //console.log(error.message);
-        alert("Sorry, not Movie found with that title");
-      } */
+        
       let json = await axios.get(
         "/api/search?name=" + title
       );
@@ -141,7 +124,7 @@ export function getMovieByTitle(title) {
       else {
         return dispatch({ type: TYPES.GET_TITLE_MOVIE, payload: json.data });
       }
-    };
+    }
 }
 
   export const clearMovieById = () => {
