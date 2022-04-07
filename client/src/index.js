@@ -6,11 +6,11 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store/index.js";
 import reportWebVitals from './reportWebVitals';
-import dotenv from "dotenv";
-import axios from 'axios';
-dotenv.config()
 
-axios.defaults.baseURL = process.env.REACT_APP_API;
+import axios from 'axios';
+
+
+axios.defaults.baseURL = `https://proyect-ecommerce.herokuapp.com`
 
 
 ReactDOM.render(
