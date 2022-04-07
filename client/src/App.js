@@ -8,15 +8,19 @@ import Slider from "../src/components/Slider/Slider"
 import AdminPanel from "../src/components/AdminPanel/AdminPanel"
 
 
+import User from "./components/User/User";
+
+
 function App() {
   return (
     <div className="App">
       <NavBar />
       <Routes>
-      <Route exact path="/home" element={<Slider/>}/>
+        <Route exact path="/home" element={<Slider/>}/>
         <Route exact path="/" element={<Home/>}/>
         <Route exact path="/form" element={<Form/>}/>
-        <Route exact path="/movies/:id" element={<Details/>}/>
+        <Route exact path="/user" element={<User/>}/>
+        <Route exact path="/movies/:id" element={<Details/>} />
         <Route exact path="/admin" element={<AdminPanel/>}/>
       </Routes>
 
