@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { details, addToCart } from "../../redux/actions";
-import image from '../../assets/background-popcorn-film-wallpaper-preview.jpg'
+import poster from '../../assets/poster.jpg'
 import s from "./Details.module.css"
 
 const Details = () => {
@@ -34,7 +34,7 @@ const Details = () => {
 <div className={s.wrapper}>
   <div className={s.card}>
     <div className={s.product_left}>
-        <NavLink to="/home" className={s.nav}>
+        <NavLink to="/" className={s.nav}>
           <span className={s.navspan}>⇦</span>
         </NavLink>
       <div className={s.header}>
@@ -57,7 +57,7 @@ const Details = () => {
         
         <div className={s.product_total}>
           <h3>Total Price</h3>
-          <p>$ {movieDetail.price}</p>
+          <p>US$ {movieDetail.price}</p>
         </div>
       </div>
       
@@ -69,7 +69,7 @@ const Details = () => {
       </div>
     </div>
     <div className={s.product_right}>
-      <img src={movieDetail.img ? movieDetail.img : image} alt="" />
+      <img src={movieDetail.img ? movieDetail.img : poster} alt="" />
     </div>
   </div>
 </div>

@@ -6,6 +6,9 @@ import SearchBar from "../SearchBar/SearchBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getMovies } from "../../redux/actions/index"
 
+import { useAuth0 } from "@auth0/auth0-react";
+import LogIn from "../LogIn/LogIn"
+
 import {
   faAngleLeft,
   faAngleRight,
@@ -19,7 +22,7 @@ import logo from "../../assets/Cinema.png"
 // import hola from "./hola.png"
 
 
-export default function NavBar() {
+const NavBar = () => {
   const allMoviesBackup = useSelector((state) => state.moviesBackUp);
   const allMovies = useSelector((state) => state.movies);
   const dispatch = useDispatch();
@@ -29,14 +32,16 @@ export default function NavBar() {
   }
 
 
+  const { isAuthenticated } = useAuth0();
+
 
   return (
     <div className="nav">
       <div className="divHome">
-      <Link to="/home" style={{ textDecoration: "none" }}>
+      <Link to="/" style={{ textDecoration: "none" }}>
         <img src={logo} alt="Logo" width="70px"/>
       </Link>
-      <Link to="/home" style={{ textDecoration: "none" }}>
+      <Link to="/" style={{ textDecoration: "none" }}>
         <h1 className="btnHome">Cinéma á laCarte</h1>
       </Link>
       </div>
@@ -44,9 +49,12 @@ export default function NavBar() {
       <Link to="/form">
         <FontAwesomeIcon className="movieIcon" icon={faClapperboard} />
       </Link>
-      {/* <Link to="/"> */}
+{isAuthenticated ?
+      <Link to="/user">
       <FontAwesomeIcon className="user" icon={faUser} />
-      {/* </Link> */}
+      </Link>
+: <LogIn/>
+}
       <Link to="/cart">
         <FontAwesomeIcon className="cart" icon={faCartShopping} />
       </Link>
@@ -59,3 +67,5 @@ export default function NavBar() {
     </div>
   );
 }
+
+export default NavBar

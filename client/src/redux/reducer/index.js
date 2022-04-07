@@ -151,6 +151,12 @@ const rootReducer = (state = initialState, action) => {
         currentItem: action.payload,
       };
 
+    case TYPES.CLEAR_MOVIE:
+      return {
+        ...state,
+        details: []
+      }
+
     default:
       return {
         ...state,

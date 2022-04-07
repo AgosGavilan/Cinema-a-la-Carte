@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getActors, getMovies, getGenres, filterYears, filterGenres, orderMovies} from "../../redux/actions"
-import Filters from "../Filters/Filters";
-import Ordering from "../Ordering/Ordering";
+import {getActors, getMovies, getGenres, filterYears, filterGenres, orderMovies, clearMovieById} from "../../redux/actions"
+// import Filters from "../Filters/Filters";
+// import Ordering from "../Ordering/Ordering";
 import Slider from "../Slider/Slider";
 import CardSmart from '../Card/CardSmart'
 import styles from "./Home.module.css"
 import Paginate from "../Paginate/Paginate";
 import SideBar from "../NavBar/SideBar";
-import NavBar from "../NavBar/NavBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LoadScreen from "../Loading/LoadScreen";
+// import NavBar from "../NavBar/NavBar";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 
@@ -21,20 +22,21 @@ const Home = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [moviesPerPage, setMoviesPerPage] = useState(12);
+    const [loadScreen, setLoadScreen] = useState(true);
     const lastMovie = currentPage * moviesPerPage;
     const firstMovie = lastMovie - moviesPerPage;
     const currentMovie = allMovies.slice(firstMovie, lastMovie);
 
     useEffect(() => {
-        dispatch(getMovies())
+        dispatch(getMovies()).then(() => setLoadScreen(false));
         dispatch(getGenres())
         dispatch(getActors())
-        window.scrollTo(0, 0);
-    }, [currentPage])
+        dispatch(clearMovieById())
+    }, [])
 
     const handleYears = (e) => {
         e.preventDefault();
-        if(e.target.value === "") {
+        if(e.target.value === "Year") {
           dispatch(getMovies())
             setCurrentPage(1)
             window.scrollTo(0, 0);
@@ -48,8 +50,9 @@ const Home = () => {
     
       const handleGenres = (e) => {
         e.preventDefault();
-        if(e.target.value === "") {
+        if(e.target.value === "Genre") {
           dispatch(getMovies())
+          setCurrentPage(1)
           window.scrollTo(0, 0);
         }
         else {
@@ -108,35 +111,24 @@ const Home = () => {
       }
 
   
-      
-
-return (
-    <div className={styles.home}>
-      <NavBar />
-        <SideBar handleOrder={handleOrder} handleYears={handleYears} handleGenres={handleGenres} handleClick={handleClick}/>
-        <CardSmart currentMovie={currentMovie}/>
-            <div className={styles.containerPaginado}>
-              <div className={styles.paginado}>
-                <button className= {styles.numberButton}  onClick={handlePrev}>
-                  {"<<"}
-                </button>
-                {/* <div className="textPage"> */}
-                  {/* <p className="pageNumber">
-                    {currentPage} of {totalPage}{" "}
-                  </p> */}
-                <Paginate
-                moviesPerPage={moviesPerPage}
-                allMovies={allMovies.length}
-                paginate={paginate}
-              />
-                {/* </div> */}
-                <button className= {styles.numberButton} onClick={handleNext}>
-                  {">>"}
-                </button>
-              </div>
-              </div>
-    </div>
-)
+  if (loadScreen) return <LoadScreen />;
+  return (
+      <div className={styles.home}>
+          <SideBar handleOrder={handleOrder} handleYears={handleYears} handleGenres={handleGenres} handleClick={handleClick}/>
+          <CardSmart currentMovie={currentMovie}/>
+              <div className={styles.containerPaginado}>
+                <div className={styles.paginado}>
+                  <Paginate
+                  moviesPerPage={moviesPerPage}
+                  allMovies={allMovies.length}
+                  paginate={paginate}
+                  handlePrev={handlePrev}
+                  handleNext={handleNext}
+                />
+                </div>
+                </div>
+      </div>
+  )
 }
 
 export default Home

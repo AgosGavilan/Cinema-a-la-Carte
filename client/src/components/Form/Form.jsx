@@ -2,10 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import image from "../../assets/poster.jpg"
+import image from "../../assets/poster.jpg";
 // import styles from "./Form.module.css"
-import "./Form.css"
-
+import "./Form.css";
 
 import { getActors, getGenres, postMovie } from "../../redux/actions";
 
@@ -57,9 +56,7 @@ const validate = (input) => {
   return errors;
 };
 
-
 /* className={styles.title} */
-
 
 const Form = () => {
   const [input, setInput] = useState({
@@ -68,7 +65,8 @@ const Form = () => {
     release_date: "",
     overview: "",
     vote_average: "",
-    original_language: "",
+    adult: false,
+    original_language: "en",
     price: "",
     genres: [],
     actors: [],
@@ -84,8 +82,7 @@ const Form = () => {
     dispatch(getGenres());
   }, [dispatch]);
 
-
-/* id,title,adult (true o false), img (url), overview (descripcion de la pelicula), release_date (fecha de lanzamiento), original_language ("en" si es en ingles o "es" si es en español), vote_average (numero del 1 al 10),price (numero entre 0,5 y 4,99)] */
+  /* id,title,adult (true o false), img (url), overview (descripcion de la pelicula), release_date (fecha de lanzamiento), original_language ("en" si es en ingles o "es" si es en español), vote_average (numero del 1 al 10),price (numero entre 0,5 y 4,99)] */
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -104,9 +101,9 @@ const Form = () => {
       dispatch(postMovie(input));
       setInput({
         title: "",
-        img: "" || image,
+        img: "",
         release_date: "",
-        Overview: "",
+        overview: "",
         vote_average: "",
         adult: false,
         original_language: "en",
@@ -150,12 +147,13 @@ const Form = () => {
         ...input,
         genres: [...input.genres, e.target.value],
       });
+      e.target.value=""
     }
   };
 
   const handleList = (e) => {
     e.preventDefault();
-    let found = allActors.find((a) => a.name === e.target.value )
+    let found = allActors.find((a) => a.name === e.target.value);
     if (found) {
       if (!input.actors.includes(e.target.value)) {
         console.log(e.target.value);
@@ -163,7 +161,7 @@ const Form = () => {
           ...input,
           actors: [...input.actors, e.target.value],
         });
-        e.target.value = ""
+        e.target.value = "";
       }
     }
   };
@@ -183,164 +181,178 @@ const Form = () => {
   };
 
   return (
-    <div className="bodyForm"> 
-    {/* <div className="container_left"> </div> */}
-
-      <form className="form"  action="" onSubmit={(e) => handleSubmit(e)}> 
-      <h1 className="title">Add Movie</h1>
-    <div className="containerform"> 
-    <div className="group">
-        <label className="inputLabel">Title: </label>
-        <input
-           className="inputForm"
-          type="text"
-          value={input.title}
-          name="title"
-          onChange={(e) => handleChange(e)}
-        />
-        <strong className="errors">{errors.title}</strong>
+    <div className="bodyForm">
+      <div>
+        <img src={input.img || image} className="posterImg" alt="Poster"/>
       </div>
-
-      <div className="group">
-        <label className="inputLabel">Release date: </label>
-        <input
-           className="inputForm"
-          type="date"
-          value={input.release_date}
-          name="release_date"
-          onChange={(e) => handleChange(e)}
-        />
-        <strong className="errors">{errors.release_date}</strong>
-        </div>
-
-        <div className="group">
-        <label className="inputLabel">Description: </label>
-        <textarea autoCapitalize="sentences" autoComplete="off"
-          maxLength="255" className="textarea" id="" cols="30" rows="10"  value={input.overview}
-          name="overview"
-          onChange={(e) => handleChange(e)}></textarea>     
-        <strong className="errors">{errors.overview}</strong>
-        </div>
-    
-        <div className="group">
-        <label className="inputLabel">Rating: </label>
-        <input
-        className="inputForm"
-          type="number"
-          value={input.vote_average}
-          name="vote_average"
-          onChange={(e) => handleChange(e)}
-          step="0.1"
-          min="0"
-          max="10"
-          placeholder="1.7"
-        />
-        <strong className="errors">{errors.vote_average}</strong>
-
-        </div>
-        <div className="group">
-        <label className="inputLabel">Price: </label>
-        <input
-        className="inputForm"
-          type="number"
-          name="price"
-          placeholder="1,99"
-          step="0.49"
-          min="0.49"
-          max="4.00"          
-          value={input.price === 0 ? "" : input.price}
-          onChange={(e) => handleChange(e)}
-        />
-        <strong className="errors">{errors.price}</strong>
-        </div>
-        <div className="group">
-        <label className="inputLabel">Image URL: </label>
-        <input
-        className="inputForm"
-          type="url"
-          value={input.img}
-          name="img"
-          onChange={(e) => handleChange(e)}
-          autoComplete="off"
-          maxLength="255"
-        />
-        <br />
-        <div className="container_image">
-        <img src={input.img || image } alt="poster" width="200px" />
-        </div>
-        <strong className="errors"> {errors.img}</strong>
-    </div>
-
-        <div className="group">
-          <label className="inputLabel">
-            Actors:{" "}
-            </label>
+      <form className="form" action="" onSubmit={(e) => handleSubmit(e)}>
+        <h1 className="title">Add Movie</h1>
+        <div className="containerform">
+          <div className="group">
+            <div className="first">
             <input
-            className="inputForm"
+              className={errors.title ? "errorForm" : "inputForm"}
+              type="text"
+              value={input.title}
+              name="title"
+              placeholder="Title..."
+              onChange={(e) => handleChange(e)}
+            />
+            <strong className="errors">{errors.title}</strong>
+
+            <input
+              className={errors.release_date ? "errorForm" : "inputForm"}
+              type="date"
+              value={input.release_date}
+              name="release_date"
+              placeholder="Release Date..."
+              onChange={(e) => handleChange(e)}
+            />
+            <strong className="errors">{errors.release_date}</strong>
+
+            <input
+              className={errors.vote_average ? "errorForm" : "inputForm"}
+              type="number"
+              value={input.vote_average}
+              name="vote_average"
+              onChange={(e) => handleChange(e)}
+              step="0.1"
+              min="0"
+              max="10"
+              placeholder="Rating..."
+            />
+            <strong className="errors">{errors.vote_average}</strong>
+            </div>
+            <div className="second">
+            <input
+              className={errors.price ? "errorForm" : "inputForm"}
+              type="number"
+              name="price"
+              placeholder="Price..."
+              step=".01"
+              min="0.49"
+              max="4.00"
+              value={input.price === 0 ? "" : input.price}
+              onChange={(e) => handleChange(e)}
+            />
+            <strong className="errors">{errors.price}</strong>
+
+            <input
+              className={errors.img ? "errorForm" : "inputForm"}
+              type="url"
+              value={input.img}
+              name="img"
+              placeholder="Image URL..."
+              onChange={(e) => handleChange(e)}
+              autoComplete="off"
+              maxLength="255"
+            />
+            <strong className="errors"> {errors.img}</strong>
+            <br />
+            <input
+              className={errors.actors ? "errorForm" : "inputForm"}
               type="text"
               list="actors"
               name="actors"
+              placeholder="Cast..."
               onChange={(e) => handleList(e)}
             />
-         
-          <datalist className="selectCreate" id="actors">
-            {allActors?.map((allActors) => (
-              <option className="box_opcion" value={allActors.name} key={allActors.id} name="actors">
-                {allActors.name}
-              </option>
-            ))}
-          </datalist>
-          <div className="options" >
-            {input.actors.map((a) => (
-              <div className="box_opcion"  key={a}>
-                <div className="opcion_title">
-                  <p>{a}</p>
+
+            <datalist className="selectCreate" id="actors">
+              {allActors?.map((allActors) => (
+                <option
+                  className="box_opcion"
+                  value={allActors.name}
+                  key={allActors.id}
+                  name="actors"
+                >
+                  {allActors.name}
+                </option>
+              ))}
+            </datalist>
+            </div>
+            <div className="options">
+              {input.actors.map((a) => (
+                <div className="box_opcion" key={a}>
+                  <div className="opcion_title">
+                    <p>{a}</p>
+                  </div>{" "}
+                  <button
+                    className="btn_remove"
+                    onClick={() => handleDeleteActors(a)}
+                    key={a}
+                    value={a}
+                  >
+                    X
+                  </button>
                 </div>
-                {" "}
-                <button className="btn_remove" onClick={() => handleDeleteActors(a)} key={a} value={a}>
-                  x
-                </button>
+              ))}
+              <strong className="errors">{errors.actors}</strong>
+            </div>
+
+            <div className="groupB">
+              <textarea
+                autoCapitalize="sentences"
+                autoComplete="off"
+                maxLength="255"
+                className={errors.overview ? "errorarea" : "textarea"}
+                id=""
+                cols="30"
+                rows="10"
+                value={input.overview}
+                name="overview"
+                placeholder="Description..."
+                onChange={(e) => handleChange(e)}
+              ></textarea>
+              <strong className="errors">{errors.overview}</strong>
+            </div>
+
+            <div className="groupB">
+              <select
+                defaultValue=""
+                className="selectCreate"
+                onChange={(e) => handleSelect(e)}
+              >
+                <option value="" disabled hidden>
+                  Select Genres...
+                </option>
+                {allGenres?.map((allGenres) => (
+                  <option
+                    value={allGenres.name}
+                    key={allGenres.id}
+                    name="genres"
+                  >
+                    {allGenres.name}
+                  </option>
+                ))}
+              </select>
+              <div className="options">
+                {input.genres.map((g) => (
+                  <div className="box_opcion" key={g}>
+                    <div className="opcion_title">
+                      <p>{g}</p>
+                    </div>
+                    <button
+                      className="btn_remove"
+                      onClick={() => handleDeleteGenres(g)}
+                      key={g}
+                      value={g}
+                    >
+                      X
+                    </button>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <strong className="errors">{errors.actors}</strong>
-<br /><br />
-        <div className="group" >
-          <label className="inputLabel">Genres: </label>
-          <select
-            defaultValue=""
-            className="selectCreate"
-            onChange={(e) => handleSelect(e)}
-          >
-            <option value="" disabled hidden>
-              Select Genres...
-            </option>
-            {allGenres?.map((allGenres) => (
-              <option value={allGenres.name} key={allGenres.id} name="genres">
-                {allGenres.name}
-              </option>
-            ))}
-          </select>
-          <div className="options" >
-            {input.genres.map((g) => (
-              <div className="box_opcion" key={g}>
-                <div className="opcion_title">
-                  <p>{g}</p>
-                </div>
-                <button  className="btn_remove"  onClick={() => handleDeleteGenres(g)} key={g} value={g}>
-                  x
-                </button>
-              </div>
-            ))}
-          </div>
-          <strong className="errors">{errors.genres}</strong>
-        </div>
-<br />
-          <div  className="containerButtons">
-            <button className="buttonCreate" type="submit">Create</button>
+              <strong className="errors">{errors.genres}</strong>
+            </div>
+            <br />
+            <div className="containerButtons">
+              <button className="buttonCreate" type="submit">
+                Create
+              </button>
+            </div>
           </div>
         </div>
-      </div>     
       </form>
     </div>
   );
