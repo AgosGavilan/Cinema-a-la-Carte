@@ -6,9 +6,10 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store/index.js";
 import reportWebVitals from './reportWebVitals';
-
 import {Auth0Provider} from "@auth0/auth0-react";
+import axios from 'axios';
 
+axios.defaults.baseURL = `https://proyect-ecommerce.herokuapp.com`
 
 ReactDOM.render(
   <Provider store={store}>
