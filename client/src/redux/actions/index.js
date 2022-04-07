@@ -6,7 +6,7 @@ import axios from "axios"
 export const getMovies = () => {
     return async dispatch => {
         try {
-            const {data} = await axios.get(`/movies`)
+            const {data} = await axios.get(`/api/movies`)
             return dispatch({
                 type: TYPES.GET_MOVIES, 
                 payload: data})
@@ -21,7 +21,7 @@ export const getMovies = () => {
 export const details = (id) => {
     return async (dispatch) => {
         try {
-            const {data} = await axios.get(`/movies/${id}`)
+            const {data} = await axios.get(`/api/movies/${id}`)
             return dispatch({
                 type: TYPES.DETAILS,
                 payload: data
@@ -58,7 +58,7 @@ export const filterYears = (year) => {
 export const postMovie = (newMovie) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.post(`/movies`, newMovie)
+            const { data } = await axios.post(`/api/movies`, newMovie)
             return dispatch({
                 type: TYPES.POST_MOVIE,
                 payload: data
@@ -73,7 +73,7 @@ export const postMovie = (newMovie) => {
 export const getGenres= () => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`/genres`)
+            const { data } = await axios.get(`/api/genres`)
             return dispatch({
                 type: TYPES.GET_GENRES,
                 payload: data
@@ -87,7 +87,7 @@ export const getGenres= () => {
 export const getActors= () => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`/actors`)
+            const { data } = await axios.get(`/api/actors`)
             return dispatch({
                 type: TYPES.GET_ACTORS,
                 payload: data
@@ -110,7 +110,7 @@ export function getMovieByTitle(title) {
         alert("Sorry, not Movie found with that title");
       } */
       let json = await axios.get(
-        "/search?name=" + title
+        "/api/search?name=" + title
       );
       
       if(json.data[0].name){
