@@ -45,7 +45,9 @@ const NavBar = () => {
         <h1 className="btnHome">Cinéma á laCarte</h1>
       </Link>
       </div>
+      <Link to="/" style={{ textDecoration: "none" }}>
       <SearchBar />
+      </Link>
       <Link to="/form">
         <FontAwesomeIcon className="movieIcon" icon={faClapperboard} />
       </Link>
@@ -58,12 +60,12 @@ const NavBar = () => {
       <Link to="/cart">
         <FontAwesomeIcon className="cart" icon={faCartShopping} />
       </Link>
-      {
+      {/* {
         allMovies.length !== allMoviesBackup.length && <button onClick={handleClick} className="backButton">
         <FontAwesomeIcon className="back" icon={faAngleLeft} />
       </button> 
       
-      }
+      } */}
     </div>
   );
 }

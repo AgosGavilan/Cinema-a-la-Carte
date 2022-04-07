@@ -41,7 +41,7 @@
   }
   
   .product_right img {
-    height: 70%;
+    max-height: 700px;
     border-radius: 0.5rem;
   }
   

@@ -102,24 +102,7 @@ export const getActors = () => {
 
 export function getMovieByTitle(title) {
     return async function (dispatch) {
-        /*  try {
-           let json = await axios.get(
-             "https://proyect-ecommerce.herokuapp.com/api/search?name=" + title
-           );
-           return dispatch({ type: "GET_TITLE_MOVIE", payload: json.data });
-         } catch (error) {
-           //console.log(error.message);
-           alert("Sorry, not Movie found with that title");
-         } */
-        let json = await axios.get(
-            "https://proyect-ecommerce.herokuapp.com/api/search?name=" + title
-        );
-      
-        return dispatch({ type: "GET_TITLE_MOVIE", payload: json.data });
-      } catch (error) {
-        //console.log(error.message);
-        alert("Sorry, not Movie found with that title");
-      } */
+        
       let json = await axios.get(
         "/api/search?name=" + title
       );
@@ -141,12 +124,42 @@ export function getMovieByTitle(title) {
       else {
         return dispatch({ type: TYPES.GET_TITLE_MOVIE, payload: json.data });
       }
-    };
+    }
 }
 
   export const clearMovieById = () => {
     return (dispatch) => {
       dispatch({ type: TYPES.CLEAR_MOVIE });
+    };
+  };
+
+
+  export const modifyMovie = (movie) => {
+    return async (dispatch) => {
+      try {
+        const { data } = axios.put(`${URL}/...`, movie);
+        dispatch({
+          type: TYPES.MODIFY_MOVIE,
+          payload: data,
+        });
+        console.log(data);
+      } catch (e) {
+        console.log("Error in modifyMovie");
+        console.log(e);
+      }
+    };
+  };
+  
+  export const deleteMovie = (id) => {
+    return async (dispatch) => {
+      try {
+        const { data } = await axios.delete(
+          `${URL}/.../${id}`
+        );
+        dispatch({ type: TYPES.DELETE_MOVIE, payload: data });
+      } catch (error) {
+        console.log("error in deleteMovie", error);
+      }
     };
   };
 

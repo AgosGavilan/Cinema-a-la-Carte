@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getMovieByTitle } from "../../redux/actions/index" ;
+import { getMovieByTitle, getMovies } from "../../redux/actions/index" ;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import styles from "./SearchBar.module.css";
@@ -9,18 +9,17 @@ export default function SearchBar() {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
 
-  function handleInput(e) {
+  const handleInput = (e) => {
     e.preventDefault();
-    setTitle(e.target.value);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (title.length < 1) {
-      alert("Field is empty");
+    const { value } = e.target;
+    setTitle(value);
+    if (value.length > 1) {
+      dispatch(getMovieByTitle(title));
+      }
+    else if(value.length < 1) {
+      dispatch(getMovies())
     }
-    dispatch(getMovieByTitle(title));
-  }
+    }
 
   return (
     <div className={styles.searchBar}>
@@ -28,11 +27,11 @@ export default function SearchBar() {
         type="text"
         placeholder="Ej: 'The Godfather'"
         value={title}
-        onChange={(e) => handleInput(e)}
+        onChange={handleInput}
         className={styles.inputSearch}
       ></input>
-      <button className={styles.btnSearch}  type="submit" onClick={(e) => handleSubmit(e)}><FontAwesomeIcon icon={faSearch} />
-      </button>
+      {/* <button className={styles.btnSearch}  type="submit" onClick={(e) => handleSubmit(e)}><FontAwesomeIcon icon={faSearch} />
+      </button> */}
     
     </div>
   );
