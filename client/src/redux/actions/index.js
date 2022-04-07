@@ -6,12 +6,14 @@ import axios from "axios"
 export const getMovies = () => {
     return async dispatch => {
         try {
+
             const {data} = await axios.get(`/api/movies`)
             return dispatch({
-                type: TYPES.GET_MOVIES, 
-                payload: data})
+                type: TYPES.GET_MOVIES,
+                payload: data
+            })
         }
-        catch(e) {
+        catch (e) {
             console.log("error in getMovies", e)
         }
     }
@@ -26,7 +28,7 @@ export const details = (id) => {
                 type: TYPES.DETAILS,
                 payload: data
             })
-        } catch(e) {
+        } catch (e) {
             console.log('error in details', e)
         }
     }
@@ -35,21 +37,21 @@ export const details = (id) => {
 
 export const orderMovies = (order) => {
     return {
-        type: TYPES.ORDER_MOVIES, 
+        type: TYPES.ORDER_MOVIES,
         payload: order
     }
 }
 
 export const filterGenres = (genre) => {
     return {
-        type: TYPES.FILTER_GENRES, 
+        type: TYPES.FILTER_GENRES,
         payload: genre
     }
 }
 
 export const filterYears = (year) => {
     return {
-        type: TYPES.FILTER_YEARS, 
+        type: TYPES.FILTER_YEARS,
         payload: year
     }
 }
@@ -63,14 +65,14 @@ export const postMovie = (newMovie) => {
                 type: TYPES.POST_MOVIE,
                 payload: data
             })
-        } catch(e) {
+        } catch (e) {
             console.log("error in postMovie", e)
         }
     }
 }
 
 
-export const getGenres= () => {
+export const getGenres = () => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(`/api/genres`)
@@ -78,13 +80,13 @@ export const getGenres= () => {
                 type: TYPES.GET_GENRES,
                 payload: data
             })
-        } catch(e) {
+        } catch (e) {
             console.log("error in getGenres", e)
         }
     }
 }
 
-export const getActors= () => {
+export const getActors = () => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(`/api/actors`)
@@ -92,7 +94,7 @@ export const getActors= () => {
                 type: TYPES.GET_ACTORS,
                 payload: data
             })
-        } catch(e) {
+        } catch (e) {
             console.log("error in getActors", e)
         }
     }
@@ -100,10 +102,19 @@ export const getActors= () => {
 
 export function getMovieByTitle(title) {
     return async function (dispatch) {
-     /*  try {
+        /*  try {
+           let json = await axios.get(
+             "https://proyect-ecommerce.herokuapp.com/api/search?name=" + title
+           );
+           return dispatch({ type: "GET_TITLE_MOVIE", payload: json.data });
+         } catch (error) {
+           //console.log(error.message);
+           alert("Sorry, not Movie found with that title");
+         } */
         let json = await axios.get(
-          "https://proyect-ecommerce.herokuapp.com/api/search?name=" + title
+            "https://proyect-ecommerce.herokuapp.com/api/search?name=" + title
         );
+      
         return dispatch({ type: "GET_TITLE_MOVIE", payload: json.data });
       } catch (error) {
         //console.log(error.message);
@@ -125,13 +136,53 @@ export function getMovieByTitle(title) {
             }
          })
          console.log(arr);
-         return dispatch({type: "GET_TITLE_MOVIE", payload: arr})
+         return dispatch({type: TYPES.GET_TITLE_MOVIE, payload: arr})
       }
       else {
-        return dispatch({ type: "GET_TITLE_MOVIE", payload: json.data });
+        return dispatch({ type: TYPES.GET_TITLE_MOVIE, payload: json.data });
       }
     };
-  }
+}
 
+  export const clearMovieById = () => {
+    return (dispatch) => {
+      dispatch({ type: TYPES.CLEAR_MOVIE });
+    };
+  };
 
+export const addToCart = (itemId) => {
+    return {
+        type: TYPES.ADD_TO_CART,
+        payload: {
+            id: itemId
+        }
+    }
+}
 
+export const removeFromCart = (itemId) => {
+    return {
+        type: TYPES.REMOVE_FROM_CART,
+        payload: {
+            id: itemId
+        }
+    }
+}
+
+export const adjustQty = (itemId, value) => {
+    return {
+        type: TYPES.ADJUST_QTY,
+        payload: {
+            id: itemId,
+            qty: value
+        }
+    }
+}
+
+export const loadCurrentItem = (item) => {
+    return {
+        type: TYPES.LOAD_CURRENT_ITEM,
+        payload: {
+            id: item
+        }
+    }
+}

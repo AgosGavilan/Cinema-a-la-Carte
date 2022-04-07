@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getActors, getMovies, getGenres, filterYears, filterGenres, orderMovies} from "../../redux/actions"
-import Filters from "../Filters/Filters";
-import Ordering from "../Ordering/Ordering";
+import {getActors, getMovies, getGenres, filterYears, filterGenres, orderMovies, clearMovieById} from "../../redux/actions"
+// import Filters from "../Filters/Filters";
+// import Ordering from "../Ordering/Ordering";
 import Slider from "../Slider/Slider";
 import CardSmart from '../Card/CardSmart'
 import styles from "./Home.module.css"
 import Paginate from "../Paginate/Paginate";
 import SideBar from "../NavBar/SideBar";
-import NavBar from "../NavBar/NavBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LoadScreen from "../Loading/LoadScreen";
+// import NavBar from "../NavBar/NavBar";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 
@@ -21,15 +22,16 @@ const Home = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [moviesPerPage, setMoviesPerPage] = useState(12);
-    // const [loading, setLoading] = useState(true)
+    const [loadScreen, setLoadScreen] = useState(true);
     const lastMovie = currentPage * moviesPerPage;
     const firstMovie = lastMovie - moviesPerPage;
     const currentMovie = allMovies.slice(firstMovie, lastMovie);
 
     useEffect(() => {
-        dispatch(getMovies())
+        dispatch(getMovies()).then(() => setLoadScreen(false));
         dispatch(getGenres())
         dispatch(getActors())
+        dispatch(clearMovieById())
     }, [])
 
     const handleYears = (e) => {
@@ -109,15 +111,7 @@ const Home = () => {
       }
 
   
-      
-// if(loading) {
-//   return (
-// <div>
-// <img src="https://i.stack.imgur.com/kOnzy.gif" alt="Loading"/>
-// </div>)
-// }
-// else {
-
+  if (loadScreen) return <LoadScreen />;
   return (
       <div className={styles.home}>
           <SideBar handleOrder={handleOrder} handleYears={handleYears} handleGenres={handleGenres} handleClick={handleClick}/>
