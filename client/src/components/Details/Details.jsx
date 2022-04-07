@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
-import { details } from "../../redux/actions";
+import { details, addToCart } from "../../redux/actions";
 import image from '../../assets/background-popcorn-film-wallpaper-preview.jpg'
 import s from "./Details.module.css"
 
@@ -9,10 +9,15 @@ const Details = () => {
     const {id} = useParams()
     const dispatch = useDispatch()
     const movieDetail = useSelector(state => state.details)
-
+    console.log(movieDetail)
     React.useEffect(() => {
         dispatch(details(id))
     }, [dispatch, id])
+
+    function addCart(e){
+      e.preventDefault();
+      dispatch(addToCart(movieDetail.id))
+    }
 
     return (
         <div>
@@ -57,7 +62,10 @@ const Details = () => {
       </div>
       
       <div className={s.product_btns}>
-        <a href="#" className={s.product_add}>Add To Cart</a>
+        <a href="#" className={s.product_add} onClick={e => addCart(e)}>
+          Add to Cart
+          </a>
+ 
       </div>
     </div>
     <div className={s.product_right}>

@@ -1,6 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+  import { useDispatch, useSelector } from "react-redux";
 import styles from "./Cards.module.css";
+import {addToCart} from "../../redux/actions"
+
+
 
 const Card = ({
   id,
@@ -9,6 +13,13 @@ const Card = ({
   vote_average,
   price,
 }) => {
+
+   let dispatch = useDispatch();
+
+  function addCart(e){
+    e.preventDefault();
+    dispatch(addToCart(id))
+  } 
   return (
     // <div className={styles.eachCard}>
     //   <img
@@ -53,7 +64,7 @@ const Card = ({
                   <button className={styles.buttons}>View Details</button>
                 </NavLink>
                {/*Aca no quiero que me lleve al carrito sino que solo añada la peli a el carrito*/}
-                <button>Add To Cart</button>
+                <button className={styles.buttons} onClick={e => addCart(e)} >Add To Cart</button>
             </div>
             </div>
           </div>
