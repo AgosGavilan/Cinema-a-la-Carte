@@ -6,8 +6,7 @@
   
   .imgBack {
     background-color: #2b2828;
-    grid-column: 1 / 2;
-    height: 100%;
+    height: 156vh;
   }
 
   .posterImg {

@@ -88,6 +88,7 @@ const Home = () => {
 
     const paginate = (pgNumber) => {
         setCurrentPage(pgNumber);
+        window.scrollTo(0, 0);
       };
       
       const handleNext = () => {

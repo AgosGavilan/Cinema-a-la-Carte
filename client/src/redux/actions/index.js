@@ -137,7 +137,7 @@ export function getMovieByTitle(title) {
   export const modifyMovie = (movie) => {
     return async (dispatch) => {
       try {
-        const { data } = axios.put(`${URL}/...`, movie);
+        const { data } = axios.put(`/api/movies/${movie.id}`, movie);
         dispatch({
           type: TYPES.MODIFY_MOVIE,
           payload: data,
@@ -154,7 +154,7 @@ export function getMovieByTitle(title) {
     return async (dispatch) => {
       try {
         const { data } = await axios.delete(
-          `${URL}/.../${id}`
+          `/api/movies/delete/${id}`
         );
         dispatch({ type: TYPES.DELETE_MOVIE, payload: data });
       } catch (error) {

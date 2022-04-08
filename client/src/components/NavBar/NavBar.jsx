@@ -17,7 +17,7 @@ import {
   faClapperboard,
 } from "@fortawesome/free-solid-svg-icons";
 import "./NavBar.css";
-import logo from "../../assets/Cinema.png"
+import logo from "../../assets/Cine.jpg"
 //import Cart from "./Cart/index";
 // import hola from "./hola.png"
 
@@ -39,10 +39,7 @@ const NavBar = () => {
     <div className="nav">
       <div className="divHome">
       <Link to="/" style={{ textDecoration: "none" }}>
-        <img src={logo} alt="Logo" width="70px"/>
-      </Link>
-      <Link to="/" style={{ textDecoration: "none" }}>
-        <h1 className="btnHome">Cinéma á laCarte</h1>
+        <img src={logo} alt="Logo" className="logo"/>
       </Link>
       </div>
       <Link to="/" style={{ textDecoration: "none" }}>
