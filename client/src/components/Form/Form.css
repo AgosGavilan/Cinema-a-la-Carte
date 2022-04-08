@@ -4,6 +4,11 @@
   padding: 0;
 }
 
+.posterBack {
+  background: #2b2828;
+  height: 110%;
+}
+
 .posterImg {
     height: 700px;
     width: auto;
@@ -11,6 +16,7 @@
 
 .bodyForm {
   width: 100%;
+  height: max-content;
   display: grid;
   grid-template-columns: 1fr 1fr;
   background: #2b2828;
@@ -39,6 +45,7 @@
   width: 100%;
   max-width: 700px;
   padding: 2.5em 3em;
+  height: 110%;
 }
 
 .group {

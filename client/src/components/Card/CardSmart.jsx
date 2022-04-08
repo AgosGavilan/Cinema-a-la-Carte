@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../redux/actions";
 import Card from "./Card";
-import img from '../../assets/background-popcorn-film-wallpaper-preview.jpg'
+import img from "../../assets/poster.jpg"
 import styles from "./Cards.module.css"
 
 const CardSmart = ({currentMovie}) => {

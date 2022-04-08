@@ -50,7 +50,11 @@ const validate = (input) => {
   const regex =
     /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
   if (input.img.length && !regex.test(input.img)) {
-    errors.img = "img is invalid, it must be an URL";
+    errors.img = "Image is invalid, it must be a valid URL";
+  }
+
+  else if (input.urlMovie.length && !regex.test(input.urlMovie)) {
+    errors.urlMovie = "Link is invalid, it must be a valid URL";
   }
 
   return errors;
@@ -68,6 +72,7 @@ const Form = () => {
     adult: false,
     original_language: "en",
     price: "",
+    urlMovie: "",
     genres: [],
     actors: [],
   });
@@ -108,6 +113,7 @@ const Form = () => {
         adult: false,
         original_language: "en",
         price: "",
+        urlMovie: "",
         genres: [],
         actors: [],
       });
@@ -182,7 +188,7 @@ const Form = () => {
 
   return (
     <div className="bodyForm">
-      <div>
+      <div className="posterBack">
         <img src={input.img || image} className="posterImg" alt="Poster"/>
       </div>
       <form className="form" action="" onSubmit={(e) => handleSubmit(e)}>
@@ -249,6 +255,17 @@ const Form = () => {
             />
             <strong className="errors"> {errors.img}</strong>
             <br />
+            <input
+              className={errors.urlMovie ? "errorForm" : "inputForm"}
+              type="url"
+              value={input.urlMovie}
+              name="urlMovie"
+              placeholder="Movie URL..."
+              onChange={(e) => handleChange(e)}
+              autoComplete="off"
+              maxLength="255"
+            />
+            <strong className="errors"> {errors.urlMovie}</strong>
             <input
               className={errors.actors ? "errorForm" : "inputForm"}
               type="text"

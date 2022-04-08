@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
   import { useDispatch, useSelector } from "react-redux";
 import styles from "./Cards.module.css";
 import {addToCart} from "../../redux/actions"
+import Swal from "sweetalert2"
 
 
 
@@ -15,34 +16,28 @@ const Card = ({
 }) => {
 
    let dispatch = useDispatch();
+   let cart = useSelector((state) => state.cart)
+
+   let searchCart = cart.find(e => e.id === id)
 
   function addCart(e){
     e.preventDefault();
-    dispatch(addToCart(id))
+    if(searchCart) {
+      Swal.fire({
+        title: "Movie Already In Cart",
+        icon: "warning",
+        position: "center",
+        timer: 2000,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      });
+      return;
+    }
+    else {
+      dispatch(addToCart(id))
+    }
   } 
   return (
-    // <div className={styles.eachCard}>
-    //   <img
-    //     src={img}
-    //     className={styles.poster}
-    //     width="auto"
-    //     height="350px"
-    //     alt="Poster"
-    //   />
-    //   <div className={styles.info}>
-    //     <h3>{title}</h3>
-    //     <p>{vote_average} ⭐</p>
-    //     <p>US$ {price}</p>
-    //     <div className={styles.buttons}>
-    //       <NavLink to={`/movies/${id}`}>
-    //         <button>View Details</button>
-    //       </NavLink>
-    //       <NavLink to={`/cart`}>
-    //         <button>Add To Cart</button>
-    //       </NavLink>
-    //     </div>
-    //   </div>
-    // </div>
 
     <div className={styles.container}> {/* container vendria a ser eachCard */}
           <div className={styles.front}> {/*Le agregue un div mas, en este caso para lo que se va a ver adelante (la imagen) */}
@@ -64,7 +59,9 @@ const Card = ({
                   <button className={styles.buttons}>View Details</button>
                 </NavLink>
                {/*Aca no quiero que me lleve al carrito sino que solo añada la peli a el carrito*/}
-                <button className={styles.buttons} onClick={e => addCart(e)} >Add To Cart</button>
+                <button 
+                className={searchCart ? styles.inCartBtn : styles.buttons} 
+                onClick={e => addCart(e)} >{searchCart ? "In Cart" : "Add To Cart"}</button>
             </div>
             </div>
           </div>
