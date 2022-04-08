@@ -118,6 +118,10 @@ const Modify = () => {
         genres: [],
         actors: [],
       });
+      dispatch(getMovies())
+      setMovie({
+        movieTitle: "",
+      });
       Swal.fire({
         title: "Movie modified successfully",
         icon: "success",

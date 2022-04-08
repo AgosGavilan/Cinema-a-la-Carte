@@ -1,7 +1,7 @@
 import React from 'react'
 
 import LogIn from '../LogIn/LogIn'
-
+import styles from "./User.module.css"
 import LogOut from '../LogOut/LogOut'
 import Profile from '../Profile/Profile'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -16,12 +16,14 @@ const User = () => {
 
 
   return (
-    <div>
+    <div className={styles.user}>
+      <div className={styles.profileContainer}>
+      <Profile/>
       {isAuthenticated 
       ?  <LogOut/> 
       :  <LogIn/>
       }
-    <Profile/>
+      </div>
     </div>
   )
 }

@@ -137,12 +137,14 @@ export function getMovieByTitle(title) {
   export const modifyMovie = (movie) => {
     return async (dispatch) => {
       try {
+        console.log(movie);
+        console.log(movie.id)
         const { data } = axios.put(`/api/movies/${movie.id}`, movie);
         dispatch({
           type: TYPES.MODIFY_MOVIE,
           payload: data,
         });
-        console.log(data);
+        console.log(movie);
       } catch (e) {
         console.log("Error in modifyMovie");
         console.log(e);

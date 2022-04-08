@@ -148,11 +148,9 @@
   border-radius: 2px;
   background: none;
   color: white;
-  margin-bottom: 10px;
 }
 
 .errorarea {
-  margin-top: 20px;
   resize: none;
   width: 100%;
   height: 150px;
@@ -164,7 +162,6 @@
   border-radius: 2px;
   background: none;
   color: white;
-  margin-bottom: 10px;
 }
 
 .selectCreate {
