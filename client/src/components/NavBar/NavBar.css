@@ -61,16 +61,10 @@
     font-weight: 100;
 }
 
-
-
-
-/* a {
->>>>>>> be9f95e7e7613a72e2b74cf1897c210d9e5e274e
-    color: whitesmoke;
-  }
-  .a:hover {
-     color: whitesmoke;
-  } */
+.logo {
+    width: 400px;
+    margin-top: 2px;
+}
 
 .movieIcon {
     margin-left: 5px;

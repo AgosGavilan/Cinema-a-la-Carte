@@ -52,19 +52,25 @@ const validate = (input) => {
     errors.img = "img is invalid, it must be an URL";
   }
 
+  if (input.urlMovie.length && !regex.test(input.urlMovie)) {
+    errors.urlMovie = "Link is invalid, it must be a valid URL";
+  }
+
   return errors;
 };
 
 const Modify = () => {
   const [input, setInput] = useState({
+    id: "",
     title: "",
     img: "",
     release_date: "",
     overview: "",
     vote_average: "",
     adult: false,
-    original_language: "en",
+    original_language: "",
     price: "",
+    urlMovie: "",
     genres: [],
     actors: [],
   });
@@ -106,10 +112,15 @@ const Modify = () => {
         overview: "",
         vote_average: "",
         adult: false,
-        original_language: "en",
+        original_language: "",
         price: "",
+        urlMovie: "",
         genres: [],
         actors: [],
+      });
+      dispatch(getMovies())
+      setMovie({
+        movieTitle: "",
       });
       Swal.fire({
         title: "Movie modified successfully",
@@ -204,6 +215,7 @@ const Modify = () => {
     }
     if (chosenMovie) {
       setInput({
+        id: chosenMovie.id,
         title: chosenMovie.title,
         img: chosenMovie.img,
         release_date: chosenMovie.release_date,
@@ -212,6 +224,7 @@ const Modify = () => {
         adult: chosenMovie.adult,
         original_language: chosenMovie.original_language,
         price: chosenMovie.price,
+        urlMovie: chosenMovie.urlMovie,
         genres: chosenMovie.Genres,
         actors: chosenMovie.Actors,
       });
@@ -244,14 +257,16 @@ const Modify = () => {
         if (result.isConfirmed) {
           dispatch(deleteMovie(chosenMovie.id));
           setInput({
+            id: "",
             title: "",
             img: "",
             release_date: "",
             overview: "",
             vote_average: "",
             adult: false,
-            original_language: "en",
+            original_language: "",
             price: "",
+            urlMovie: "",
             genres: [],
             actors: [],
           });
@@ -369,6 +384,17 @@ const Modify = () => {
                 />
                 <strong className="errors"> {errors.img}</strong>
                 <br />
+                <input
+              className={errors.urlMovie ? "errorForm" : "inputForm"}
+              type="url"
+              value={input.urlMovie}
+              name="urlMovie"
+              placeholder="Movie URL..."
+              onChange={(e) => handleChange(e)}
+              autoComplete="off"
+              maxLength="255"
+            />
+            <strong className="errors"> {errors.urlMovie}</strong>
                 <input
                   className={errors.actors ? "errorForm" : "inputForm"}
                   type="text"

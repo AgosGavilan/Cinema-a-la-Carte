@@ -57,7 +57,7 @@ function Slider() {
                             <div>
                                 <div className='img'>
                                     <NavLink to={`/movies/${slide.id}`}>
-                                <img src={slide.img} alt='Slide' className='img' />
+                                <img src={slide.img} alt='Slide' className='posterSlide' />
                                 </NavLink>
                                 </div>
                                 {/* <div className="content">

@@ -34,6 +34,10 @@
     margin-top: 7px;
 }
 
+.posterSlide:hover {
+    box-shadow: 0 0 10px white;
+}
+
 
 .content{
     position: absolute;
@@ -68,9 +72,6 @@
     }
 }
 
-/* .content > * {
-
-} */
 
 .current{
     opacity: 1;
