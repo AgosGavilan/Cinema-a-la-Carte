@@ -4,6 +4,7 @@ import styles from "./Profile.module.css"
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
+  console.log(user)
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -18,7 +19,7 @@ const Profile = () => {
         <h4>E-mail: {user.email}</h4>
         </div>
 
-        {/* {JSON.stringify(user)} */}
+   {/* {JSON.stringify(user)} */}
       </div>
     )
   );
