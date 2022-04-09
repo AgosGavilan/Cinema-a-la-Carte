@@ -119,17 +119,23 @@ export function getMovieByTitle(title) {
             }
          })
          console.log(arr);
-         return dispatch({type: TYPES.GET_TITLE_MOVIE, payload: arr})
+         return dispatch({
+             type: TYPES.GET_TITLE_MOVIE, 
+             payload: arr})
       }
       else {
-        return dispatch({ type: TYPES.GET_TITLE_MOVIE, payload: json.data });
+        return dispatch({ 
+            type: TYPES.GET_TITLE_MOVIE, 
+            payload: json.data });
       }
     }
 }
 
   export const clearMovieById = () => {
     return (dispatch) => {
-      dispatch({ type: TYPES.CLEAR_MOVIE });
+      dispatch({ 
+          type: TYPES.CLEAR_MOVIE 
+        });
     };
   };
 
@@ -200,4 +206,20 @@ export const loadCurrentItem = (item) => {
             id: item
         }
     }
+}
+
+export const postReview = (review) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.post(`/api/reviews/${review.userId}`, review)
+            return dispatch({
+                type: TYPES.POST_REVIEW,
+                payload: data
+            })
+
+        } catch(e) {
+            console.log('error en postReview', e)
+        }
+    }
+    
 }
