@@ -224,6 +224,21 @@ export const postReview = (review) => {
     
 }
 
+
+export const getAllReviews = (id) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`api/reviews/reviewsMovie/${id}`)
+            return dispatch({
+                type: TYPES.GET_ALL_REVIEWS,
+                payload: data
+            })
+        } catch(e) {
+            console.log('error en getAllReview', e)
+        }
+    }
+}
+
 export const getUsers = () => {
     return async dispatch => {
         try {
@@ -297,7 +312,4 @@ export const modifyRole = (role, id) => {
       }
     };
   };    
-    
-
-
 

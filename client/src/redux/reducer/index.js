@@ -8,7 +8,7 @@ const initialState = {
   details: [],
   cart: [],
   currentItem: null,
-  review: []
+  reviews: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -171,8 +171,15 @@ const rootReducer = (state = initialState, action) => {
     case TYPES.POST_REVIEW:
       return {
         ...state,
-        review: action.payload
       }
+
+    case TYPES.GET_ALL_REVIEWS:
+      return {
+        ...state,
+        reviews: [...state.review, action.payload]
+      }
+
+    
 
     default:
       return {

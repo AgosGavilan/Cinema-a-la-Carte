@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import LoadScreen from "../Loading/LoadScreen";
-import { details, addToCart } from "../../redux/actions";
+import { details, addToCart, getAllReviews } from "../../redux/actions";
 import poster from "../../assets/poster.jpg";
 import Swal from "sweetalert2"
 import s from "./Details.module.css";
@@ -14,9 +14,11 @@ const Details = () => {
   const movieDetail = useSelector((state) => state.details);
   let cart = useSelector((state) => state.cart);
   let searchCart = cart.find((e) => e.id === movieDetail.id);
+  const allReviews = useSelector(state => state.reviews)
 
   useEffect(() => {
     dispatch(details(id)).then(() => setLoadScreen(false))
+    dispatch(getAllReviews(id))
   }, [dispatch, id]);
 
   if (loadScreen) return <LoadScreen />;
@@ -53,7 +55,7 @@ const Details = () => {
             <div className={s.product_main}>
               <div className={s.focus}>
                 <span>Description</span>
-                <span>Review</span>
+                <span>Review ({allReviews.length})</span>
               </div>
               <p>{movieDetail.overview}</p>
               <p>{movieDetail.Actors?.map((a) => a.name).join(", ")}</p>
