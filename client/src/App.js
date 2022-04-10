@@ -15,14 +15,13 @@ function App() {
     <div className="App">
     <NavBar />
       <Routes>
-        <Route exact path="/home" element={<Slider/>}/>
-        <Route exact path="/" element={<Home/>}/>
+        <Route exact path="/" element={<Slider/>}/>
+        <Route exact path="/home" element={<Home/>}/>
         <Route exact path="/form" element={<Form/>}/>
         <Route exact path="/movies/:id" element={<Details/>}/>
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/home" element={<Slider/>}/>
         <Route exact path="/user" element={<User/>}/>
-        <Route exact path="/admin" element={<AdminPanel/>}/>
         <Route exact path="/modify" element={<Modify/>}/>
       </Routes>
 

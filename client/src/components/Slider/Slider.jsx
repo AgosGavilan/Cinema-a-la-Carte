@@ -46,9 +46,16 @@ function Slider() {
     
 
   return (
+      <div className='landing'>
+          <div className='welcome'>
+              <h1 className='titleLand'>Welcome to Cinéma á la Carte</h1>
+              <h4 className='descriptionLand'>Your own movie library where you can adquire any of the latest films and watch it all the times you want! <br/> <br/> Are you ready for this journey?</h4>
+              <NavLink to="/home">
+              <button className='playBtn'>Play!</button>
+              </NavLink>
+          </div>
     <div className='slider'>
         <AiOutlineArrowLeft className='arrow prev' onClick={prevSlide} />
-        <AiOutlineArrowRight className='arrow next' onClick={nextSlide} />        
         {
             sliderData?.map((slide, index) => {
                 return (
@@ -72,7 +79,8 @@ function Slider() {
                 )
             })
         }
-    
+    <AiOutlineArrowRight className='arrow next' onClick={nextSlide} />  
+    </div>
     </div>
   )
 }

@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import image from "../../assets/poster.jpg";
 // import styles from "./Form.module.css"
 import "./Form.css";
-
+import LoadScreen from "../Loading/LoadScreen"
 import { getActors, getGenres, postMovie } from "../../redux/actions";
 
 /*release_date 
@@ -77,6 +77,7 @@ const Form = () => {
     actors: [],
   });
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(true)
 
   const dispatch = useDispatch();
   const allGenres = useSelector((state) => state.genres);
@@ -85,6 +86,7 @@ const Form = () => {
   useEffect(() => {
     dispatch(getActors());
     dispatch(getGenres());
+    setLoading(false)
   }, [dispatch]);
 
   /* id,title,adult (true o false), img (url), overview (descripcion de la pelicula), release_date (fecha de lanzamiento), original_language ("en" si es en ingles o "es" si es en español), vote_average (numero del 1 al 10),price (numero entre 0,5 y 4,99)] */
@@ -186,6 +188,7 @@ const Form = () => {
     });
   };
 
+  if(loading) return <LoadScreen/>
   return (
     <div className="bodyForm">
       <div className="posterBack">
