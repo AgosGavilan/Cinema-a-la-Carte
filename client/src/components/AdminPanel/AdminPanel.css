@@ -1,0 +1,99 @@
+/* menu */
+
+#menu ul li {
+    background-color:#181818;
+}
+
+#menu ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+#menu ul a {
+  display:block;
+  color:#fff;
+  text-decoration:none;
+  font-weight:500;
+  font-size:18px;
+  font-family:"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
+}
+
+#menu ul li {
+  position:relative;
+  float:left;
+  margin:0;
+  padding:0;
+  z-index: 1;
+}
+
+/* #menu ul li:hover {
+  background:black;
+  
+} */
+
+#menu ul ul {
+  display:none;
+  position:absolute;
+  left:0;
+  padding:0;
+}
+
+#menu ul ul li {
+  float:none;
+  width:150px
+}
+
+/* #menu ul ul a {
+  padding:10px 15px;
+} */
+
+#menu ul li:hover > ul {
+  display:block;
+}
+
+.navlink {
+    text-decoration: none;  
+    padding: 8px 12px;
+    background-color: #181818; 
+    border: 1px solid #e8eaed;
+}
+
+.navlink:hover {
+    box-shadow: 0 0 8px white;
+}
+
+.navlink1 {
+    text-decoration: none;  
+    padding: 8px 12px;
+    background-color: #181818; 
+    border: 1px solid #e8eaed;
+    border-radius: 0px 6px 0px 0px;
+}
+
+.navlink1:hover {
+    box-shadow: 0 0 8px white;
+}
+
+.navlink5 {
+    text-decoration: none;  
+    padding: 8px 12px;
+    background-color: #181818; 
+    border: 1px solid #e8eaed;
+    border-radius: 0px 0px 6px 6px;
+}
+
+.navlink5:hover {
+    box-shadow: 0 0 8px white;
+}
+
+.adminIcon {
+    color: white;
+    height: 35px;
+}
+
+.adminIcon:hover {
+    color: goldenrod;
+    transform: scale(1.5);
+}

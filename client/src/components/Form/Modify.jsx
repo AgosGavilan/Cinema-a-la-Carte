@@ -51,8 +51,9 @@ const validate = (input) => {
   if (input.img.length && !regex.test(input.img)) {
     errors.img = "img is invalid, it must be an URL";
   }
-
-  if (input.urlMovie.length && !regex.test(input.urlMovie)) {
+  const regex2 =
+    /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+  if (input.urlMovie.length && !regex2.test(input.urlMovie)) {
     errors.urlMovie = "Link is invalid, it must be a valid URL";
   }
 
@@ -225,8 +226,8 @@ const Modify = () => {
         original_language: chosenMovie.original_language,
         price: chosenMovie.price,
         urlMovie: chosenMovie.urlMovie,
-        genres: chosenMovie.Genres,
-        actors: chosenMovie.Actors,
+        genres: chosenMovie.Genres.map(e => e.name),
+        actors: chosenMovie.Actors.map(e => e.name),
       });
     } else {
       Swal.fire({
