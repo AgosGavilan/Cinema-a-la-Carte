@@ -224,6 +224,7 @@ export const postReview = (review) => {
     
 }
 
+
 export const getAllReviews = (id) => {
     return async (dispatch) => {
         try {
@@ -237,3 +238,78 @@ export const getAllReviews = (id) => {
         }
     }
 }
+
+export const getUsers = () => {
+    return async dispatch => {
+        try {
+
+            const {data} = await axios.get(`/api/users`)
+            return dispatch({
+                type: TYPES.GET_USERS,
+                payload: data
+            })
+        }
+        catch (e) {
+            console.log("error in getUsers", e)
+        }
+    }
+}
+
+export const deleteUser = (id) => {
+    return async (dispatch) => {
+      try {
+        const { data } = await axios.delete(
+          `api/users/delete${id}`
+        );
+        dispatch({ 
+            type: TYPES.DELETE_USER, 
+            payload: data });
+      } catch (error) {
+        console.log("error in deleteUser", error);
+      }
+    };
+  };
+
+export const postUser = (newUser) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.post(`/api/users/create`, newUser)
+            return dispatch({
+                type: TYPES.POST_USER,
+                payload: data
+            })
+        } catch (e) {
+            console.log("error in postUser", e)
+        }
+    }
+}
+
+export const postLogin = (newLogin) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.post(`/api/users/login`, newLogin)
+            return dispatch({
+                type: TYPES.POST_LOGIN,
+                payload: data
+            })
+        } catch (e) {
+            console.log("error in postLogin", e)
+        }
+    }
+}
+
+export const modifyRole = (role, id) => {
+    return async (dispatch) => {
+      try {
+        const { data } = axios.put(`api/users/set-role${id}`, role);
+        dispatch({
+          type: TYPES.PUT_ROLE,
+          payload: data,
+        });
+         } catch (e) {
+        console.log("Error in modifyRole");
+        console.log(e);
+      }
+    };
+  };    
+

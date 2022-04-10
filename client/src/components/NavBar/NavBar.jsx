@@ -4,11 +4,10 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getMovies } from "../../redux/actions/index"
-
+import { getMovies } from "../../redux/actions/index";
 import { useAuth0 } from "@auth0/auth0-react";
-import LogIn from "../LogIn/LogIn"
-
+import LogIn from "../LogIn/LogIn";
+import AdminPanel from "../AdminPanel/AdminPanel";
 import {
   faAngleLeft,
   faAngleRight,
@@ -17,10 +16,9 @@ import {
   faClapperboard,
 } from "@fortawesome/free-solid-svg-icons";
 import "./NavBar.css";
-import logo from "../../assets/Cine.jpg"
+import logo from "../../assets/Cine.jpg";
 //import Cart from "./Cart/index";
 // import hola from "./hola.png"
-
 
 const NavBar = () => {
   const allMoviesBackup = useSelector((state) => state.moviesBackUp);
@@ -29,31 +27,31 @@ const NavBar = () => {
 
   const handleClick = () => {
     dispatch(getMovies());
-  }
-
+  };
 
   const { isAuthenticated } = useAuth0();
-
 
   return (
     <div className="nav">
       <div className="divHome">
-      <Link to="/" style={{ textDecoration: "none" }}>
-        <img src={logo} alt="Logo" className="logo"/>
-      </Link>
+        <Link to="/home" style={{ textDecoration: "none" }}>
+          <img src={logo} alt="Logo" className="logo" />
+        </Link>
       </div>
-      <Link to="/" style={{ textDecoration: "none" }}>
-      <SearchBar />
+      <Link to="/home" style={{ textDecoration: "none" }}>
+        <SearchBar />
       </Link>
       <Link to="/form">
         <FontAwesomeIcon className="movieIcon" icon={faClapperboard} />
       </Link>
-{isAuthenticated ?
-      <Link to="/user">
-      <FontAwesomeIcon className="user" icon={faUser} />
-      </Link>
-: <LogIn/>
-}
+      {isAuthenticated ? (
+        <Link to="/user">
+          <FontAwesomeIcon className="user" icon={faUser} />
+        </Link>
+      ) : (
+        <LogIn />
+      )}
+      <AdminPanel/>
       <Link to="/cart">
         <FontAwesomeIcon className="cart" icon={faCartShopping} />
       </Link>
@@ -65,6 +63,6 @@ const NavBar = () => {
       } */}
     </div>
   );
-}
+};
 
-export default NavBar
+export default NavBar;

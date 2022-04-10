@@ -44,7 +44,7 @@ const Details = () => {
       <div className={s.wrapper}>
         <div className={s.card}>
           <div className={s.product_left}>
-            <NavLink to="/" className={s.nav}>
+            <NavLink to="/home" className={s.nav}>
               <span className={s.navspan}>⇦</span>
             </NavLink>
             <div className={s.header}>

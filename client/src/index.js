@@ -15,9 +15,12 @@ axios.defaults.baseURL = `https://proyect-ecommerce.herokuapp.com`
 ReactDOM.render(
   <Provider store={store}>
   <React.StrictMode>
-    <Auth0Provider
-    domain="dev-h82j56dy.us.auth0.com"
-    clientId="HveXMvaTPEVLJXw2gznwxR0rPnj09Rzn"
+    <Auth0Provider      
+    //domain="dev-h82j56dy.us.auth0.com"
+    domain="bold-art-9172.us.auth0.com"   
+  //clientId="HveXMvaTPEVLJXw2gznwxR0rPnj09Rzn"
+  clientId="3igmk3SIto05gGop178de7gzQOOyPrmc"
+  
     redirectUri={window.location.origin}
     >
     <BrowserRouter>
