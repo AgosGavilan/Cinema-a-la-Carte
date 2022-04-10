@@ -1,0 +1,17 @@
+.user {
+    background-color: #181818;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+}
+
+.profileContainer {
+    background-color: rgba(255, 255, 255, 0.75);
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    margin: 50px;
+}
