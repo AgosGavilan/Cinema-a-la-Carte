@@ -7,7 +7,8 @@ const initialState = {
   actors: [],
   details: [],
   cart: [],
-  currentItem: null
+  currentItem: null,
+  review: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -165,6 +166,12 @@ const rootReducer = (state = initialState, action) => {
     case TYPES.DELETE_MOVIE:
       return {
         ...state
+      }
+
+    case TYPES.POST_REVIEW:
+      return {
+        ...state,
+        review: action.payload
       }
 
     default:
