@@ -19,7 +19,7 @@ const CartItem = ({item}) => {
       />
       <div className={styles.cartItem__details}>
         <p className={styles.details__title}>{item.title}</p>
-        <p className={styles.details__desc}>{item.overview}</p>
+        {/* <p className={styles.details__desc}>{item.overview}</p> */}
         <p className={styles.details__price}>$ {item.price}</p>
       </div>
       <div className={styles.cartItem__actions}>
