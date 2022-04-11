@@ -1,10 +1,17 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getMovies } from "../../redux/actions";
 import EachMovie from "./EachMovie";
 import styles from "./MovieList.module.css"
 
 
 const MovieList = () => {
   const allMovies = useSelector((state) => state.movies);
+  let dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getMovies())
+  },[])
 
   return (
     <table className={styles.movieList}>
