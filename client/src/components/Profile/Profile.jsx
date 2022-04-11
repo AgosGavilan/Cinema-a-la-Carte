@@ -18,8 +18,9 @@ const Profile = () => {
         <h1 className={styles.userName}>{user.name}</h1>
         <h4>E-mail: {user.email}</h4>
         </div>
-
-   {/* {JSON.stringify(user)} */}
+        
+{/* <br />  <br />
+   {JSON.stringify(user)} */}
       </div>
     )
   );
