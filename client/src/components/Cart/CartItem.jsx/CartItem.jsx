@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {removeFromCart} from "../../../redux/actions";
 import styles from "./CartItem.module.css";
 import { useDispatch } from "react-redux";
+import trash from "../../../assets/47-471196_icon-trash-png-font-awesome-trash-o-transparent.png"
 
 const CartItem = ({item}) => {
     let dispatch = useDispatch();
@@ -17,28 +18,15 @@ const CartItem = ({item}) => {
         src={item.img}
         alt={item.title}
       />
-      <div className={styles.cartItem__details}>
-        <p className={styles.details__title}>{item.title}</p>
-        {/* <p className={styles.details__desc}>{item.overview}</p> */}
-        <p className={styles.details__price}>$ {item.price}</p>
-      </div>
+        <div className={styles.div_tipre}>
+          <p className={styles.details__title}>{item.title}</p>
+        </div>
+        <div className={styles.div_tipre}>
+          <p className={styles.details__price}>$ {item.price}</p>
+        </div>
       <div className={styles.cartItem__actions}>
-        {/* <div className={styles.cartItem__qty}>
-          <label htmlFor="qty">Qty</label>
-          <input
-            min="1"
-            type="number"
-            id="qty"
-            name="qty"
-            value={input}
-            onChange={onChangeHandler}
-          />
-        </div> */}
-        <button onClick={e => remove(e)}>
-          
-          
-        
-            Remove
+        <button onClick={e => remove(e)} className={styles.trash}>
+          <img src={trash} alt="delete" width="25px" height="25px" />
         </button>
       </div>
     </div>

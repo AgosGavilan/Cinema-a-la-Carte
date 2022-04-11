@@ -25,6 +25,8 @@ const NavBar = () => {
   const allMovies = useSelector((state) => state.movies);
   const dispatch = useDispatch();
 
+  const cart = useSelector((state) => state.cart);
+
   const handleClick = () => {
     dispatch(getMovies());
   };
@@ -52,8 +54,12 @@ const NavBar = () => {
         <LogIn />
       )}
       <AdminPanel/>
+      
       <Link to="/cart">
         <FontAwesomeIcon className="cart" icon={faCartShopping} />
+        {cart.length === 0 ? "" : 
+          <span id="cart_menu_num" data-action="cart-can" class="badge rounded-circle">{cart.length}</span>
+        }
       </Link>
       {/* {
         allMovies.length !== allMoviesBackup.length && <button onClick={handleClick} className="backButton">

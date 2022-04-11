@@ -1,14 +1,23 @@
 .cartItem {
-    margin-bottom: 1rem;
     display: flex;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-    border-radius: 10px;
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26); */
+    justify-content: space-between;
+    border-bottom: 1px solid;
   }
   
   .cartItem__image {
-    width: 350px;
+    width: 100px;
     object-fit: contain;
-    border-radius: 10px;
+  }
+
+  .div_tipre {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.6rem;
+    height: 140.11px;
+    width: 150px;
   }
   
   .cartItem__details {
@@ -73,4 +82,10 @@
   .actions__deleteItemBtn img {
     width: 25px;
     height: 25px;
+  }
+
+  .trash {
+    border: none;
+    color: white;
+    cursor: pointer;
   }

@@ -4,26 +4,69 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .title {
+    background: lightsteelblue;
+    font-family: ui-monospace;
+    padding: 5vh;
+    /* margin-bottom: 5vh; */
+    /* margin-top: 5vh; */
+    font-size: 25px;
+}
+
+.col_items {
+  padding: 0 1vh;
+  text-align: right;
+}
+
+.b {
+  font-size: 1.5rem
+}
   
   .cart__items {
-    flex: 0.7;
-    margin-right: 1rem;
+    margin: auto;
+    max-width: 950px;
+    width: 50%;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent;
   }
+
+  @media(max-width:767px) {
+    .cart__items {
+        margin: 3vh auto
+    }
+}
   
   .cart__summary {
-    height: 250px;
+    /* height: 250px;
     flex: 0.3;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-    border-radius: 10px;
+    border-radius: 10px; */
+    background-color: #ddd;
+    /* border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem; */
+    padding: 4vh;
+    color: rgb(65, 65, 65)
   }
+
+  @media(max-width:767px) {
+    .cart__summary {
+        border-top-right-radius: unset;
+        border-bottom-left-radius: 1rem;
+        font-family: ui-monospace;
+        padding-bottom: 30px;
+    }
+}
   
   .summary__title {
     font-size: 1.2rem;
     font-weight: bold;
+    padding-bottom: 20px;
   }
   
   .summary__price {
@@ -34,6 +77,7 @@
   .summary__price span:nth-child(1) {
     font-size: 0.9rem;
     flex: 0.6;
+    font-family: monospace;
   }
   
   .summary__price span:nth-child(2) {
@@ -43,21 +87,32 @@
   }
   
   .summary__checkoutBtn {
-    padding: 10px 17px;
-    border: 1px solid var(--secondary-color);
-    border-radius: 10px;
-    background: var(--primary-color);
-    color: var(--light-color);
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
+    background-color: #000;
+    border-color: #000;
+    color: white;
+    width: 100%;
+    margin-top: 4vh;
+    padding: 1vh;
+    border-radius: 0;
+    cursor: pointer
   }
   
   .summary__checkoutBtn:focus {
+    box-shadow: none;
     outline: none;
-    border: 1px solid var(--secondary-color);
+    box-shadow: none;
+    color: white;
+    -webkit-box-shadow: none;
+    transition: none
   }
   
   .summary__checkoutBtn:hover {
-    opacity: 0.75;
+    color: white
   }
+
+  .scroll {
+    overflow-y: scroll;
+    height: 300px;
+}
+
+  
