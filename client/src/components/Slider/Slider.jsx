@@ -2,14 +2,16 @@ import React, {useState, useEffect} from 'react';
 import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import "./Slider.scss";
-import {sliderData} from "./data.js"
 import {getMovies} from "../../redux/actions/index"
 import {NavLink} from "react-router-dom"
+import LoadScreen from "../Loading/LoadScreen"
 
-function Slider() {
+
+const Slider = () => {
     const allMovies = useSelector(state => state.movies);
     const dispatch = useDispatch();
     const [currentSlide, setCurrentSlide] = useState(0);
+    let [loading, setLoading] = useState(true)
     let sliderData = []
     sliderData.push(allMovies[0], allMovies[1], allMovies[2], allMovies[3], allMovies[4])
     const slideLength = sliderData.length;
@@ -19,7 +21,7 @@ function Slider() {
     let intervalTime = 6000;
     
     useEffect(() => {
-        dispatch(getMovies());
+        dispatch(getMovies()).then(setLoading(false))
         setCurrentSlide(0);
     },[]);
 
@@ -44,7 +46,7 @@ function Slider() {
     }
 
     
-
+if (loading) return <LoadScreen/>
   return (
       <div className='landing'>
           <div className='welcome'>

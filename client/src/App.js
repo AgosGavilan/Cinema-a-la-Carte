@@ -9,12 +9,14 @@ import Slider from "../src/components/Slider/Slider"
 import AdminPanel from "../src/components/AdminPanel/AdminPanel"
 import Modify from "../src/components/Form/Modify"
 import User from "./components/User/User";
+import MovieList from "./components/MovieList/MovieList"
 
 function App() {
   return (
     <div className="App">
     <NavBar />
       <Routes>
+        <Route path="*" element={<Slider/>}/>
         <Route exact path="/" element={<Slider/>}/>
         <Route exact path="/home" element={<Home/>}/>
         <Route exact path="/form" element={<Form/>}/>
@@ -23,6 +25,8 @@ function App() {
         <Route exact path="/home" element={<Slider/>}/>
         <Route exact path="/user" element={<User/>}/>
         <Route exact path="/modify" element={<Modify/>}/>
+        <Route exact path="/movielist" element={<MovieList/>}/>
+        
       </Routes>
 
     </div>
