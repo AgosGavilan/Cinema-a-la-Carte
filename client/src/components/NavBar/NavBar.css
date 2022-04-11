@@ -10,11 +10,27 @@
 
 .cart {
     color: whitesmoke;
-    margin-top: 1px;
+    /* margin-top: 1px; */
+    margin-top: 20px;
     height: 35px;
     margin-left: 3vh;
     cursor: pointer;
 }
+
+#cart_menu_num {
+    position: relative;
+    top: -45px;
+    left: 70%;
+    background: red;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 10px;
+  }
 
 .cart:hover {
     transform: scale(1.5);

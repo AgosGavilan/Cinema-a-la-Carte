@@ -27,7 +27,10 @@ const Cart = () => {
 
   return (
     <div className={styles.cart__items}>
-        <div >
+      <div className={styles.title}>
+        <h3>Shopping Cart</h3>
+      </div>
+        <div className={styles.scroll}>
         {cart.map((item) => (
           <CartItem key={item.id} item={item} />
         ))}
@@ -39,7 +42,7 @@ const Cart = () => {
           <span>$ {totalPrice}</span>
         </div>
         <button className={styles.summary__checkoutBtn}>
-          Proceed To Checkout
+          Checkout
         </button>
       </div>
     </div>
