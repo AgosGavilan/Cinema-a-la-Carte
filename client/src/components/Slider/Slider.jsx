@@ -6,6 +6,7 @@ import {getMovies} from "../../redux/actions/index"
 import {NavLink} from "react-router-dom"
 import LoadScreen from "../Loading/LoadScreen"
 
+
 const Slider = () => {
     const allMovies = useSelector(state => state.movies);
     const dispatch = useDispatch();

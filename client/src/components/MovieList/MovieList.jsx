@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import EachMovie from "./EachMovie";
 import styles from "./MovieList.module.css"
 
+
 const MovieList = () => {
   const allMovies = useSelector((state) => state.movies);
 

@@ -5,6 +5,7 @@ import styles from "./MovieList.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faTrashCan} from "@fortawesome/free-solid-svg-icons";
 
+
 const EachMovie = ({id, title, release_date, rating, price}) => {
 
     const allMovies = useSelector((state) => state.movies)
