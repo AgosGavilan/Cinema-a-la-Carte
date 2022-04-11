@@ -25,8 +25,7 @@ const EachMovie = ({id, title, release_date, rating, price}) => {
             denyButtonText: "Cancel",
           }).then((result) => {
             if (result.isConfirmed) {
-              dispatch(deleteMovie(id));
-              dispatch(getMovies());
+              dispatch(deleteMovie(id)).then(() => dispatch(getMovies()))
             } else if (result.isDenied) {
               return;
             }
