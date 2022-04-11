@@ -8,7 +8,10 @@ const initialState = {
   details: [],
   cart: [],
   currentItem: null,
-  reviews: []
+  reviews: [],
+  users: [],
+  user: {}
+
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -179,7 +182,32 @@ const rootReducer = (state = initialState, action) => {
         reviews: [...state.review, action.payload]
       }
 
-    
+    case TYPES.GET_USERS:
+      return {
+        ...state,
+        users: action.payload
+     }
+
+    case TYPES.DELETE_USER:
+      return {
+      ...state
+      }
+
+    case TYPES.POST_USER:
+      return {
+        ...state,
+        user: action.payload
+      }
+
+    case TYPES.POST_LOGIN:
+      return {
+        ...state,                
+      }
+
+  case TYPES.PUT_ROLE:
+    return {
+      ...state,
+    }
 
     default:
       return {
