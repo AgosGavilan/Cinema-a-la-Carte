@@ -1,0 +1,30 @@
+.movieList {
+    background-color: #181818;
+    color: white;
+    width: 100%;
+    border: 1px solid white;
+}
+
+.headers {
+    border: 1px solid white;
+    font-size: 18px;
+}
+
+.eachMovie {
+    border: 1px solid white;
+}
+
+.trash {
+    width: 37px;
+    font-size: 1.5rem;
+    margin-left: 5px;
+    align-items: center;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    color: rgb(255, 255, 255);
+}
+
+.trash:hover {
+    filter: drop-shadow(0 0 0.5rem rgb(255, 255, 255));
+}
