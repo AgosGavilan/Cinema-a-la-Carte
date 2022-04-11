@@ -10,6 +10,7 @@ import AdminPanel from "../src/components/AdminPanel/AdminPanel"
 import Modify from "../src/components/Form/Modify"
 import User from "./components/User/User";
 import MovieList from "./components/MovieList/MovieList"
+import UserList from "./components/UserList/UserList";
 
 function App() {
   return (
@@ -26,9 +27,8 @@ function App() {
         <Route exact path="/user" element={<User/>}/>
         <Route exact path="/modify" element={<Modify/>}/>
         <Route exact path="/movielist" element={<MovieList/>}/>
-        
+        <Route exact path="/userlist" element={<UserList/>} />
       </Routes>
-
     </div>
   );
 }

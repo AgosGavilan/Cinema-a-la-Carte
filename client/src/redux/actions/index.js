@@ -242,7 +242,6 @@ export const getAllReviews = (id) => {
 export const getUsers = () => {
     return async dispatch => {
         try {
-
             const {data} = await axios.get(`/api/users`)
             return dispatch({
                 type: TYPES.GET_USERS,
