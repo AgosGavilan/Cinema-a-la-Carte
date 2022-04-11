@@ -1,3 +1,7 @@
+/* * {
+    background-color: #181818;
+} */
+
 .userList {
     background-color: #181818;
     color: white;
@@ -26,4 +30,10 @@
 }
 .trash:hover {
     filter: drop-shadow(0 0 0.5rem rgb(255, 255, 255));
+}
+
+.roleSelect {
+    padding: 3px;
+    margin: 2px;
+    border-radius: 2px;
 }

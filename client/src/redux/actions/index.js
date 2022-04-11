@@ -258,7 +258,7 @@ export const deleteUser = (id) => {
     return async (dispatch) => {
       try {
         const { data } = await axios.delete(
-          `api/users/delete/${id}`
+          "api/users/delete", id
         );
         dispatch({ 
             type: TYPES.DELETE_USER, 
@@ -297,10 +297,10 @@ export const postLogin = (newLogin) => {
     }
 }
 
-export const modifyRole = (role, id) => {
+export const modifyRole = (role) => {
     return async (dispatch) => {
       try {
-        const { data } = axios.put(`api/users/set-role/${id}`, role);
+        const { data } = axios.put("api/users/set-role", role);
         dispatch({
           type: TYPES.PUT_ROLE,
           payload: data,
