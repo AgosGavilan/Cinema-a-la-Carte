@@ -55,7 +55,7 @@ const NavBar = () => {
       )}
       <AdminPanel/>
       
-      <Link to="/cart">
+      <Link to="/cart" className="link">
         <FontAwesomeIcon className="cart" icon={faCartShopping} />
         {cart.length === 0 ? "" : 
           <span id="cart_menu_num" data-action="cart-can" class="badge rounded-circle">{cart.length}</span>
