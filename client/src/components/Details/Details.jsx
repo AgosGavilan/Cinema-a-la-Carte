@@ -5,6 +5,7 @@ import LoadScreen from "../Loading/LoadScreen";
 import { details, addToCart, getAllReviews } from "../../redux/actions";
 import poster from "../../assets/poster.jpg";
 import Swal from "sweetalert2"
+import NavBar from "../NavBar/NavBar.jsx"
 import s from "./Details.module.css";
 
 const Details = () => {
@@ -40,6 +41,8 @@ const Details = () => {
     }
   }
   return (
+    <div>
+          <NavBar />
     <div>
       <div className={s.wrapper}>
         <div className={s.card}>
@@ -83,6 +86,7 @@ const Details = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
