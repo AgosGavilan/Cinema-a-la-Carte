@@ -30,6 +30,7 @@
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 1rem;
     border: transparent;
+    background: whitesmoke;
   }
 
   @media(max-width:767px) {
@@ -113,6 +114,20 @@
   .scroll {
     overflow-y: scroll;
     height: 300px;
+}
+
+.img_div {
+    position: relative;
+    height: 612.75px;
+    background: #181818;
+}
+
+.img_cart {
+    margin: 110px;
+}
+
+.box {
+  background: #181818;
 }
 
   
