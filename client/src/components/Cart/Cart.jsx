@@ -43,7 +43,7 @@ const Cart = () => {
               <h4 className={styles.summary__title}>Cart Summary</h4>
               <div className={styles.summary__price}>
                 <span>TOTAL: ({totalItems} items)</span>
-                <span>$ {totalPrice}</span>
+                <span>$ {Math.round(totalPrice * 100)/100}</span>
               </div>
               <button className={styles.summary__checkoutBtn}>Checkout</button>
             </div>
