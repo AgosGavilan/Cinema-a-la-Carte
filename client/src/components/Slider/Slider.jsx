@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Slider.scss";
 import {getMovies} from "../../redux/actions/index"
 import {NavLink} from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlay
+} from "@fortawesome/free-solid-svg-icons";
 import LoadScreen from "../Loading/LoadScreen"
+import NavBar from '../NavBar/NavBar';
 
 
 const Slider = () => {
@@ -48,12 +53,14 @@ const Slider = () => {
     
 if (loading) return <LoadScreen/>
   return (
+      <div>
+          <NavBar />
       <div className='landing'>
           <div className='welcome'>
               <h1 className='titleLand'>Welcome to Cinéma á la Carte</h1>
               <h4 className='descriptionLand'>Your own movie library where you can adquire any of the latest films and watch it all the times you want! <br/> <br/> Are you ready for this journey?</h4>
               <NavLink to="/home">
-              <button className='playBtn'>Play!</button>
+              <FontAwesomeIcon className="playBtn" icon={faPlay} />
               </NavLink>
           </div>
     <div className='slider'>
@@ -84,7 +91,8 @@ if (loading) return <LoadScreen/>
     <AiOutlineArrowRight className='arrow next' onClick={nextSlide} />  
     </div>
     </div>
+    </div>
   )
 }
 
-export default Slider
+export default Slider;

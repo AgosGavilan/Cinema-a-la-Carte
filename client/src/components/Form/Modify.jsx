@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import image from "../../assets/poster.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-// import styles from "./Modify.module.css";
+import NavBar from "../NavBar/NavBar";
 import "./Modify.css";
 import {
   getActors,
@@ -119,7 +119,7 @@ const Modify = () => {
         genres: [],
         actors: [],
       });
-      dispatch(getMovies())
+      dispatch(getMovies());
       setMovie({
         movieTitle: "",
       });
@@ -226,8 +226,8 @@ const Modify = () => {
         original_language: chosenMovie.original_language,
         price: chosenMovie.price,
         urlMovie: chosenMovie.urlMovie,
-        genres: chosenMovie.Genres.map(e => e.name),
-        actors: chosenMovie.Actors.map(e => e.name),
+        genres: chosenMovie.Genres.map((e) => e.name),
+        actors: chosenMovie.Actors.map((e) => e.name),
       });
     } else {
       Swal.fire({
@@ -293,252 +293,255 @@ const Modify = () => {
   };
 
   return (
-    <div className="bodyForm">
-      <div className="imgBack">
-        <img src={input.img || image} className="posterImg" alt="Poster" />
-      </div>
-      <div className="containerform">
-        <div className="form">
-          <h1 className="title">Modify/Delete</h1>
-          <form className="searchForm" onSubmit={handleSearch}>
-            <input
-              type="text"
-              list="movies"
-              name="movieTitle"
-              value={movie.movieTitle}
-              onChange={handleMovie}
-              className="inputForm"
-              placeholder="Search Movie..."
-            />
-            <datalist id="movies">
-              {allMovies?.map((e) => {
-                return (
-                  <option value={e.title} key={e.id}>
-                    {e.title}
-                  </option>
-                );
-              })}
-            </datalist>
-            <button type="submit" className="searchBtn">
-              <FontAwesomeIcon icon={faSearch} />
-            </button>
-          </form>
-          <form action="" onSubmit={(e) => handleSubmit(e)}>
-            <div className="group">
-              <div className="first">
-                <input
-                  className={errors.title ? "errorForm" : "inputForm"}
-                  type="text"
-                  value={input.title}
-                  name="title"
-                  placeholder="Title..."
-                  onChange={(e) => handleChange(e)}
-                />
-                <strong className="errors">{errors.title}</strong>
-
-                <input
-                  className={errors.release_date ? "errorForm" : "inputForm"}
-                  type="date"
-                  value={input.release_date}
-                  name="release_date"
-                  placeholder="Release Date..."
-                  onChange={(e) => handleChange(e)}
-                />
-                <strong className="errors">{errors.release_date}</strong>
-
-                <input
-                  className={errors.vote_average ? "errorForm" : "inputForm"}
-                  type="number"
-                  value={input.vote_average}
-                  name="vote_average"
-                  onChange={(e) => handleChange(e)}
-                  step="0.1"
-                  min="0"
-                  max="10"
-                  placeholder="Rating..."
-                />
-                <strong className="errors">{errors.vote_average}</strong>
-              </div>
-              <div className="second">
-                <input
-                  className={errors.price ? "errorForm" : "inputForm"}
-                  type="number"
-                  name="price"
-                  placeholder="Price..."
-                  step=".01"
-                  min="0.49"
-                  max="4.00"
-                  value={input.price === 0 ? "" : input.price}
-                  onChange={(e) => handleChange(e)}
-                />
-                <strong className="errors">{errors.price}</strong>
-
-                <input
-                  className={errors.img ? "errorForm" : "inputForm"}
-                  type="url"
-                  value={input.img}
-                  name="img"
-                  placeholder="Image URL..."
-                  onChange={(e) => handleChange(e)}
-                  autoComplete="off"
-                  maxLength="255"
-                />
-                <strong className="errors"> {errors.img}</strong>
-                <br />
-                <input
-              className={errors.urlMovie ? "errorForm" : "inputForm"}
-              type="url"
-              value={input.urlMovie}
-              name="urlMovie"
-              placeholder="Movie URL..."
-              onChange={(e) => handleChange(e)}
-              autoComplete="off"
-              maxLength="255"
-            />
-            <strong className="errors"> {errors.urlMovie}</strong>
-                <input
-                  className={errors.actors ? "errorForm" : "inputForm"}
-                  type="text"
-                  list="actors"
-                  name="actors"
-                  placeholder="Cast..."
-                  onChange={(e) => handleList(e)}
-                />
-
-                <datalist className="selectCreate" id="actors">
-                  {allActors?.map((allActors) => (
-                    <option
-                      className="box_opcion"
-                      value={allActors.name}
-                      key={allActors.id}
-                      name="actors"
-                    >
-                      {allActors.name}
+    <div>
+      <NavBar />
+      <div className="bodyForm">
+        <div className="imgBack">
+          <img src={input.img || image} className="posterImg" alt="Poster" />
+        </div>
+        <div className="containerform">
+          <div className="form">
+            <h1 className="title">Modify/Delete</h1>
+            <form className="searchForm" onSubmit={handleSearch}>
+              <input
+                type="text"
+                list="movies"
+                name="movieTitle"
+                value={movie.movieTitle}
+                onChange={handleMovie}
+                className="inputForm"
+                placeholder="Search Movie..."
+              />
+              <datalist id="movies">
+                {allMovies?.map((e) => {
+                  return (
+                    <option value={e.title} key={e.id}>
+                      {e.title}
                     </option>
-                  ))}
-                </datalist>
-              </div>
-              <div className="options">
-                {input.actors.map((a) =>
-                  a.name ? (
-                    <div className="box_opcion" key={a.id}>
-                      <div className="opcion_title">
-                        <p>{a.name}</p>
-                      </div>{" "}
-                      <button
-                        className="btn_remove"
-                        onClick={() => handleDeleteActors(a)}
-                        key={a.id}
-                        value={a.name}
-                      >
-                        X
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="box_opcion" key={a}>
-                      <div className="opcion_title">
-                        <p>{a}</p>
-                      </div>{" "}
-                      <button
-                        className="btn_remove"
-                        onClick={() => handleDeleteActors(a)}
-                        key={a}
-                        value={a}
-                      >
-                        X
-                      </button>
-                    </div>
-                  )
-                )}
-                <strong className="errors">{errors.actors}</strong>
-              </div>
+                  );
+                })}
+              </datalist>
+              <button type="submit" className="searchBtn">
+                <FontAwesomeIcon icon={faSearch} />
+              </button>
+            </form>
+            <form action="" onSubmit={(e) => handleSubmit(e)}>
+              <div className="group">
+                <div className="first">
+                  <input
+                    className={errors.title ? "errorForm" : "inputForm"}
+                    type="text"
+                    value={input.title}
+                    name="title"
+                    placeholder="Title..."
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <strong className="errors">{errors.title}</strong>
 
-              <div className="groupB">
-                <textarea
-                  autoCapitalize="sentences"
-                  autoComplete="off"
-                  maxLength="255"
-                  className={errors.overview ? "errorarea" : "textarea"}
-                  id=""
-                  cols="30"
-                  rows="10"
-                  value={input.overview}
-                  name="overview"
-                  placeholder="Description..."
-                  onChange={(e) => handleChange(e)}
-                ></textarea>
-                <strong className="errors">{errors.overview}</strong>
-              </div>
+                  <input
+                    className={errors.release_date ? "errorForm" : "inputForm"}
+                    type="date"
+                    value={input.release_date}
+                    name="release_date"
+                    placeholder="Release Date..."
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <strong className="errors">{errors.release_date}</strong>
 
-              <div className="groupB">
-                <select
-                  defaultValue=""
-                  className="selectCreate"
-                  onChange={(e) => handleSelect(e)}
-                >
-                  <option value="" disabled hidden>
-                    Select Genres...
-                  </option>
-                  {allGenres?.map((allGenres) => (
-                    <option
-                      value={allGenres.name}
-                      key={allGenres.id}
-                      name="genres"
-                    >
-                      {allGenres.name}
-                    </option>
-                  ))}
-                </select>
+                  <input
+                    className={errors.vote_average ? "errorForm" : "inputForm"}
+                    type="number"
+                    value={input.vote_average}
+                    name="vote_average"
+                    onChange={(e) => handleChange(e)}
+                    step="0.1"
+                    min="0"
+                    max="10"
+                    placeholder="Rating..."
+                  />
+                  <strong className="errors">{errors.vote_average}</strong>
+                </div>
+                <div className="second">
+                  <input
+                    className={errors.price ? "errorForm" : "inputForm"}
+                    type="number"
+                    name="price"
+                    placeholder="Price..."
+                    step=".01"
+                    min="0.49"
+                    max="4.00"
+                    value={input.price === 0 ? "" : input.price}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <strong className="errors">{errors.price}</strong>
+
+                  <input
+                    className={errors.img ? "errorForm" : "inputForm"}
+                    type="url"
+                    value={input.img}
+                    name="img"
+                    placeholder="Image URL..."
+                    onChange={(e) => handleChange(e)}
+                    autoComplete="off"
+                    maxLength="255"
+                  />
+                  <strong className="errors"> {errors.img}</strong>
+                  <br />
+                  <input
+                    className={errors.urlMovie ? "errorForm" : "inputForm"}
+                    type="url"
+                    value={input.urlMovie}
+                    name="urlMovie"
+                    placeholder="Movie URL..."
+                    onChange={(e) => handleChange(e)}
+                    autoComplete="off"
+                    maxLength="255"
+                  />
+                  <strong className="errors"> {errors.urlMovie}</strong>
+                  <input
+                    className={errors.actors ? "errorForm" : "inputForm"}
+                    type="text"
+                    list="actors"
+                    name="actors"
+                    placeholder="Cast..."
+                    onChange={(e) => handleList(e)}
+                  />
+
+                  <datalist className="selectCreate" id="actors">
+                    {allActors?.map((allActors) => (
+                      <option
+                        className="box_opcion"
+                        value={allActors.name}
+                        key={allActors.id}
+                        name="actors"
+                      >
+                        {allActors.name}
+                      </option>
+                    ))}
+                  </datalist>
+                </div>
                 <div className="options">
-                  {input.genres.map((g) =>
-                    g.name ? (
-                      <div className="box_opcion" key={g.id}>
+                  {input.actors.map((a) =>
+                    a.name ? (
+                      <div className="box_opcion" key={a.id}>
                         <div className="opcion_title">
-                          <p>{g.name}</p>
-                        </div>
+                          <p>{a.name}</p>
+                        </div>{" "}
                         <button
                           className="btn_remove"
-                          onClick={() => handleDeleteGenres(g)}
-                          key={g.id}
-                          value={g.name}
+                          onClick={() => handleDeleteActors(a)}
+                          key={a.id}
+                          value={a.name}
                         >
                           X
                         </button>
                       </div>
                     ) : (
-                      <div className="box_opcion" key={g}>
+                      <div className="box_opcion" key={a}>
                         <div className="opcion_title">
-                          <p>{g}</p>
-                        </div>
+                          <p>{a}</p>
+                        </div>{" "}
                         <button
                           className="btn_remove"
-                          onClick={() => handleDeleteGenres(g)}
-                          key={g}
-                          value={g}
+                          onClick={() => handleDeleteActors(a)}
+                          key={a}
+                          value={a}
                         >
                           X
                         </button>
                       </div>
                     )
                   )}
+                  <strong className="errors">{errors.actors}</strong>
                 </div>
-                <strong className="errors">{errors.genres}</strong>
+
+                <div className="groupB">
+                  <textarea
+                    autoCapitalize="sentences"
+                    autoComplete="off"
+                    maxLength="255"
+                    className={errors.overview ? "errorarea" : "textarea"}
+                    id=""
+                    cols="30"
+                    rows="10"
+                    value={input.overview}
+                    name="overview"
+                    placeholder="Description..."
+                    onChange={(e) => handleChange(e)}
+                  ></textarea>
+                  <strong className="errors">{errors.overview}</strong>
+                </div>
+
+                <div className="groupB">
+                  <select
+                    defaultValue=""
+                    className="selectCreate"
+                    onChange={(e) => handleSelect(e)}
+                  >
+                    <option value="" disabled hidden>
+                      Select Genres...
+                    </option>
+                    {allGenres?.map((allGenres) => (
+                      <option
+                        value={allGenres.name}
+                        key={allGenres.id}
+                        name="genres"
+                      >
+                        {allGenres.name}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="options">
+                    {input.genres.map((g) =>
+                      g.name ? (
+                        <div className="box_opcion" key={g.id}>
+                          <div className="opcion_title">
+                            <p>{g.name}</p>
+                          </div>
+                          <button
+                            className="btn_remove"
+                            onClick={() => handleDeleteGenres(g)}
+                            key={g.id}
+                            value={g.name}
+                          >
+                            X
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="box_opcion" key={g}>
+                          <div className="opcion_title">
+                            <p>{g}</p>
+                          </div>
+                          <button
+                            className="btn_remove"
+                            onClick={() => handleDeleteGenres(g)}
+                            key={g}
+                            value={g}
+                          >
+                            X
+                          </button>
+                        </div>
+                      )
+                    )}
+                  </div>
+                  <strong className="errors">{errors.genres}</strong>
+                </div>
+                <br />
+                <div className="containerButtons">
+                  <button className="buttonCreate" type="submit">
+                    Modify
+                  </button>
+                  <button
+                    className="buttonCreate"
+                    type="button"
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-              <br />
-              <div className="containerButtons">
-                <button className="buttonCreate" type="submit">
-                  Modify
-                </button>
-                <button
-                  className="buttonCreate"
-                  type="button"
-                  onClick={handleDelete}
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>

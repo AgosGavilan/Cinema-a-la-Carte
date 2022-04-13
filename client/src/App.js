@@ -11,11 +11,11 @@ import Modify from "../src/components/Form/Modify"
 import User from "./components/User/User";
 import MovieList from "./components/MovieList/MovieList"
 import UserList from "./components/UserList/UserList";
+import Verify from "./components/Mailing/Verify";
 
 function App() {
   return (
     <div className="App">
-    <NavBar />
       <Routes>
         <Route path="*" element={<Slider/>}/>
         <Route exact path="/" element={<Slider/>}/>
@@ -28,6 +28,7 @@ function App() {
         <Route exact path="/modify" element={<Modify/>}/>
         <Route exact path="/movielist" element={<MovieList/>}/>
         <Route exact path="/userlist" element={<UserList/>} />
+        <Route exact path="/verify" element={<Verify/>} />
       </Routes>
     </div>
   );

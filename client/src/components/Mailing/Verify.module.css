@@ -1,0 +1,18 @@
+.backPage {
+    background: #181818;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.verifyContent {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mailImage {
+    width: 200px;
+    margin: 30px;
+}
