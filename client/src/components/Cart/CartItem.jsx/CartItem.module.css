@@ -29,7 +29,7 @@
   }
   
   .details__title {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
   }
   
@@ -38,7 +38,7 @@
   }
   
   .details__price {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
   }
   
@@ -85,7 +85,15 @@
   }
 
   .trash {
-    border: none;
-    color: white;
+    width: 37px;
+    font-size: 1.5rem;
+    margin-left: 5px;
+    align-items: center;
+    background-color: transparent;
     cursor: pointer;
-  }
+    border: none;
+    color: rgb(255, 255, 255);
+}
+.trash:hover {
+    filter: drop-shadow(0 0 0.5rem rgb(255, 255, 255));
+}

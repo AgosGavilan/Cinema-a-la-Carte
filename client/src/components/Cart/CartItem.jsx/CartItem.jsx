@@ -3,6 +3,8 @@ import {removeFromCart} from "../../../redux/actions";
 import styles from "./CartItem.module.css";
 import { useDispatch } from "react-redux";
 import trash from "../../../assets/47-471196_icon-trash-png-font-awesome-trash-o-transparent.png"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faTrashCan} from "@fortawesome/free-solid-svg-icons";
 
 const CartItem = ({item}) => {
     let dispatch = useDispatch();
@@ -26,7 +28,8 @@ const CartItem = ({item}) => {
         </div>
       <div className={styles.cartItem__actions}>
         <button onClick={e => remove(e)} className={styles.trash}>
-          <img src={trash} alt="delete" width="25px" height="25px" />
+          {/* <img src={trash} alt="delete" width="25px" height="25px" /> */}
+          <FontAwesomeIcon icon={faTrashCan} />
         </button>
       </div>
     </div>
