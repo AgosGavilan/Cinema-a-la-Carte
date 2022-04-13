@@ -1,25 +1,39 @@
 import React, {useState, useEffect} from 'react';
 import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
 import "./Slider.scss";
-import {sliderData} from "./data.js"
+import {getMovies} from "../../redux/actions/index"
+import {NavLink} from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlay
+} from "@fortawesome/free-solid-svg-icons";
+import LoadScreen from "../Loading/LoadScreen"
+import NavBar from '../NavBar/NavBar';
 
-function Slider() {
+
+const Slider = () => {
+    const allMovies = useSelector(state => state.movies);
+    const dispatch = useDispatch();
     const [currentSlide, setCurrentSlide] = useState(0);
+    let [loading, setLoading] = useState(true)
+    let sliderData = []
+    sliderData.push(allMovies[0], allMovies[1], allMovies[2], allMovies[3], allMovies[4])
     const slideLength = sliderData.length;
-
+    
     const autoScroll = true;
     let slideInterval;
     let intervalTime = 6000;
-
     
+    useEffect(() => {
+        dispatch(getMovies()).then(setLoading(false))
+        setCurrentSlide(0);
+    },[]);
 
     const auto = () => {
         slideInterval = setInterval(nextSlide, intervalTime)
     }
 
-    useEffect(() => {
-        setCurrentSlide(0);
-    },[]);
 
     useEffect(() => {
         if(autoScroll){
@@ -37,35 +51,48 @@ function Slider() {
     }
 
     
-
+if (loading) return <LoadScreen/>
   return (
+      <div>
+          <NavBar />
+      <div className='landing'>
+          <div className='welcome'>
+              <h1 className='titleLand'>Welcome to Cinéma á la Carte</h1>
+              <h4 className='descriptionLand'>Your own movie library where you can adquire any of the latest films and watch it all the times you want! <br/> <br/> Are you ready for this journey?</h4>
+              <NavLink to="/home">
+              <FontAwesomeIcon className="playBtn" icon={faPlay} />
+              </NavLink>
+          </div>
     <div className='slider'>
         <AiOutlineArrowLeft className='arrow prev' onClick={prevSlide} />
-        <AiOutlineArrowRight className='arrow next' onClick={nextSlide} />        
         {
-            sliderData.map((slide, index) => {
+            sliderData?.map((slide, index) => {
                 return (
                     <div className={index === currentSlide ? "slide current" : "slide"} key={index}>
                         {index === currentSlide && (
                             <div>
                                 <div className='img'>
-                                <img src={slide.image} alt='' /* className='img' */ />
+                                    <NavLink to={`/movies/${slide.id}`}>
+                                <img src={slide.img} alt='Slide' className='posterSlide' />
+                                </NavLink>
                                 </div>
-                                <div className="content">
-                                    <h2>{slide.heading}</h2>
-                                    <p>{slide.desc}</p>
+                                {/* <div className="content">
+                                    <h2>{slide.title}</h2>
+                                    <p>{slide.overview}</p>
                                     <hr />
                                     <button className="--btn --btn-primary">Get Start</button>
-                                </div>
+                                </div> */}
                             </div>
                         )}
                     </div>
                 )
             })
         }
-    
+    <AiOutlineArrowRight className='arrow next' onClick={nextSlide} />  
+    </div>
+    </div>
     </div>
   )
 }
 
-export default Slider
+export default Slider;

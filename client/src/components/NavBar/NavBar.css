@@ -10,11 +10,32 @@
 
 .cart {
     color: whitesmoke;
-    margin-top: 1px;
+    /* margin-top: 1px; */
+    /* margin-top: 20px; */
     height: 35px;
-    margin-left: 3vh;
+    /* margin-left: 3vh; */
     cursor: pointer;
 }
+
+.link {
+    height: 37px;
+    text-decoration: none;
+}
+
+#cart_menu_num {
+    position: relative;
+    top: -45px;
+    left: 70%;
+    background: red;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 10px;
+  }
 
 .cart:hover {
     transform: scale(1.5);
@@ -61,16 +82,10 @@
     font-weight: 100;
 }
 
-
-
-
-/* a {
->>>>>>> be9f95e7e7613a72e2b74cf1897c210d9e5e274e
-    color: whitesmoke;
-  }
-  .a:hover {
-     color: whitesmoke;
-  } */
+.logo {
+    width: 400px;
+    margin-top: 2px;
+}
 
 .movieIcon {
     margin-left: 5px;
