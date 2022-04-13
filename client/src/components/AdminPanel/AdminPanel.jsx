@@ -1,42 +1,53 @@
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
-import "./AdminPanel.css"
+import "./AdminPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faAngleLeft,
-    faAngleRight,
-    faUser,
-    faCartShopping,
-    faClapperboard,
-    faScrewdriverWrench
-  } from "@fortawesome/free-solid-svg-icons";
+  faAngleLeft,
+  faAngleRight,
+  faUser,
+  faCartShopping,
+  faClapperboard,
+  faScrewdriverWrench,
+} from "@fortawesome/free-solid-svg-icons";
 
 const AdminPanel = () => {
-    return (
-        <nav id="menu">
-        <ul>
-      <li><FontAwesomeIcon className="adminIcon" icon={faScrewdriverWrench} />
-        <ul>
-          <NavLink to="/form" className="navlink1">
-          <li><a >Add Movie</a></li>
-          </NavLink>
-          <NavLink to="/modify" className="navlink">
-          <li><a>Modify Movie</a></li>
-          </NavLink>
-          <NavLink to="/userlist" className="navlink">
-          <li><a href="#">Manage Users</a></li>
-          </NavLink>
-          <NavLink to="/movielist" className="navlink">
-          <li><a href="#">Movies Report</a></li>
+  return (
+    <nav id="menu">
+      <ul>
+        <li>
+          <FontAwesomeIcon className="adminIcon" icon={faScrewdriverWrench} />
+          <ul>
+            <NavLink to="/form" className="navlink1">
+              <li>
+                <a>Add Movie</a>
+              </li>
+            </NavLink>
+            <NavLink to="/modify" className="navlink">
+              <li>
+                <a>Modify Movie</a>
+              </li>
+            </NavLink>
+            <NavLink to="/userlist" className="navlink">
+              <li>
+                <a href="#">Manage Users</a>
+              </li>
+            </NavLink>
+            <NavLink to="/movielist" className="navlink">
+              <li>
+                <a href="#">Movies Report</a>
+              </li>
             </NavLink>
             <NavLink to="/orders" className="navlink5">
-          <li><a href="#">Purchase Report</a></li>
-          </NavLink>
-        </ul>
-      </li>
+              <li>
+                <a href="#">Purchase Report</a>
+              </li>
+            </NavLink>
+          </ul>
+        </li>
       </ul>
-      </nav>
-    )
-}
+    </nav>
+  );
+};
 
-export default AdminPanel
+export default AdminPanel;

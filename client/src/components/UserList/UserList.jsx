@@ -31,9 +31,10 @@ const UserList = () => {
             </tr>
           </thead>
           <tbody>
-            {allUsers?.map((e) => {
+            {allUsers?.map((e, i) => {
               return (
                 <EachUser
+                  key={i}
                   id={e.id}
                   name={e.name}
                   nickname={e.nickname}
