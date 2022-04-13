@@ -7,6 +7,7 @@ import poster from "../../assets/poster.jpg";
 import Swal from "sweetalert2"
 import NavBar from "../NavBar/NavBar.jsx"
 import s from "./Details.module.css";
+import ReactPlayer from "react-player";
 
 const Details = () => {
   const { id } = useParams();
@@ -83,6 +84,7 @@ const Details = () => {
           </div>
           <div className={s.product_right}>
             <img src={movieDetail.img ? movieDetail.img : poster} alt="" />
+            <ReactPlayer className={s.player} url="https://www.youtube.com/watch?v=OGca96afgtM" />
           </div>
         </div>
       </div>
