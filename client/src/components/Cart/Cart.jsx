@@ -4,13 +4,25 @@ import CartItem from "./CartItem.jsx/CartItem";
 import styles from "./Cart.module.css";
 import empty from "../../assets/empty-cart.png";
 import NavBar from "../NavBar/NavBar";
+import axios from "axios";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const {id} = useSelector((state) => state.user);
   console.log(cart);
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
+  const [idMp, setIdMp] = useState("");
+
+  console.log(id);
+
+  const data = {
+    "userId": id,
+    "orderlines": cart
+}
+
+const urlBack = "https://proyect-ecommerce.herokuapp.com/"
 
   useEffect(() => {
     let items = 0;
@@ -24,6 +36,18 @@ const Cart = () => {
     setTotalItems(items);
     setTotalPrice(price);
   }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
+
+  async function handleMp(){
+    
+      let orden = await axios.post(`${urlBack}/orders`, data);
+        
+
+      let info = await axios.get(`${urlBack}/mercadopago`, 
+      {id_orden: orden.data.id})
+ 
+    setIdMp(info.data.id)
+  }  
+
 
   return (
     <div>
@@ -45,7 +69,7 @@ const Cart = () => {
                 <span>TOTAL: ({totalItems} items)</span>
                 <span>$ {Math.round(totalPrice * 100)/100}</span>
               </div>
-              <button className={styles.summary__checkoutBtn}>Checkout</button>
+              <button onClick={handleMp} className={styles.summary__checkoutBtn}>Checkout</button>
             </div>
           </div>
         ) : (
