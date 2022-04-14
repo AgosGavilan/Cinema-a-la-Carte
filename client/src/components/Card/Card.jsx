@@ -4,7 +4,10 @@ import { NavLink } from "react-router-dom";
 import styles from "./Cards.module.css";
 import {addToCart} from "../../redux/actions"
 import Swal from "sweetalert2"
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faStar 
+} from "@fortawesome/free-solid-svg-icons";
 
 
 const Card = ({
@@ -52,7 +55,7 @@ const Card = ({
           <div className={styles.back}> {/*Este div es para lo que se va a ver atras */}
             <div className={styles.inner}>
               <h3 className={styles.title}>{title}</h3>
-              <p>{vote_average} ⭐</p>
+              <p>{vote_average} <FontAwesomeIcon icon={faStar} /></p>
               <p>US$ {price}</p>
               <div>
                 <NavLink  to={`/movies/${id}`}>

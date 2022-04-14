@@ -9,6 +9,7 @@
   
   .card {
     max-width: 65rem;
+    height: 90%;
     position: relative;
     display: flex;
     top: 50%;
@@ -38,17 +39,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
   }
-  
-  .product_right img {
+
+  .backImg {
+    width: 100%;
+    filter: blur(4px);
+    position: relative;
+  }
+
+  .frontImg {
     max-height: 700px;
     border-radius: 0.5rem;
     position: absolute;
+
+
   }
 
   .player{
     position: relative;
     z-index: -1;
+
   }
   
   .header h1 {
