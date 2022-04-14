@@ -4,7 +4,6 @@ import { NavLink, useParams } from "react-router-dom";
 import LoadScreen from "../Loading/LoadScreen";
 import { details, addToCart, getAllReviews } from "../../redux/actions";
 import poster from "../../assets/poster.jpg";
-//import Swal from "sweetalert2";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -13,6 +12,9 @@ import Box from "@mui/material/Box";
 import s from "./Details.module.css";
 import Description from "./Description";
 import Review from "../Review/Review";
+import Swal from "sweetalert2"
+import NavBar from "../NavBar/NavBar.jsx"
+import ReactPlayer from "react-player";
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -67,8 +69,6 @@ const Details = () => {
     dispatch(getAllReviews(id));
   }, [dispatch, id]);
 
-  if (loadScreen) return <LoadScreen />;
-
   // function addCart(e) {
   //   e.preventDefault();
   //   if (searchCart) {
@@ -85,7 +85,11 @@ const Details = () => {
   //     dispatch(addToCart(movieDetail.id));
   //   }
   // }
+  
+  if (loadScreen) return <LoadScreen />;
   return (
+    <div>
+          <NavBar />
     <div>
       <div className={s.wrapper}>
         <div className={s.card}>
@@ -147,10 +151,13 @@ const Details = () => {
             </Box>
           </div>
           <div className={s.product_right}>
-            <img src={movieDetail.img ? movieDetail.img : poster} alt="" />
+          <img src={movieDetail.img ? movieDetail.img : poster} className={s.backImg} alt="" />
+            <img src={movieDetail.img ? movieDetail.img : poster} className={s.frontImg} alt="" />
+            <ReactPlayer className={s.player} url="https://www.youtube.com/watch?v=OGca96afgtM" />
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

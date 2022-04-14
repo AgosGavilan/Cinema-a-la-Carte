@@ -1,5 +1,5 @@
 import React from 'react'
-
+import NavBar from '../NavBar/NavBar'
 import LogIn from '../LogIn/LogIn'
 import styles from "./User.module.css"
 import LogOut from '../LogOut/LogOut'
@@ -16,6 +16,8 @@ const User = () => {
 
 
   return (
+    <div>
+    <NavBar />
     <div className={styles.user}>
       <div className={styles.profileContainer}>
       <Profile/>
@@ -24,6 +26,7 @@ const User = () => {
       :  <LogIn/>
       }
       </div>
+    </div>
     </div>
   )
 }

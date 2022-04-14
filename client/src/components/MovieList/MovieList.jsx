@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../redux/actions";
 import EachMovie from "./EachMovie";
 import styles from "./MovieList.module.css"
+import NavBar from "../NavBar/NavBar";
 
 
 const MovieList = () => {
@@ -14,6 +15,8 @@ const MovieList = () => {
   },[])
 
   return (
+    <div>
+          <NavBar />
     <table className={styles.movieList}>
       <thead className={styles.headers}>
         <tr>
@@ -39,6 +42,7 @@ const MovieList = () => {
       })}
       </tbody>
     </table>
+    </div>
   );
 };
 

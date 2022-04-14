@@ -193,20 +193,21 @@ const rootReducer = (state = initialState, action) => {
       ...state
       }
 
-    case TYPES.POST_USER:
+    case TYPES.GET_LOGGED_USER:
       return {
         ...state,
-        user: action.payload
-      }
-
-    case TYPES.POST_LOGIN:
-      return {
-        ...state,                
+        user: action.payload                
       }
 
   case TYPES.PUT_ROLE:
     return {
       ...state,
+    }
+
+  case TYPES.LOGOUT_USER:
+    return {
+      ...state,
+      user: {}
     }
 
     default:
