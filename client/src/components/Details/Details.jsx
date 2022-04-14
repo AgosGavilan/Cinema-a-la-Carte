@@ -82,7 +82,8 @@ const Details = () => {
             </div>
           </div>
           <div className={s.product_right}>
-            <img src={movieDetail.img ? movieDetail.img : poster} alt="" />
+          <img src={movieDetail.img ? movieDetail.img : poster} className={s.backImg} alt="" />
+            <img src={movieDetail.img ? movieDetail.img : poster} className={s.frontImg} alt="" />
           </div>
         </div>
       </div>

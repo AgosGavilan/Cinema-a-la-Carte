@@ -1,9 +1,21 @@
+import { useEffect } from "react"
+import NavBar from "../NavBar/NavBar"
 import styles from "./LoadScreen.module.css"
 
 const LoadScreen = () => {
+    
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     return (
+        <div>
+            <NavBar/>
         <div className={styles.loadBack}>
-        <img src="https://steamuserimages-a.akamaihd.net/ugc/469792325891242764/088BC200E01563E6832AB0C414B8AE9BF6FDDA5B/" className={styles.tape} alt="Loading" />
+            <div className={styles.divImg}>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Youtube_loading_symbol_1_(wobbly).gif" className={styles.tape} alt="Loading" />
+        </div>
+        </div>
         </div>
     )
 }

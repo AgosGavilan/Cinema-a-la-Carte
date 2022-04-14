@@ -34,6 +34,7 @@ const UserList = () => {
             {allUsers?.map((e) => {
               return (
                 <EachUser
+                  key={e.id}
                   id={e.id}
                   name={e.name}
                   nickname={e.nickname}
