@@ -8,21 +8,22 @@ import axios from "axios";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  const {id} = useSelector((state) => state.user);
-  console.log(cart);
+  const user = useSelector((state) => state.user);
+  
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [idMp, setIdMp] = useState("");
 
-  console.log(id);
+  console.log(user);
 
   const data = {
-    "userId": id,
+    "userId": user.id,
     "orderlines": cart
 }
 
-const urlBack = "https://proyect-ecommerce.herokuapp.com/"
+
+const urlBack = "https://proyect-ecommerce.herokuapp.com/api"
 
   useEffect(() => {
     let items = 0;
@@ -38,14 +39,15 @@ const urlBack = "https://proyect-ecommerce.herokuapp.com/"
   }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
 
   async function handleMp(){
-    
+      
       let orden = await axios.post(`${urlBack}/orders`, data);
-        
+      console.log(orden.data)
 
       let info = await axios.get(`${urlBack}/mercadopago`, 
       {id_orden: orden.data.id})
- 
-    setIdMp(info.data.id)
+    
+
+    //console.log(info.data.id)
   }  
 
 
