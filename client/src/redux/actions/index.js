@@ -269,30 +269,16 @@ export const deleteUser = (id) => {
     };
   };
 
-export const postUser = (newUser) => {
+export const getLoggedUser = (LoggedUser) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.post(`/api/users/create`, newUser)
+            const { data } = await axios.get(`/api/users/${LoggedUser}`)
             return dispatch({
-                type: TYPES.POST_USER,
+                type: TYPES.GET_LOGGED_USER,
                 payload: data
             })
         } catch (e) {
-            console.log("error in postUser", e)
-        }
-    }
-}
-
-export const postLogin = (newLogin) => {
-    return async (dispatch) => {
-        try {
-            const { data } = await axios.post(`/api/users/login`, newLogin)
-            return dispatch({
-                type: TYPES.POST_LOGIN,
-                payload: data
-            })
-        } catch (e) {
-            console.log("error in postLogin", e)
+            console.log("error in getLoggedUser", e)
         }
     }
 }
@@ -312,3 +298,10 @@ export const modifyRole = (role) => {
     };
   };    
 
+export const logoutUser = () => {
+    return (dispatch) => {
+        dispatch({ 
+            type: TYPES.LOGOUT_USER 
+          });
+      };
+}

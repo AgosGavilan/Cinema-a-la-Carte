@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./Profile.module.css"
+import NavBar from "../NavBar/NavBar";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -18,9 +19,6 @@ const Profile = () => {
         <h1 className={styles.userName}>{user.name}</h1>
         <h4>E-mail: {user.email}</h4>
         </div>
-        
-{/* <br />  <br />
-   {JSON.stringify(user)} */}
       </div>
     )
   );

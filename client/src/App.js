@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, Navigate } from "react-router-dom"
 import './App.css';
 import Home from "../src/components/Home/Home"
 import Details from "./components/Details/Details"
@@ -11,23 +11,25 @@ import Modify from "../src/components/Form/Modify"
 import User from "./components/User/User";
 import MovieList from "./components/MovieList/MovieList"
 import UserList from "./components/UserList/UserList";
+import Verify from "./components/Mailing/Verify";
+import { useSelector } from "react-redux";
 
 function App() {
+  const userLogged = useSelector((state) => state.user)
   return (
     <div className="App">
-    <NavBar />
       <Routes>
-        <Route path="*" element={<Slider/>}/>
+        <Route path="*" element={<Navigate to="/"/>}/>
         <Route exact path="/" element={<Slider/>}/>
         <Route exact path="/home" element={<Home/>}/>
-        <Route exact path="/form" element={<Form/>}/>
         <Route exact path="/movies/:id" element={<Details/>}/>
         <Route exact path="/cart" element={<Cart />} />
-        <Route exact path="/home" element={<Slider/>}/>
         <Route exact path="/user" element={<User/>}/>
-        <Route exact path="/modify" element={<Modify/>}/>
-        <Route exact path="/movielist" element={<MovieList/>}/>
-        <Route exact path="/userlist" element={<UserList/>} />
+        <Route exact path="/verify" element={<Verify/>} />
+        <Route exact path="/form" element={userLogged.role !== "USER_ROLE" ? <Form/> : <Navigate to="/"/>}/>
+        <Route exact path="/modify" element={userLogged.role !== "USER_ROLE" ? <Modify/> : <Navigate to="/"/>}/>
+        <Route exact path="/movielist" element={userLogged.role !== "USER_ROLE" ? <MovieList/> : <Navigate to="/"/>}/>
+        <Route exact path="/userlist" element={userLogged.role !== "USER_ROLE" ? <UserList/> : <Navigate to="/"/>} />
       </Routes>
     </div>
   );
