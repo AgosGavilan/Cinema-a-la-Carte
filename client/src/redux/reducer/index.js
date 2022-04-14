@@ -179,7 +179,7 @@ const rootReducer = (state = initialState, action) => {
     case TYPES.GET_ALL_REVIEWS:
       return {
         ...state,
-        reviews: [...state.review, action.payload]
+        reviews: action.payload
       }
 
     case TYPES.GET_USERS:

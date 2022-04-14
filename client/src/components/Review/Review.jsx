@@ -1,18 +1,16 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import s from "./Review.module.css"
 
 const Review = () => {
-
-    //const dispatch = useDispatch()
     const allReviews = useSelector(state => state.reviews)
     console.log(allReviews)
 
     return (
-        <div>
+        <div className={s.product_main}>
             {allReviews.length ?
-            <div> allReviews </div>
+            <div> {allReviews} </div>
             : <p>There are no reviews yet.</p>}
-
         </div>
     )
 }
