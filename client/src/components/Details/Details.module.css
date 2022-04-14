@@ -52,6 +52,14 @@
     max-height: 700px;
     border-radius: 0.5rem;
     position: absolute;
+
+
+  }
+
+  .player{
+    position: relative;
+    z-index: -1;
+
   }
   
   .header h1 {
