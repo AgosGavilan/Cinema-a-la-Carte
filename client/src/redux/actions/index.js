@@ -56,7 +56,6 @@ export const filterYears = (year) => {
     }
 }
 
-
 export const postMovie = (newMovie) => {
     return async (dispatch) => {
         try {
@@ -70,7 +69,6 @@ export const postMovie = (newMovie) => {
         }
     }
 }
-
 
 export const getGenres = () => {
     return async (dispatch) => {
@@ -210,7 +208,7 @@ export const loadCurrentItem = (item) => {
     }
 }
 
-export const postReview = (review) => {
+export const postReview = (review) => { //review es lo que tengo que mandar por body (review.text, review.vote)
     return async (dispatch) => {
         try {
             const { data } = await axios.post(`/api/reviews/${review.userId}`, review)

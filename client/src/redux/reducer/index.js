@@ -10,7 +10,7 @@ const initialState = {
   currentItem: null,
   reviews: [],
   users: [],
-  user: {}
+  user: {},
 
 };
 
@@ -57,15 +57,12 @@ const rootReducer = (state = initialState, action) => {
           else return 0;
         });
       }
-
       return {
         ...state,
         movies: movieSort,
         moviesBackUp: movieSort,
       };
     }
-
-
     case TYPES.POST_MOVIE:
       return {
         ...state,
@@ -109,13 +106,10 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case TYPES.ADD_TO_CART:
-
-
       //checkear si el item ya esta en el carritp
       /*       const inCart = state.cart(item => item.id === action.payload.id ? true : false); */
       const item = state.movies.find(movie => movie.id === action.payload.id);
       const inCart = state.cart.find(item => item.id === action.payload.id ? true : false);
-
       return {
         ...state,
         cart: inCart ? state.cart.map(item => item.id === action.payload.id ? { ...item, qty: item.qty + 1 } : item) : [...state.cart, { ...item, qty: 1 }]
@@ -131,8 +125,6 @@ const rootReducer = (state = initialState, action) => {
     //     )
     //     : [...state.cart, { ...item, qty: 1 }], */
     // };
-
-
     case TYPES.REMOVE_FROM_CART:
       return {
         ...state,
@@ -173,7 +165,7 @@ const rootReducer = (state = initialState, action) => {
 
     case TYPES.POST_REVIEW:
       return {
-        ...state,
+        ...state
       }
 
     case TYPES.GET_ALL_REVIEWS:
