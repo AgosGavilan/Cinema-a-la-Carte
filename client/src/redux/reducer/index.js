@@ -152,7 +152,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         details: []
       }
-    
+
     case TYPES.MODIFY_MOVIE:
       return {
         ...state
@@ -178,29 +178,30 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         users: action.payload
-     }
+      }
 
     case TYPES.DELETE_USER:
       return {
-      ...state
+        ...state
       }
 
     case TYPES.GET_LOGGED_USER:
       return {
         ...state,
-        user: action.payload                
+        user: action.payload
       }
 
-  case TYPES.PUT_ROLE:
-    return {
-      ...state,
-    }
+    case TYPES.PUT_ROLE:
+      return {
+        ...state,
+      }
 
-  case TYPES.LOGOUT_USER:
-    return {
-      ...state,
-      user: {}
-    }
+    case TYPES.LOGOUT_USER:
+      return {
+        ...state,
+        user: {},
+        cart: []
+      }
 
     default:
       return {
