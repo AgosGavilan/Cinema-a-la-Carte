@@ -33,5 +33,8 @@ export const TYPES = {
     PUT_ROLE: "PUT_ROLE",
     LOGOUT_USER: "LOGOUT_USER",
 
+    VERIFY_EMAIL: "VERIFY_EMAIL",
+    RESET_PASSWORD: "RESET_PASSWORD",
+
     
 }

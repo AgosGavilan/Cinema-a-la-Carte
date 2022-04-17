@@ -203,6 +203,16 @@ const rootReducer = (state = initialState, action) => {
         cart: []
       }
 
+  case TYPES.VERIFY_EMAIL:
+    return {
+      ...state
+    }
+
+  case TYPES.RESET_PASSWORD:
+    return {
+      ...state
+    }
+
     default:
       return {
         ...state,

@@ -12,8 +12,8 @@ import Box from "@mui/material/Box";
 import s from "./Details.module.css";
 import Description from "./Description";
 import Review from "../Review/Review";
-import Swal from "sweetalert2"
-import NavBar from "../NavBar/NavBar.jsx"
+import Swal from "sweetalert2";
+import NavBar from "../NavBar/NavBar.jsx";
 import ReactPlayer from "react-player";
 
 const TabPanel = (props) => {
@@ -29,7 +29,7 @@ const TabPanel = (props) => {
     >
       {value === index && (
         <Box sx={{ p: 2 }}>
-          <Typography component={'div'}>{children}</Typography>
+          <Typography component={"div"}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -85,43 +85,43 @@ const Details = () => {
   //     dispatch(addToCart(movieDetail.id));
   //   }
   // }
-  
+
   if (loadScreen) return <LoadScreen />;
   return (
     <div>
-          <NavBar />
-    <div>
-      <div className={s.wrapper}>
-        <div className={s.card}>
-          <div className={s.product_left}>
-            <NavLink to="/home" className={s.nav}>
-              <span className={s.navspan}>⇦</span>
-            </NavLink>
-            <div className={s.header}>
-              <h1>{movieDetail.title}</h1>
-              <h2>{movieDetail.Genres?.map((g) => g.name).join(" | ")}</h2>
-            </div>
+      <NavBar />
+      <div>
+        <div className={s.wrapper}>
+          <div className={s.card}>
+            <div className={s.product_left}>
+              <NavLink to="/home" className={s.nav}>
+                <span className={s.navspan}>⇦</span>
+              </NavLink>
+              <div className={s.header}>
+                <h1>{movieDetail.title}</h1>
+                <h2>{movieDetail.Genres?.map((g) => g.name).join(" | ")}</h2>
+              </div>
 
-            {/* Aca tendria que ir mi Tab */}
-            {/* <div className={s.product_main}>
+              {/* Aca tendria que ir mi Tab */}
+              {/* <div className={s.product_main}>
               <div className={s.focus}>
                 <span>Description</span>
                 <span>Review ({allReviews.length})</span>
               </div> */}
-            {/* Todo esto iria dentro de description */}
-            {/* <p>{movieDetail.overview}</p>
+              {/* Todo esto iria dentro de description */}
+              {/* <p>{movieDetail.overview}</p>
               <p>{movieDetail.Actors?.map((a) => a.name).join(", ")}</p>
               <p>Release: {movieDetail.release_date}</p>
             </div> */}
 
-            {/* <div className={s.product_details}>
+              {/* <div className={s.product_details}>
               <div className={s.product_total}>
                 <h3>Total Price</h3>
                 <p>$ {movieDetail.price}</p>
               </div>
             </div> */}
 
-            {/* <div className={s.product_btns}>
+              {/* <div className={s.product_btns}>
               <button
                 className={searchCart ? s.product_incart : s.product_add}
                 onClick={(e) => addCart(e)}
@@ -130,17 +130,24 @@ const Details = () => {
               </button>
             </div> */}
 
-            <Box sx={{ width: "100%" }}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <Tabs
-                  value={value}
-                  onChange={handleChange}
-                  aria-label="basic tabs example"
-                  centered
-                >
-                  <Tab label="Description" {...a11yProps(0)} />
-                  <Tab label="Reviews" {...a11yProps(1)} />
-                </Tabs>
+              <Box sx={{ width: "100%" }}>
+                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    aria-label="basic tabs example"
+                    centered
+                  >
+                    <Tab label="Description" {...a11yProps(0)} />
+                    <Tab label="Reviews" {...a11yProps(1)} />
+                  </Tabs>
+                </Box>
+                <TabPanel value={value} index={0}>
+                  <Description movieDetail={movieDetail} id={id} />
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                  <Review />
+                </TabPanel>
               </Box>
               <TabPanel value={value} index={0}>
                 <Description movieDetail={movieDetail} id={id}/>
@@ -151,13 +158,20 @@ const Details = () => {
             </Box>
           </div>
           <div className={s.product_right}>
-            <img src={movieDetail.img ? movieDetail.img : poster} className={s.backImg} alt="" />
-            <img src={movieDetail.img ? movieDetail.img : poster} className={s.frontImg} alt="" />
-            <ReactPlayer className={s.player} url="https://www.youtube.com/watch?v=OGca96afgtM" />
+            <img
+                src={movieDetail.img ? movieDetail.img : poster}
+                className={s.backImg}
+                alt="Back Image"
+              />
+            <img
+                src={movieDetail.img ? movieDetail.img : poster}
+                className={s.frontImg}
+                alt="Front Image"
+              />
+              {/* <ReactPlayer className={s.player} url="https://www.youtube.com/watch?v=OGca96afgtM" /> */}
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

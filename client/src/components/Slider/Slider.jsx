@@ -72,9 +72,9 @@ if (loading) return <LoadScreen/>
                         {index === currentSlide && (
                             <div>
                                 <div className='img'>
-                                    <NavLink to={`/movies/${slide.id}`}>
+                                    {/* <NavLink to={`/movies/${slide.id}`}> */}
                                 <img src={slide.img} alt='Slide' className='posterSlide' />
-                                </NavLink>
+                                {/* </NavLink> */}
                                 </div>
                                 {/* <div className="content">
                                     <h2>{slide.title}</h2>

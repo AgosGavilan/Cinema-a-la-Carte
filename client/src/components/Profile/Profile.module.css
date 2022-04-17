@@ -9,6 +9,7 @@
     border-radius: 50%;
     opacity: 0.9;
     transition: all 0.3s linear 0s;
+    max-width: 100px;
 }
 
 .profileInfo {
