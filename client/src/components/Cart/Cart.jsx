@@ -5,26 +5,20 @@ import styles from "./Cart.module.css";
 import empty from "../../assets/empty-cart.png";
 import NavBar from "../NavBar/NavBar";
 import axios from "axios";
-import Checkout from "./Checkout"
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  const user = /* useSelector((state) => state.user) */ {id: 10};
+  const user = useSelector((state) => state.user) /*{id: 10};*/
+  //console.log("soy user: ", user);
   
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
-  const [idMp, setIdMp] = useState("");
-
   
-console.log(user);
   const data = {
     userId: user.id,
     orderlines: cart
 }
-
-/* 
-const urlBack = "https://proyect-ecommerce.herokuapp.com/api" */
 
   useEffect(() => {
     let items = 0;
@@ -40,17 +34,15 @@ const urlBack = "https://proyect-ecommerce.herokuapp.com/api" */
   }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
 
   async function handleMp(){
-    console.log(data);    
+      //console.log(data);    
       let orden = await axios.post(`/api/orders`, data);
-      console.log(orden.data)
+      //console.log(orden.data)
 
-      let info = await axios.get(`/api/mercadopago/${orden.data.id}`)
+      let info = await axios.get(`/api/mercadopago/generate-url/${orden.data.id}`)
 
+      window.location.href=info.data.init_point
+  } 
 
-    setIdMp(info.data.id)
-  }  
-
-  console.log(idMp)
   return (
     <div>
       <NavBar />
@@ -71,9 +63,11 @@ const urlBack = "https://proyect-ecommerce.herokuapp.com/api" */
                 <span>TOTAL: ({totalItems} items)</span>
                 <span>$ {Math.round(totalPrice * 100)/100}</span>
               </div>
-              <button /* onClick={handleMp} */ className={styles.summary__checkoutBtn}>
-                {<Checkout productos={cart} data={idMp}/>}
+              <button onClick={handleMp} className={styles.summary__checkoutBtn}>
+                Checkout
               </button>
+                
+              
               
             </div>
           </div>
