@@ -305,3 +305,33 @@ export const logoutUser = () => {
           });
       };
 }
+
+export const verifyEmail = (email) => {
+    return async (dispatch) => {
+        try {
+          const { data } = axios.put(`api/users/email-verify/${email}`);
+          dispatch({
+            type: TYPES.VERIFY_EMAIL,
+            payload: data,
+          });
+           } catch (e) {
+          console.log("Error in verifyEmail");
+          console.log(e);
+        }
+      };
+}
+
+export const resetPassword = (id) => {
+    return async (dispatch) => {
+        try {
+          const { data } = await axios.delete(
+            "api/users/delete-password", id
+          );
+          dispatch({ 
+              type: TYPES.RESET_PASSWORD, 
+              payload: data });
+        } catch (error) {
+          console.log("error in resetPassword", error);
+        }
+      };
+}
