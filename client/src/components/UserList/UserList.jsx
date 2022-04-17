@@ -27,6 +27,7 @@ const UserList = () => {
               <th className={styles.eachUser}>Nationality</th>
               <th className={styles.eachUser}>Date of Birth</th>
               <th className={styles.eachUser}>Role</th>
+              <th className={styles.eachUser}>Reset Password</th>
               <th className={styles.eachUser}>Delete</th>
             </tr>
           </thead>
