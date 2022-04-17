@@ -149,20 +149,26 @@ const Details = () => {
                   <Review />
                 </TabPanel>
               </Box>
-            </div>
-            <div className={s.product_right}>
-              <img
+              <TabPanel value={value} index={0}>
+                <Description movieDetail={movieDetail} id={id}/>
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                <Review />
+              </TabPanel>
+            </Box>
+          </div>
+          <div className={s.product_right}>
+            <img
                 src={movieDetail.img ? movieDetail.img : poster}
                 className={s.backImg}
                 alt="Back Image"
               />
-              <img
+            <img
                 src={movieDetail.img ? movieDetail.img : poster}
                 className={s.frontImg}
                 alt="Front Image"
               />
               {/* <ReactPlayer className={s.player} url="https://www.youtube.com/watch?v=OGca96afgtM" /> */}
-            </div>
           </div>
         </div>
       </div>

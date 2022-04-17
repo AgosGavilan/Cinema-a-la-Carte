@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styles from "./StarRating.module.css";
 import { FaStar } from "react-icons/fa"
+
 const StarRating = () => {
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null);
+    
     return (
         <div className={styles.root}>
             {[...Array(5)].map((star, i) => {

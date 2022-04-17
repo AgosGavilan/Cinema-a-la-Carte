@@ -4,13 +4,21 @@ import CartItem from "./CartItem.jsx/CartItem";
 import styles from "./Cart.module.css";
 import empty from "../../assets/empty-cart.png";
 import NavBar from "../NavBar/NavBar";
+import axios from "axios";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
+  const user = useSelector((state) => state.user) /*{id: 10};*/
+  //console.log("soy user: ", user);
+  
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
+  
+  const data = {
+    userId: user.id,
+    orderlines: cart
+}
 
   useEffect(() => {
     let items = 0;
@@ -24,6 +32,16 @@ const Cart = () => {
     setTotalItems(items);
     setTotalPrice(price);
   }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
+
+  async function handleMp(){
+      //console.log(data);    
+      let orden = await axios.post(`/api/orders`, data);
+      //console.log(orden.data)
+
+      let info = await axios.get(`/api/mercadopago/generate-url/${orden.data.id}`)
+
+      window.location.href=info.data.init_point
+  } 
 
   return (
     <div>
@@ -45,7 +63,12 @@ const Cart = () => {
                 <span>TOTAL: ({totalItems} items)</span>
                 <span>$ {Math.round(totalPrice * 100)/100}</span>
               </div>
-              <button className={styles.summary__checkoutBtn}>Checkout</button>
+              <button onClick={handleMp} className={styles.summary__checkoutBtn}>
+                Checkout
+              </button>
+                
+              
+              
             </div>
           </div>
         ) : (

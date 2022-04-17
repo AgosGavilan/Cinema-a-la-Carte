@@ -19,17 +19,17 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="*" element={<Navigate to="/"/>}/>
-        <Route exact path="/" element={<Slider/>}/>
-        <Route exact path="/home" element={<Home/>}/>
-        <Route exact path="/movies/:id" element={<Details/>}/>
+        <Route path="*" element={<Navigate to="/" />} />
+        <Route exact path="/" element={<Slider />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/movies/:id" element={<Details />} />
         <Route exact path="/cart" element={<Cart />} />
-        <Route exact path="/user" element={<User/>}/>
-        <Route exact path="/verify" element={<Verify/>} />
-        <Route exact path="/form" element={userLogged.role !== "USER_ROLE" ? <Form/> : <Navigate to="/"/>}/>
-        <Route exact path="/modify" element={userLogged.role !== "USER_ROLE" ? <Modify/> : <Navigate to="/"/>}/>
-        <Route exact path="/movielist" element={userLogged.role !== "USER_ROLE" ? <MovieList/> : <Navigate to="/"/>}/>
-        <Route exact path="/userlist" element={userLogged.role === "SUPER_ROLE" ? <UserList/> : <Navigate to="/"/>} />
+        <Route exact path="/user" element={<User />} />
+        <Route exact path="/verify" element={<Verify />} />
+        <Route exact path="/form" element={userLogged.role !== "USER_ROLE" ? <Form /> : <Navigate to="/" />} />
+        <Route exact path="/modify" element={userLogged.role !== "USER_ROLE" ? <Modify /> : <Navigate to="/" />} />
+        <Route exact path="/movielist" element={userLogged.role !== "USER_ROLE" ? <MovieList /> : <Navigate to="/" />} />
+        <Route exact path="/userlist" element={userLogged.role === "SUPER_ROLE" ? <UserList /> : <Navigate to="/" />} />
       </Routes>
     </div>
   );

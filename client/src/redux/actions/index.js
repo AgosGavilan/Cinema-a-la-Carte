@@ -7,7 +7,7 @@ export const getMovies = () => {
     return async dispatch => {
         try {
 
-            const {data} = await axios.get(`/api/movies`)
+            const { data } = await axios.get(`/api/movies`)
             return dispatch({
                 type: TYPES.GET_MOVIES,
                 payload: data
@@ -23,7 +23,7 @@ export const getMovies = () => {
 export const details = (id) => {
     return async (dispatch) => {
         try {
-            const {data} = await axios.get(`/api/movies/${id}`)
+            const { data } = await axios.get(`/api/movies/${id}`)
             return dispatch({
                 type: TYPES.DETAILS,
                 payload: data
@@ -56,7 +56,6 @@ export const filterYears = (year) => {
     }
 }
 
-
 export const postMovie = (newMovie) => {
     return async (dispatch) => {
         try {
@@ -70,7 +69,6 @@ export const postMovie = (newMovie) => {
         }
     }
 }
-
 
 export const getGenres = () => {
     return async (dispatch) => {
@@ -102,74 +100,76 @@ export const getActors = () => {
 
 export function getMovieByTitle(title) {
     return async function (dispatch) {
-        
-      let json = await axios.get(
-        "/api/search?name=" + title
-      );
-      
-      if(json.data[0].name){
-          /* return dispatch({type: "GET_TITLE_MOVIE", payload:json.data[0].Movies}) */
-          
-          var arr = [];
-         json.data.forEach(el => {
-            for(let i=0; i<= el.Movies.length; i++){
-                if(el.Movies[i] !== undefined){
-                    arr.push(el.Movies[i])
+
+        let json = await axios.get(
+            "/api/search?name=" + title
+        );
+
+        if (json.data[0].name) {
+            /* return dispatch({type: "GET_TITLE_MOVIE", payload:json.data[0].Movies}) */
+
+            var arr = [];
+            json.data.forEach(el => {
+                for (let i = 0; i <= el.Movies.length; i++) {
+                    if (el.Movies[i] !== undefined) {
+                        arr.push(el.Movies[i])
+                    }
                 }
-            }
-         })
-         console.log(arr);
-         return dispatch({
-             type: TYPES.GET_TITLE_MOVIE, 
-             payload: arr})
-      }
-      else {
-        return dispatch({ 
-            type: TYPES.GET_TITLE_MOVIE, 
-            payload: json.data });
-      }
+            })
+            console.log(arr);
+            return dispatch({
+                type: TYPES.GET_TITLE_MOVIE,
+                payload: arr
+            })
+        }
+        else {
+            return dispatch({
+                type: TYPES.GET_TITLE_MOVIE,
+                payload: json.data
+            });
+        }
     }
 }
 
-  export const clearMovieById = () => {
+export const clearMovieById = () => {
     return (dispatch) => {
-      dispatch({ 
-          type: TYPES.CLEAR_MOVIE 
-        });
-    };
-  };
-
-
-  export const modifyMovie = (movie) => {
-    return async (dispatch) => {
-      try {
-        console.log(movie);
-        console.log(movie.id)
-        const { data } = axios.put(`/api/movies/${movie.id}`, movie);
         dispatch({
-          type: TYPES.MODIFY_MOVIE,
-          payload: data,
+            type: TYPES.CLEAR_MOVIE
         });
-        console.log(movie);
-      } catch (e) {
-        console.log("Error in modifyMovie");
-        console.log(e);
-      }
     };
-  };
-  
-  export const deleteMovie = (id) => {
+};
+
+
+export const modifyMovie = (movie) => {
     return async (dispatch) => {
-      try {
-        const { data } = await axios.delete(
-          `/api/movies/delete/${id}`
-        );
-        dispatch({ type: TYPES.DELETE_MOVIE, payload: data });
-      } catch (error) {
-        console.log("error in deleteMovie", error);
-      }
+        try {
+            console.log(movie);
+            console.log(movie.id)
+            const { data } = axios.put(`/api/movies/${movie.id}`, movie);
+            dispatch({
+                type: TYPES.MODIFY_MOVIE,
+                payload: data,
+            });
+            console.log(movie);
+        } catch (e) {
+            console.log("Error in modifyMovie");
+            console.log(e);
+        }
     };
-  };
+};
+
+export const deleteMovie = (id) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.delete(
+                `/api/movies/delete/${id}`
+            );
+            dispatch({ type: TYPES.DELETE_MOVIE, payload: data });
+        } catch (error) {
+            console.log("error in deleteMovie", error);
+        }
+    };
+};
 
 export const addToCart = (itemId) => {
     return {
@@ -208,7 +208,7 @@ export const loadCurrentItem = (item) => {
     }
 }
 
-export const postReview = (review) => {
+export const postReview = (review) => { //review es lo que tengo que mandar por body (review.text, review.vote)
     return async (dispatch) => {
         try {
             const { data } = await axios.post(`/api/reviews/${review.userId}`, review)
@@ -217,11 +217,11 @@ export const postReview = (review) => {
                 payload: data
             })
 
-        } catch(e) {
+        } catch (e) {
             console.log('error en postReview', e)
         }
     }
-    
+
 }
 
 
@@ -233,7 +233,7 @@ export const getAllReviews = (id) => {
                 type: TYPES.GET_ALL_REVIEWS,
                 payload: data
             })
-        } catch(e) {
+        } catch (e) {
             console.log('error en getAllReview', e)
         }
     }
@@ -242,7 +242,7 @@ export const getAllReviews = (id) => {
 export const getUsers = () => {
     return async dispatch => {
         try {
-            const {data} = await axios.get(`/api/users`)
+            const { data } = await axios.get(`/api/users`)
             return dispatch({
                 type: TYPES.GET_USERS,
                 payload: data
@@ -256,18 +256,19 @@ export const getUsers = () => {
 
 export const deleteUser = (id) => {
     return async (dispatch) => {
-      try {
-        const { data } = await axios.delete(
-          "api/users/delete", id
-        );
-        dispatch({ 
-            type: TYPES.DELETE_USER, 
-            payload: data });
-      } catch (error) {
-        console.log("error in deleteUser", error);
-      }
+        try {
+            const { data } = await axios.delete(
+                "api/users/delete", id
+            );
+            dispatch({
+                type: TYPES.DELETE_USER,
+                payload: data
+            });
+        } catch (error) {
+            console.log("error in deleteUser", error);
+        }
     };
-  };
+};
 
 export const getLoggedUser = (LoggedUser) => {
     return async (dispatch) => {
@@ -285,18 +286,18 @@ export const getLoggedUser = (LoggedUser) => {
 
 export const modifyRole = (role) => {
     return async (dispatch) => {
-      try {
-        const { data } = axios.put("api/users/set-role", role);
-        dispatch({
-          type: TYPES.PUT_ROLE,
-          payload: data,
-        });
-         } catch (e) {
-        console.log("Error in modifyRole");
-        console.log(e);
-      }
+        try {
+            const { data } = axios.put("api/users/set-role", role);
+            dispatch({
+                type: TYPES.PUT_ROLE,
+                payload: data,
+            });
+        } catch (e) {
+            console.log("Error in modifyRole");
+            console.log(e);
+        }
     };
-  };    
+};
 
 export const logoutUser = () => {
     return (dispatch) => {
@@ -334,4 +335,17 @@ export const resetPassword = (id) => {
           console.log("error in resetPassword", error);
         }
       };
+
+export const handleMp = (data) => {
+    return async (dispatch) => {
+        try {
+            console.log(data);
+            let orden = await axios.post(`/api/orders`, data);
+            console.log(orden.data)
+
+            let info = await axios.get(`/api/mercadopago/${orden.data.id}`)
+        } catch (e) {
+            console.log("Error")
+        }
+    }
 }
