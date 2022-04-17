@@ -208,6 +208,16 @@ export const loadCurrentItem = (item) => {
     }
 }
 
+export const emptyCart = (userId) => {
+    return async dispatch => {
+        const { data } = axios.delete(`https://proyect-ecommerce.herokuapp.com/api/shopping-cart/items/${userId}`)
+        return dispatch({
+            type: TYPES.EMPTY_CART,
+            payload: data
+        })
+    }
+}
+
 export const postReview = (review) => { //review es lo que tengo que mandar por body (review.text, review.vote)
     return async (dispatch) => {
         try {
@@ -305,18 +315,4 @@ export const logoutUser = () => {
             type: TYPES.LOGOUT_USER
         });
     };
-}
-
-export const handleMp = (data) => {
-    return async (dispatch) => {
-        try {
-            console.log(data);
-            let orden = await axios.post(`/api/orders`, data);
-            console.log(orden.data)
-
-            let info = await axios.get(`/api/mercadopago/${orden.data.id}`)
-        } catch (e) {
-            console.log("Error")
-        }
-    }
 }

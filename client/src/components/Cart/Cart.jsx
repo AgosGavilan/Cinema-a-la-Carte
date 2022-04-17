@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartItem from "./CartItem.jsx/CartItem";
 import styles from "./Cart.module.css";
 import empty from "../../assets/empty-cart.png";
 import NavBar from "../NavBar/NavBar";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+import Swal from "sweetalert2";
+import { emptyCart } from "../../redux/actions";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  const user = useSelector((state) => state.user) /*{id: 10};*/
-  //console.log("soy user: ", user);
-  
+  //console.log("esto tengo en el carrito: ", cart)
+  const user = useSelector((state) => state.user);
+  const { isAuthenticated } = useAuth0();
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
-  
+
   const data = {
     userId: user.id,
-    orderlines: cart
-}
+    orderlines: cart,
+  };
+  console.log("soy data: ", data)
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     let items = 0;
@@ -33,15 +39,28 @@ const Cart = () => {
     setTotalPrice(price);
   }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
 
-  async function handleMp(){
-      //console.log(data);    
+  async function handleMp() {
+    if(!isAuthenticated) {
+      Swal.fire({
+        title: "Please, login before checkout",
+        icon: "warning",
+        position: "center",
+        timer: 2000,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      })
+    } else {
       let orden = await axios.post(`/api/orders`, data);
-      //console.log(orden.data)
+  
+      let info = await axios.get(
+        `/api/mercadopago/generate-url/${orden.data.id}`
+      );
+  
+      window.location.href = info.data.init_point;
 
-      let info = await axios.get(`/api/mercadopago/generate-url/${orden.data.id}`)
-
-      window.location.href=info.data.init_point
-  } 
+      dispatch(emptyCart(user.id))
+    }
+  }
 
   return (
     <div>
@@ -61,14 +80,14 @@ const Cart = () => {
               <h4 className={styles.summary__title}>Cart Summary</h4>
               <div className={styles.summary__price}>
                 <span>TOTAL: ({totalItems} items)</span>
-                <span>$ {Math.round(totalPrice * 100)/100}</span>
+                <span>$ {Math.round(totalPrice * 100) / 100}</span>
               </div>
-              <button onClick={handleMp} className={styles.summary__checkoutBtn}>
+              <button
+                onClick={handleMp}
+                className={styles.summary__checkoutBtn}
+              >
                 Checkout
               </button>
-                
-              
-              
             </div>
           </div>
         ) : (

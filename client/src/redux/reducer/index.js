@@ -203,6 +203,11 @@ const rootReducer = (state = initialState, action) => {
         cart: []
       }
 
+    case TYPES.EMPTY_CART:
+      return {
+        ...state,
+      }
+
     default:
       return {
         ...state,
