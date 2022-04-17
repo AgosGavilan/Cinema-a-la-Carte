@@ -334,7 +334,8 @@ export const resetPassword = (id) => {
         } catch (error) {
           console.log("error in resetPassword", error);
         }
-      };
+    };
+}
 
 export const handleMp = (data) => {
     return async (dispatch) => {

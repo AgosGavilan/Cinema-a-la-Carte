@@ -102,34 +102,6 @@ const Details = () => {
                 <h2>{movieDetail.Genres?.map((g) => g.name).join(" | ")}</h2>
               </div>
 
-              {/* Aca tendria que ir mi Tab */}
-              {/* <div className={s.product_main}>
-              <div className={s.focus}>
-                <span>Description</span>
-                <span>Review ({allReviews.length})</span>
-              </div> */}
-              {/* Todo esto iria dentro de description */}
-              {/* <p>{movieDetail.overview}</p>
-              <p>{movieDetail.Actors?.map((a) => a.name).join(", ")}</p>
-              <p>Release: {movieDetail.release_date}</p>
-            </div> */}
-
-              {/* <div className={s.product_details}>
-              <div className={s.product_total}>
-                <h3>Total Price</h3>
-                <p>$ {movieDetail.price}</p>
-              </div>
-            </div> */}
-
-              {/* <div className={s.product_btns}>
-              <button
-                className={searchCart ? s.product_incart : s.product_add}
-                onClick={(e) => addCart(e)}
-              >
-                {searchCart ? "In Cart" : "Add To Cart"}
-              </button>
-            </div> */}
-
               <Box sx={{ width: "100%" }}>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                   <Tabs
@@ -149,26 +121,20 @@ const Details = () => {
                   <Review />
                 </TabPanel>
               </Box>
-              <TabPanel value={value} index={0}>
-                <Description movieDetail={movieDetail} id={id}/>
-              </TabPanel>
-              <TabPanel value={value} index={1}>
-                <Review />
-              </TabPanel>
-            </Box>
-          </div>
-          <div className={s.product_right}>
-            <img
+            </div>
+            <div className={s.product_right}>
+              <img
                 src={movieDetail.img ? movieDetail.img : poster}
                 className={s.backImg}
                 alt="Back Image"
               />
-            <img
+              <img
                 src={movieDetail.img ? movieDetail.img : poster}
                 className={s.frontImg}
                 alt="Front Image"
               />
               {/* <ReactPlayer className={s.player} url="https://www.youtube.com/watch?v=OGca96afgtM" /> */}
+            </div>
           </div>
         </div>
       </div>
