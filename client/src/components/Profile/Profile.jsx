@@ -4,6 +4,9 @@ import styles from "./Profile.module.css"
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
+
+  const { name, picture, email } = user;
+
   console.log(user)
 
   if (isLoading) {
@@ -13,16 +16,14 @@ const Profile = () => {
   return (
     isAuthenticated && (
       <div className={styles.profileCard}>
-        <img src={user.picture} alt={user.name} className={styles.picture}/>
+        <img src={picture} alt={name} className={styles.picture}/>
         <div className={styles.profileInfo}>
-        <h1 className={styles.userName}>{user.name}</h1>
-        <h4>E-mail: {user.email}</h4>
-        </div>
-        
-{/* <br />  <br />
-   {JSON.stringify(user)} */}
+        <h1 className={styles.userName}>{name}</h1>
+        <h4>E-mail: {email}</h4>
+        </div>        
+    {/* {JSON.stringify(user)} */}
       </div>
-    )
+    ) 
   );
 }
 

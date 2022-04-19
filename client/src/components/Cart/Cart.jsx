@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useSelector } from "react-redux";
-import CartItem from './CartItem.jsx/CartItem';
+import CartItem from './CartItem/CartItem';
 import styles from './Cart.module.css'
 
 
