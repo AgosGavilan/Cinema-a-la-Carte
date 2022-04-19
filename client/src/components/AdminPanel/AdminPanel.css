@@ -89,8 +89,10 @@
 }
 
 .adminIcon {
-    color: white;
-    height: 35px;
+  color: whitesmoke;
+  margin-top: 1px;
+  height: 35px;
+  cursor: pointer;
 }
 
 .adminIcon:hover {

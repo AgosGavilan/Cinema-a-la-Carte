@@ -225,7 +225,7 @@ const Modify = () => {
         adult: chosenMovie.adult,
         original_language: chosenMovie.original_language,
         price: chosenMovie.price,
-        urlMovie: chosenMovie.urlMovie,
+        urlMovie: chosenMovie.urlMovie ? chosenMovie.urlMovie : "",
         genres: chosenMovie.Genres.map((e) => e.name),
         actors: chosenMovie.Actors.map((e) => e.name),
       });

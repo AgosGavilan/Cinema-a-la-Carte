@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import "./Slider.scss";
-import {getMovies} from "../../redux/actions/index"
+import {getMovies, getLoggedUser} from "../../redux/actions/index"
 import {NavLink} from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,6 +20,7 @@ const Slider = () => {
     let sliderData = []
     sliderData.push(allMovies[0], allMovies[1], allMovies[2], allMovies[3], allMovies[4])
     const slideLength = sliderData.length;
+    const userLogged = useSelector((state) => state.user);
     
     const autoScroll = true;
     let slideInterval;
@@ -27,6 +28,9 @@ const Slider = () => {
     
     useEffect(() => {
         dispatch(getMovies()).then(setLoading(false))
+        if(userLogged) {
+            dispatch(getLoggedUser(userLogged.email))
+        }
         setCurrentSlide(0);
     },[]);
 
