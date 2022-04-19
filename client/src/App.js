@@ -26,10 +26,10 @@ function App() {
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/user" element={<User />} />
         <Route exact path="/verify" element={<Verify />} />
-        <Route exact path="/form" element={userLogged.role !== "USER_ROLE" ? <Form /> : <Navigate to="/" />} />
-        <Route exact path="/modify" element={userLogged.role !== "USER_ROLE" ? <Modify /> : <Navigate to="/" />} />
-        <Route exact path="/movielist" element={userLogged.role !== "USER_ROLE" ? <MovieList /> : <Navigate to="/" />} />
-        <Route exact path="/userlist" element={userLogged.role === "SUPER_ROLE" ? <UserList /> : <Navigate to="/" />} />
+        <Route exact path="/form" element={userLogged && userLogged.role !== "USER_ROLE" ? <Form /> : <Navigate to="/" />} />
+        <Route exact path="/modify" element={userLogged && userLogged.role !== "USER_ROLE" ? <Modify /> : <Navigate to="/" />} />
+        <Route exact path="/movielist" element={userLogged && userLogged.role !== "USER_ROLE" ? <MovieList /> : <Navigate to="/" />} />
+        <Route exact path="/userlist" element={userLogged && userLogged.role === "SUPER_ROLE" ? <UserList /> : <Navigate to="/" />} />
       </Routes>
     </div>
   );
