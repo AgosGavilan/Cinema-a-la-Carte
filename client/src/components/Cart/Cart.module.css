@@ -6,30 +6,35 @@
   }
 
   .title {
-    background: lightsteelblue;
-    font-family: ui-monospace;
+    background: #181818;
     padding: 5vh;
     /* margin-bottom: 5vh; */
     /* margin-top: 5vh; */
-    font-size: 25px;
+    font-size: 30px;
+    color: white;
+    line-height: 30px;
+
+    border-radius: 5px;
 }
 
 .col_items {
   padding: 0 1vh;
   text-align: right;
+  border: 1px solid white;
 }
 
 .b {
-  font-size: 1.5rem
+  font-size: 30px;
 }
   
   .cart__items {
     margin: auto;
     max-width: 950px;
     width: 50%;
-    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 1rem;
-    border: transparent;
+    border: 2px solid white;
+    background: #181818;
+    color: white;
+    border-radius: 2px;
   }
 
   @media(max-width:767px) {
@@ -39,19 +44,13 @@
 }
   
   .cart__summary {
-    /* height: 250px;
-    flex: 0.3;
+    background-color: #181818;
+    padding: 4vh;
+    color: white;
+    font-size: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-    border-radius: 10px; */
-    background-color: #ddd;
-    /* border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem; */
-    padding: 4vh;
-    color: rgb(65, 65, 65)
+    justify-content: space-evenly;
   }
 
   @media(max-width:767px) {
@@ -64,18 +63,22 @@
 }
   
   .summary__title {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: bold;
     padding-bottom: 20px;
+    line-height: 15px;
+    display: flex;
+    justify-content: center;
   }
   
   .summary__price {
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
   }
   
   .summary__price span:nth-child(1) {
-    font-size: 0.9rem;
+    font-size: 1rem;
     flex: 0.6;
     font-family: monospace;
   }
@@ -93,8 +96,10 @@
     width: 100%;
     margin-top: 4vh;
     padding: 1vh;
-    border-radius: 0;
-    cursor: pointer
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    border: 2px solid white;
   }
   
   .summary__checkoutBtn:focus {
@@ -107,12 +112,30 @@
   }
   
   .summary__checkoutBtn:hover {
-    color: white
+    color: white;
+    background-color: transparent;
+    box-shadow: 0 0 5px white;
   }
 
   .scroll {
     overflow-y: scroll;
     height: 300px;
+    border: 1px solid white;
+}
+
+.img_div {
+    position: relative;
+    height: 612.75px;
+    background: #181818;
+}
+
+.img_cart {
+    margin: 110px;
+}
+
+.box {
+  background: #181818;
+  height: 650px;
 }
 
   

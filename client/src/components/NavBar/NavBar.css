@@ -6,15 +6,21 @@
     padding: 0.1px;
     padding-top: 0;
     border-bottom: 1px solid rgb(95, 95, 95);
+    width: 100%;
 }
 
 .cart {
     color: whitesmoke;
     /* margin-top: 1px; */
-    margin-top: 20px;
+    /* margin-top: 20px; */
     height: 35px;
-    margin-left: 3vh;
+    /* margin-left: 3vh; */
     cursor: pointer;
+}
+
+.link {
+    height: 37px;
+    text-decoration: none;
 }
 
 #cart_menu_num {
