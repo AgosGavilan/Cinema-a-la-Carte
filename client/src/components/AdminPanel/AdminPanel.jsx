@@ -19,29 +19,19 @@ const AdminPanel = () => {
           <FontAwesomeIcon className="adminIcon" icon={faScrewdriverWrench} />
           <ul>
             <NavLink to="/form" className="navlink1">
-              <li>
-                <a>Add Movie</a>
-              </li>
+              <li>Add Movie</li>
             </NavLink>
             <NavLink to="/modify" className="navlink">
-              <li>
-                <a>Modify Movie</a>
-              </li>
+              <li>Modify Movie</li>
             </NavLink>
             <NavLink to="/userlist" className="navlink">
-              <li>
-                <a href="#">Manage Users</a>
-              </li>
+              <li>Manage Users</li>
             </NavLink>
             <NavLink to="/movielist" className="navlink">
-              <li>
-                <a href="#">Movies Report</a>
-              </li>
+              <li>Movies Report</li>
             </NavLink>
             <NavLink to="/orders" className="navlink5">
-              <li>
-                <a href="#">Purchase Report</a>
-              </li>
+              <li>Purchase Report</li>
             </NavLink>
           </ul>
         </li>

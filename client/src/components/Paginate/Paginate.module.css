@@ -4,13 +4,15 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: stretch;
+  margin-top: 20px;
+  gap: 10px;
 }
 
 .paginado {
   margin-bottom: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  gap: 5px;
   align-items: center;
 }
 
