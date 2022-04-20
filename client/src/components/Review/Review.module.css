@@ -24,7 +24,7 @@
     background-color: rgb(255, 255, 255, 0.85);
     padding: 20px;
     margin: 15px;
-    cursor: pointer;
+    /* cursor: pointer; */
     border-radius: 5px;
 }
 .profile_img{
@@ -67,10 +67,10 @@
     /* font-size: 0.9rem; */
     color: #4b4b4b;
 }
-.testimonial_box:hover{
+/* .testimonial_box:hover{
     transform: translateY(-10px);
     transition: all ease 0.3s;
-}
+} */
  
 @media(max-width:800px){
     .testimonial_box{
@@ -98,4 +98,9 @@
 ::selection{
     color: #ffffff;
     background-color: #252525;
+}
+
+.delete {
+    cursor: pointer;
+    font-size: 20px;
 }

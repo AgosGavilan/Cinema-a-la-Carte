@@ -8,10 +8,11 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
-import { getAllReviews } from "../../redux/actions";
-import { useParams } from "react-router-dom";
+import { getAllReviews, deleteReview } from "../../redux/actions";
 import StarRating from "./StarRating/StarRating";
-import iconuser from "../../assets/user-icon-user-profile-icon-png.png"
+import iconuser from "../../assets/user-icon-user-profile-icon-png.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faTrashCan} from "@fortawesome/free-solid-svg-icons";
 
 const style = {
   position: "absolute",
@@ -28,20 +29,19 @@ const style = {
 };
 
 const Review = () => {
-  //const { id } = useParams()
   const allReviews = useSelector((state) => state.reviews);
-  //console.log(allReviews)
+  //console.log("soy todas las reviews: ", allReviews)
   const movieDetail = useSelector((state) => state.details);
   const userLog = useSelector((state) => state.user);
   const { user, isAuthenticated } = useAuth0();
-  console.log("soy user: ", user);
+  //console.log("soy user: ", user);
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     dispatch(getAllReviews(movieDetail.id));
-  }, []);
+  }, [allReviews]);
 
   const handleOpen = () => {
     if (!isAuthenticated) {
@@ -60,6 +60,10 @@ const Review = () => {
 
   const handleClose = () => setOpen(false);
 
+//   const handleDelete = () => {
+//       dispatch(deleteReview())
+//   }
+
   return (
     <div>
       <div className={s.product_main}>
@@ -75,19 +79,20 @@ const Review = () => {
                           <img src={user ? user.picture : iconuser} />
                         </div>
                         <div className={s.name_user}>
-                          <strong>{user?.nickname}</strong>
+                          <strong>{user ? user.name : "Usuario logueado"}</strong>
                           <span>{user?.email}</span>
                         </div>
                       </div>
                       <div>
-                          <StarRating vote={p.vote}/>
+                        <StarRating vote={p.vote} />
                       </div>
                     </div>
                     <div className={s.client_comment}>
-                      <p>
-                        {p.text}
-                      </p>
+                      <p>{p.text}</p>
                     </div>
+                    <button /*onClick={handleDelete}*/ className={s.delete}>
+                        <FontAwesomeIcon icon={faTrashCan} />
+                    </button>
                   </div>
                 </div>
               </section>

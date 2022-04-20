@@ -164,7 +164,9 @@ export const deleteMovie = (id) => {
             const { data } = await axios.delete(
                 `/api/movies/delete/${id}`
             );
-            dispatch({ type: TYPES.DELETE_MOVIE, payload: data });
+            dispatch({ 
+                type: TYPES.DELETE_MOVIE, 
+                payload: data });
         } catch (error) {
             console.log("error in deleteMovie", error);
         }
@@ -249,6 +251,20 @@ export const getAllReviews = (idMovie) => {
             })
         } catch (e) {
             console.log('error en getAllReview', e)
+        }
+    }
+}
+
+export const deleteReview = (reviewId) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.delete(`api/reviews/delete/${reviewId}`)
+            return dispatch({
+                type: TYPES.DELETE_REVIEW,
+                payload: data
+            })
+        } catch(e) {
+            console.log("error en delete review: ", e)
         }
     }
 }

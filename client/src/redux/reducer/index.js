@@ -218,6 +218,11 @@ const rootReducer = (state = initialState, action) => {
         ...state
       }
 
+    case TYPES.DELETE_REVIEW:
+      return {
+        ...state
+      }
+
     default:
       return {
         ...state,
