@@ -272,7 +272,7 @@ export const deleteReview = (reviewId) => {
 export const getUsers = () => {
     return async dispatch => {
         try {
-            const { data } = await axios.get(`/api/users`)
+            const { data } = await axios.get("/api/users")
             return dispatch({
                 type: TYPES.GET_USERS,
                 payload: data
@@ -369,3 +369,47 @@ export const resetPassword = (id) => {
     };
 }
 
+export const modifyProfile = (email, infoUser) => {
+    return async (dispatch) => {
+        try {
+          const { data } = axios.put(`api/users/${email}`, infoUser);
+          dispatch({
+            type: TYPES.VERIFY_EMAIL,
+            payload: data,
+          });
+           } catch (e) {
+          console.log("Error in modifyProfile");
+          console.log(e);
+        }
+      };
+}
+
+export const getOrders = () => {
+    return async dispatch => {
+        try {
+            const { data } = await axios.get("/api/orders")
+            return dispatch({
+                type: TYPES.GET_ORDERS,
+                payload: data
+            })
+        }
+        catch (e) {
+            console.log("error in getOrders", e)
+        }
+    }
+}
+
+export const getUserOrders = (userId) => {
+    return async dispatch => {
+        try {
+            const { data } = await axios.get(`api/users/${userId}`)
+            return dispatch({
+                type: TYPES.GET_USER_ORDERS,
+                payload: data
+            })
+        }
+        catch (e) {
+            console.log("error in getUserOrders", e)
+        }
+    }
+}
