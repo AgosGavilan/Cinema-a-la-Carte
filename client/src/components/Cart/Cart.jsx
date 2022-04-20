@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CartItem from "./CartItem.jsx/CartItem";
+import CartItem from "./CartItem.jsx/CartItem.jsx";
 import styles from "./Cart.module.css";
 import empty from "../../assets/empty-cart.png";
 import NavBar from "../NavBar/NavBar";
