@@ -1,18 +1,22 @@
 import "./AboutUs.css";
-import Agostina from "../../../assets/Agostina.jpg";
-import Agustin from "../../../assets/Agustin.jpg";
-import Maria from "../../../assets/Maria.jpg";
-import Alejandro from "../../../assets/Alejandro.jpg";
-import Fernando from "../../../assets/Fernando.jpg";
-import Alex from "../../../assets/Alex.jpg";
-import Antonio from "../../../assets/Antonio.jpg";
-import Constanza from "../../../assets/constanza.jpg";
+import Agostina from "../../../assets/Agostina1.jpg";
+import Agustin from "../../../assets/Agustin1.jpg";
+import Maria from "../../../assets/Maria1.jpg";
+import Alejandro from "../../../assets/Alejandro1.jpg";
+import Fernando from "../../../assets/Fernando1.jpg";
+import Alex from "../../../assets/Alex1.jpg";
+import Antonio from "../../../assets/Antonio1.jpg";
+import Constanza from "../../../assets/Constanza1.jpg";
 
-import React from "react";
+import React, { useEffect } from "react";
 
 import NavBar from "../../NavBar/NavBar";
 
 const AboutUs = () => {
+
+useEffect(() => {
+  window.scrollTo(0, 0);
+})
   return (
     <div className="aboutContainer" >
       <NavBar/>
@@ -67,7 +71,7 @@ const AboutUs = () => {
            <h1 className="username">María del Carmen Rodriguez</h1>
           <br />
           <h4 className="locationname">
-            <i className="fa fa-map-marker" aria-hidden="true"></i> Colombia{" "}
+            <i className="fa fa-map-marker" aria-hidden="true"></i> Bucaramanga, Colombia{" "}
           </h4>
           <hr />
           <br />
@@ -265,8 +269,6 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-
-
 
       <div className="profile-body">
         <div className="photo">
