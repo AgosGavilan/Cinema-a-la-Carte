@@ -11,6 +11,8 @@ const initialState = {
   reviews: [],
   users: [],
   user: {},
+  orders: [],
+  userOrders: [],
 
 };
 
@@ -216,6 +218,23 @@ const rootReducer = (state = initialState, action) => {
     case TYPES.RESET_PASSWORD:
       return {
         ...state
+      }
+
+    case TYPES.MODIFY_PROFILE:
+      return {
+        ...state
+      }
+
+    case TYPES.GET_ORDERS:
+      return {
+        ...state,
+        orders: action.payload
+      }
+
+    case TYPES.GET_USER_ORDERS:
+      return {
+        ...state,
+        userOrders: action.payload
       }
 
     default:

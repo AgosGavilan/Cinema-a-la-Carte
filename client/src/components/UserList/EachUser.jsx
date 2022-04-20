@@ -14,7 +14,7 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 const EachUser = ({
   id,
   name,
-  nickname,
+  lastName,
   email,
   nationality,
   date_of_birth,
@@ -51,7 +51,7 @@ const EachUser = ({
   const handleReset = (e) => {
     e.preventDefault();
     let chosenUser = allUsers.find((e) => e.id === id);
-    if (chosenUser) {
+    if (chosenUser.password) {
     Swal.fire({
       title: `Are you sure you want to reset the password of ${chosenUser.email}?`,
       icon: "warning",
@@ -67,6 +67,16 @@ const EachUser = ({
         return;
       }
     });
+  }
+  else {
+    Swal.fire({
+      title: `This user doesn't have a password to reset`,
+      icon: "error",
+      position: "center",
+      timer: 1500,
+      showConfirmButton: false,
+    });
+    return;
   }
   };
 
@@ -96,7 +106,7 @@ const EachUser = ({
     <tr key={id} className={styles.eachUser}>
       <td className={styles.eachUser}>{id}</td>
       <td className={styles.eachUser}>{name}</td>
-      <td className={styles.eachUser}>{nickname}</td>
+      <td className={styles.eachUser}>{lastName}</td>
       <td className={styles.eachUser}>{email}</td>
       <td className={styles.eachUser}>{nationality}</td>
       <td className={styles.eachUser}>{date_of_birth}</td>
