@@ -1,34 +1,18 @@
-import React, { useState } from "react";
-import styles from "./StarRating.module.css";
-import { FaStar } from "react-icons/fa"
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+//import Typography from '@mui/material/Typography';
 
-const StarRating = () => {
-    const [rating, setRating] = useState(null);
-    const [hover, setHover] = useState(null);
-    
-    return (
-        <div className={styles.root}>
-            {[...Array(5)].map((star, i) => {
-                const value = i + 1;
-                return <label >
-                    <input
-                        type="radio"
-                        name="rating"
-                        value={value}
-                        onClick={() => setRating(value)}
-                    />
-                    <FaStar
-                    className={styles.star}
-                     size={20} 
-                     color={value <= (hover || rating ) ? "ffc120" : "e4e5e9"} 
-                     onMouseEnter={()=> setHover(value)}
-                     onMouseLeave={()=> setHover(null)}
-                     />
-                </label>
-            })}
+export default function StarRating({vote}) {
+  //const [value, setValue] = React.useState(2);
 
-        </div>
-    )
-};
-
-export default StarRating;
+  return (
+    <Box
+      sx={{
+        '& > legend': { mt: 2 },
+      }}
+    >
+      <Rating name="read-only" value={vote} readOnly />
+    </Box>
+  );
+}

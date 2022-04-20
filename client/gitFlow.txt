@@ -14,3 +14,6 @@ DESDE GITHUB:
 -Detallar lo realizado
 -Confirmar Pull Request (NO MERGEAR!!!)
 
+PARA CAMBIAR DE RAMA:
+-git checkout (nombre de la rama a la que quiero ir)
+
