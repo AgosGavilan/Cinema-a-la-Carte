@@ -16,6 +16,8 @@ import Paginate from "../Paginate/Paginate";
 import SideBar from "../NavBar/SideBar";
 import LoadScreen from "../Loading/LoadScreen";
 import NavBar from "../NavBar/NavBar";
+import Footer from "../Footer/Footer";
+
 
 const Home = () => {
   let dispatch = useDispatch();
@@ -130,6 +132,10 @@ const Home = () => {
               handleNext={handleNext}
             />
           </div>
+<div>
+ <Footer/> 
+</div>
+
         </div>
       </div>
     </div>

@@ -12,6 +12,7 @@ import User from "./components/User/User";
 import MovieList from "./components/MovieList/MovieList"
 import UserList from "./components/UserList/UserList";
 import Verify from "./components/Mailing/Verify";
+import AboutUs from "./components/Footer/AboutUs/AboutUs"
 import { useSelector } from "react-redux";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/user" element={<User />} />
         <Route exact path="/verify" element={<Verify />} />
+        <Route exact path="/aboutUs" element={<AboutUs/>} /> 
         <Route exact path="/form" element={userLogged && userLogged.role !== "USER_ROLE" ? <Form /> : <Navigate to="/" />} />
         <Route exact path="/modify" element={userLogged && userLogged.role !== "USER_ROLE" ? <Modify /> : <Navigate to="/" />} />
         <Route exact path="/movielist" element={userLogged && userLogged.role !== "USER_ROLE" ? <MovieList /> : <Navigate to="/" />} />
