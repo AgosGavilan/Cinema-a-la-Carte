@@ -23,7 +23,7 @@ const PostReview = ({movieDetail, setOpen}) => {
   const stars = Array(5).fill(0) // [0,0,0,0,0]
   const dispatch = useDispatch()
   const idUser = useSelector(state => state.user)
-  console.log(idUser.id)
+  console.log("soy id del usuario: ", idUser)
 
   const handleText = () => {
     switch (currentValue || hoverValue) {
