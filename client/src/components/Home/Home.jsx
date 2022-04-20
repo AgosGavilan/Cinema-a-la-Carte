@@ -9,8 +9,6 @@ import {
   orderMovies,
   clearMovieById,
 } from "../../redux/actions";
-// import Filters from "../Filters/Filters";
-// import Ordering from "../Ordering/Ordering";
 import Slider from "../Slider/Slider";
 import CardSmart from "../Card/CardSmart";
 import styles from "./Home.module.css";
@@ -18,7 +16,6 @@ import Paginate from "../Paginate/Paginate";
 import SideBar from "../NavBar/SideBar";
 import LoadScreen from "../Loading/LoadScreen";
 import NavBar from "../NavBar/NavBar";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Home = () => {
   let dispatch = useDispatch();
@@ -114,7 +111,7 @@ const Home = () => {
   if (loadScreen) return <LoadScreen />;
   return (
     <div>
-      <NavBar />
+      <NavBar currentPage={setCurrentPage}/>
       <div className={styles.home}>
         <SideBar
           handleOrder={handleOrder}

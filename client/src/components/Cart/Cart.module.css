@@ -137,7 +137,7 @@
 }
 
 @media (max-width: 650px) {
-  .cart__items{
+  .cart__items {
     width: 99%;
   }
 }

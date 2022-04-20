@@ -225,7 +225,7 @@ const Modify = () => {
         adult: chosenMovie.adult,
         original_language: chosenMovie.original_language,
         price: chosenMovie.price,
-        urlMovie: chosenMovie.urlMovie,
+        urlMovie: chosenMovie.urlMovie ? chosenMovie.urlMovie : "",
         genres: chosenMovie.Genres.map((e) => e.name),
         actors: chosenMovie.Actors.map((e) => e.name),
       });
@@ -325,7 +325,7 @@ const Modify = () => {
                 <FontAwesomeIcon icon={faSearch} />
               </button>
             </form>
-            <form action="" onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={handleSubmit}>
               <div className="group">
                 <div className="first">
                   <input
@@ -369,7 +369,7 @@ const Modify = () => {
                     placeholder="Price..."
                     step=".01"
                     min="0.49"
-                    max="4.00"
+                    max="4.99"
                     value={input.price === 0 ? "" : input.price}
                     onChange={(e) => handleChange(e)}
                   />

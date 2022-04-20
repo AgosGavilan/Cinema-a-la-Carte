@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 // import { getMovies } from "../../redux/actions/index";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -15,14 +15,22 @@ import {
 import "./NavBar.css";
 import logo from "../../assets/Cine.jpg";
 import logoResponsive from "../../assets/cineicon.ico";
-import { useState, useEffect } from "react";
+import { getLoggedUser } from "../../redux/actions";
 
-const NavBar = () => {
+const NavBar = ({ currentPage }) => {
   const cart = useSelector((state) => state.cart);
+  const userLogged = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { user, isAuthenticated } = useAuth0();
 
   const [isActiveMenu, setIsActiveMenu] = useState(false);
 
-  const { isAuthenticated } = useAuth0();
+  // const { isAuthenticated } = useAuth0();
+  useEffect(() => {
+    if (user) {
+      dispatch(getLoggedUser(user.email));
+    }
+  }, []);
 
   useEffect(() => {
     let menuIcon = document.querySelector(".menu-icon");
@@ -69,7 +77,15 @@ const NavBar = () => {
           <LogIn />
         )}
 
-        <AdminPanel />
+        {userLogged ? (
+          userLogged.role === "SUPER_ROLE" || userLogged === "ADMIN_ROLE" ? (
+            <AdminPanel />
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
 
         <Link to="/cart" className="link">
           <FontAwesomeIcon className="cart" icon={faCartShopping} />
