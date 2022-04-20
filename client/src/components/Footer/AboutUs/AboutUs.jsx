@@ -280,7 +280,7 @@ useEffect(() => {
           <h1 class="username">Alex Gramajo</h1>
           <br />
           <h4 class="locationname">
-            <i class="fa fa-map-marker" aria-hidden="true"></i> CABA, Argentina{" "}
+            <i class="fa fa-map-marker" aria-hidden="true"></i> Buenos Aires, Argentina{" "}
           </h4>
           <hr />
           <br />
