@@ -12,7 +12,7 @@ const colors = {
 
 const PostReview = ({movieDetail, setOpen}) => {
 
-  const [currentValue, setCurrentValue] = useState(0); //este es el voto
+  const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const [input, setInput] = useState({
     vote: 0,
@@ -23,7 +23,7 @@ const PostReview = ({movieDetail, setOpen}) => {
   const stars = Array(5).fill(0) // [0,0,0,0,0]
   const dispatch = useDispatch()
   const idUser = useSelector(state => state.user)
-  console.log("soy id del usuario: ", idUser)
+  //console.log("soy id del usuario: ", idUser)
 
   const handleText = () => {
     switch (currentValue || hoverValue) {
@@ -82,7 +82,7 @@ const PostReview = ({movieDetail, setOpen}) => {
       return;
     } else {
         dispatch(postReview(input, idUser.id)).then(dispatch(getAllReviews(movieDetail.id)))
-        console.log(idUser.id)
+        //console.log(idUser.id)
         setInput({
           vote: 0,
           text: "",
