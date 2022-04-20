@@ -45,7 +45,7 @@ const Cart = () => {
         title: "Please, login before checkout",
         icon: "warning",
         position: "center",
-        timer: 2000,
+        timer: 3000,
         showConfirmButton: false,
         timerProgressBar: true,
       })
