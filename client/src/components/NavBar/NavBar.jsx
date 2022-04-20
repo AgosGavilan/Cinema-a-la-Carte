@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
@@ -21,10 +21,14 @@ const NavBar = ({ currentPage }) => {
   const userLogged = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
-
+  const [input, setInput] = useState({
+    nickname: user.nickname || null,
+    name: user.given_name || null,
+    lastName: user.family_name || null,
+  })
   useEffect(() => {
     if (user) {
-      dispatch(getLoggedUser(user.email));
+      dispatch(getLoggedUser(user.email, input));
     }
   }, []);
 

@@ -62,7 +62,7 @@ const EachUser = ({
       denyButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(resetPassword(id));
+        dispatch(resetPassword({id: id}));
       } else if (result.isDenied) {
         return;
       }
@@ -84,7 +84,7 @@ const EachUser = ({
         denyButtonText: "Cancel",
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(deleteUser(chosenUser.id)).then(() => dispatch(getUsers()));
+          dispatch(deleteUser({id: id})).then(() => dispatch(getUsers()));
         } else if (result.isDenied) {
           return;
         }

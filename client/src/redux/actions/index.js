@@ -267,8 +267,9 @@ export const getUsers = () => {
 export const deleteUser = (id) => {
     return async (dispatch) => {
         try {
+            console.log(id)
             const { data } = await axios.delete(
-                "api/users/delete", id
+                "api/users/delete", {data: id}
             );
             dispatch({
                 type: TYPES.DELETE_USER,
@@ -280,10 +281,10 @@ export const deleteUser = (id) => {
     };
 };
 
-export const getLoggedUser = (LoggedUser) => {
+export const getLoggedUser = (LoggedUser, userInfo) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`/api/users/${LoggedUser}`)
+            const { data } = await axios.post(`/api/users/${LoggedUser}`, userInfo)
             return dispatch({
                 type: TYPES.GET_LOGGED_USER,
                 payload: data
@@ -335,8 +336,9 @@ export const verifyEmail = (email) => {
 export const resetPassword = (id) => {
     return async (dispatch) => {
         try {
+            console.log(id)
           const { data } = await axios.delete(
-            "api/users/delete-password", id
+            "api/users/delete-password", {data: id}
           );
           dispatch({ 
               type: TYPES.RESET_PASSWORD, 
