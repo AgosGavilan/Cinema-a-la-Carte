@@ -35,7 +35,7 @@ const Slider = () => {
       dispatch(getLoggedUser(userLogged.email));
     }
     setCurrentSlide(0);
-  }, []);
+  }, [allMovies]);
 
   const auto = () => {
     slideInterval = setInterval(nextSlide, intervalTime);
@@ -91,12 +91,6 @@ const Slider = () => {
                       />
                       {/* </NavLink> */}
                     </div>
-                    {/* <div className="content">
-                                    <h2>{slide.title}</h2>
-                                    <p>{slide.overview}</p>
-                                    <hr />
-                                    <button className="--btn --btn-primary">Get Start</button>
-                                </div> */}
                   </div>
                 )}
               </div>

@@ -25,7 +25,7 @@ export default function SearchBar({ currentPage }) {
     <div className={styles.searchBar}>
       <input
         type="text"
-        placeholder="Ej: 'The Godfather', 'Marlon Brando'"
+        placeholder="Search by movie or cast..."
         value={title}
         onChange={handleInput}
         className={styles.inputSearch}

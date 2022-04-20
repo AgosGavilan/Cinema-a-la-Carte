@@ -5,6 +5,7 @@ import styles from "./User.module.css"
 import LogOut from '../LogOut/LogOut'
 import Profile from '../Profile/Profile'
 import { useAuth0 } from '@auth0/auth0-react'
+import UserForm from './UserForm'
 
 const User = () => {
 
@@ -25,6 +26,9 @@ const User = () => {
       ?  <LogOut/> 
       :  <LogIn/>
       }
+      </div>
+      <div className={styles.userForm}>
+      <UserForm/>
       </div>
     </div>
     </div>

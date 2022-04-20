@@ -26,9 +26,14 @@ const NavBar = ({ currentPage }) => {
   const [isActiveMenu, setIsActiveMenu] = useState(false);
 
   // const { isAuthenticated } = useAuth0();
+  const [input, setInput] = useState({
+    nickname: user ? (user.nickname ? user.nickname : null) : null,
+    name: user ? (user.given_name ? user.given_name : null) : null,
+    lastName: user ? (user.family_name ? user.family_name : null) : null,
+  });
   useEffect(() => {
     if (user) {
-      dispatch(getLoggedUser(user.email));
+      dispatch(getLoggedUser(user.email, input));
     }
   }, []);
 

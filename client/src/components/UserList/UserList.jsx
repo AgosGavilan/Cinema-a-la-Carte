@@ -22,7 +22,7 @@ const UserList = () => {
             <tr>
               <th className={styles.eachUser}>ID</th>
               <th className={styles.eachUser}>Name</th>
-              <th className={styles.eachUser}>Nickname</th>
+              <th className={styles.eachUser}>Last Name</th>
               <th className={styles.eachUser}>Email</th>
               <th className={styles.eachUser}>Nationality</th>
               <th className={styles.eachUser}>Date of Birth</th>
@@ -38,7 +38,7 @@ const UserList = () => {
                   key={e.id}
                   id={e.id}
                   name={e.name}
-                  nickname={e.nickname}
+                  lastName={e.lastName}
                   email={e.email}
                   nationality={e.nationality}
                   date_of_birth={e.date_of_birth}

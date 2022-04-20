@@ -143,17 +143,17 @@ export const clearMovieById = () => {
 export const modifyMovie = (movie) => {
     return async (dispatch) => {
         try {
-            console.log(movie);
-            console.log(movie.id)
+            //console.log(movie);
+            //console.log(movie.id)
             const { data } = axios.put(`/api/movies/${movie.id}`, movie);
             dispatch({
                 type: TYPES.MODIFY_MOVIE,
                 payload: data,
             });
-            console.log(movie);
+            //console.log(movie);
         } catch (e) {
             console.log("Error in modifyMovie");
-            console.log(e);
+            //console.log(e);
         }
     };
 };
@@ -164,7 +164,9 @@ export const deleteMovie = (id) => {
             const { data } = await axios.delete(
                 `/api/movies/delete/${id}`
             );
-            dispatch({ type: TYPES.DELETE_MOVIE, payload: data });
+            dispatch({ 
+                type: TYPES.DELETE_MOVIE, 
+                payload: data });
         } catch (error) {
             console.log("error in deleteMovie", error);
         }
@@ -210,18 +212,22 @@ export const loadCurrentItem = (item) => {
 
 export const emptyCart = (userId) => {
     return async dispatch => {
-        const { data } = axios.delete(`https://proyect-ecommerce.herokuapp.com/api/shopping-cart/items/${userId}`)
-        return dispatch({
-            type: TYPES.EMPTY_CART,
-            payload: data
-        })
+        try {
+            const { data } = axios.delete(`https://proyect-ecommerce.herokuapp.com/api/shopping-cart/items/${userId}`)
+            return dispatch({
+                type: TYPES.EMPTY_CART,
+                payload: data
+            })
+        } catch(e) {
+            console.log("error en empty cart: ", e)
+        }
     }
 }
 
-export const postReview = (review) => { //review es lo que tengo que mandar por body (review.text, review.vote)
+export const postReview = (review, userId) => { //review es lo que tengo que mandar por body (review.text, review.vote)
     return async (dispatch) => {
         try {
-            const { data } = await axios.post(`/api/reviews/${review.userId}`, review)
+            const { data } = await axios.post(`/api/reviews/${userId}`, review)
             return dispatch({
                 type: TYPES.POST_REVIEW,
                 payload: data
@@ -235,10 +241,10 @@ export const postReview = (review) => { //review es lo que tengo que mandar por 
 }
 
 
-export const getAllReviews = (id) => {
+export const getAllReviews = (idMovie) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`api/reviews/reviewsMovie/${id}`)
+            const { data } = await axios.get(`api/reviews/reviewsMovie/${idMovie}`)
             return dispatch({
                 type: TYPES.GET_ALL_REVIEWS,
                 payload: data
@@ -249,10 +255,24 @@ export const getAllReviews = (id) => {
     }
 }
 
+export const deleteReview = (reviewId) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.delete(`api/reviews/delete/${reviewId}`)
+            return dispatch({
+                type: TYPES.DELETE_REVIEW,
+                payload: data
+            })
+        } catch(e) {
+            console.log("error en delete review: ", e)
+        }
+    }
+}
+
 export const getUsers = () => {
     return async dispatch => {
         try {
-            const { data } = await axios.get(`/api/users`)
+            const { data } = await axios.get("/api/users")
             return dispatch({
                 type: TYPES.GET_USERS,
                 payload: data
@@ -267,8 +287,9 @@ export const getUsers = () => {
 export const deleteUser = (id) => {
     return async (dispatch) => {
         try {
+            console.log(id)
             const { data } = await axios.delete(
-                "api/users/delete", id
+                "api/users/delete", {data: id}
             );
             dispatch({
                 type: TYPES.DELETE_USER,
@@ -280,10 +301,10 @@ export const deleteUser = (id) => {
     };
 };
 
-export const getLoggedUser = (LoggedUser) => {
+export const getLoggedUser = (LoggedUser, userInfo) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`/api/users/${LoggedUser}`)
+            const { data } = await axios.post(`/api/users/${LoggedUser}`, userInfo)
             return dispatch({
                 type: TYPES.GET_LOGGED_USER,
                 payload: data
@@ -335,8 +356,9 @@ export const verifyEmail = (email) => {
 export const resetPassword = (id) => {
     return async (dispatch) => {
         try {
+            console.log(id)
           const { data } = await axios.delete(
-            "api/users/delete-password", id
+            "api/users/delete-password", {data: id}
           );
           dispatch({ 
               type: TYPES.RESET_PASSWORD, 
@@ -345,4 +367,49 @@ export const resetPassword = (id) => {
           console.log("error in resetPassword", error);
         }
     };
+}
+
+export const modifyProfile = (email, infoUser) => {
+    return async (dispatch) => {
+        try {
+          const { data } = axios.put(`api/users/${email}`, infoUser);
+          dispatch({
+            type: TYPES.VERIFY_EMAIL,
+            payload: data,
+          });
+           } catch (e) {
+          console.log("Error in modifyProfile");
+          console.log(e);
+        }
+      };
+}
+
+export const getOrders = () => {
+    return async dispatch => {
+        try {
+            const { data } = await axios.get("/api/orders")
+            return dispatch({
+                type: TYPES.GET_ORDERS,
+                payload: data
+            })
+        }
+        catch (e) {
+            console.log("error in getOrders", e)
+        }
+    }
+}
+
+export const getUserOrders = (userId) => {
+    return async dispatch => {
+        try {
+            const { data } = await axios.get(`api/users/${userId}`)
+            return dispatch({
+                type: TYPES.GET_USER_ORDERS,
+                payload: data
+            })
+        }
+        catch (e) {
+            console.log("error in getUserOrders", e)
+        }
+    }
 }

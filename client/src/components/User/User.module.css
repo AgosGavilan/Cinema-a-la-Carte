@@ -1,3 +1,11 @@
+:root {
+    --input-color: #99A3BA;
+    --input-border: #CDD9ED;
+    --input-background: #fff;
+    --input-placeholder: #CBD1DC;
+    --input-border-focus: #275EFE;
+}
+
 .user {
     background-color: #181818;
     height: 90vh;
@@ -15,3 +23,91 @@
     height: fit-content;
     margin: 50px;
 }
+
+.userForm {
+    background-color: rgba(255, 255, 255, 0.75);
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    margin: 50px;
+}
+
+.editTitle {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 2px;
+    margin-bottom: 20px;
+}
+
+.titles {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 8px;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 15px;
+}
+
+.input::placeholder {
+    color: var(--input-placeholder);
+}
+
+.input {
+    border: 1px solid var(--input-border);
+    display: block;
+    width: 300px;
+    padding: 8px 16px;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    border-radius: 6px;
+    -webkit-appearance: none;
+    color: var(--input-color);
+    background: var(--input-background);
+    transition: border .3s ease;
+    margin: 12px;
+}
+
+.input:focus {
+    outline: none;
+    border-color: black;
+}
+
+.updateBtn {
+    background-color: #242424;
+  border-radius: 6px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  height: 35px;
+  width: 80px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 5px 8px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-left: 15px;
+  border: 1px solid #e8eaed;
+}
+
+.updateBtn:hover {
+    background-color: #181818;
+    border: 2px solid white;
+    box-shadow: 0 0 5px white;
+  }
