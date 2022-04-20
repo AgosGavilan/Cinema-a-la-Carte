@@ -22,9 +22,9 @@ const NavBar = ({ currentPage }) => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const [input, setInput] = useState({
-    nickname: user.nickname || null,
-    name: user.given_name || null,
-    lastName: user.family_name || null,
+    nickname: user? user.nickname? user.nickname : null : null,
+    name: user? user.given_name? user.given_name : null : null,
+    lastName: user? user.family_name? user.family_name : null : null,
   })
   useEffect(() => {
     if (user) {
