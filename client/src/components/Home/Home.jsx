@@ -42,12 +42,6 @@ const Home = () => {
     dispatch(getActors());
     dispatch(getCountries());
     dispatch(clearMovieById());
-    if(userLogged) {
-      dispatch(getUserOrders(userLogged.id))
-      cartDB.forEach((e) => {
-        dispatch(addToCart(e.MovieId));
-      });
-    }
   }, []);
 
   const handleYears = (e) => {
