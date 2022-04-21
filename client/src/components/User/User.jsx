@@ -29,7 +29,7 @@ const User = () => {
             <Profile />
             {isAuthenticated ? <LogOut /> : <LogIn />}
           </div>
-          <div>
+          <div className={styles.tabla}>
             <UserOrders />
           </div>
         </div>

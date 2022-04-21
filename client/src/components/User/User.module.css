@@ -21,7 +21,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: fit-content;
+    /* height: fit-content; */
     margin: 50px;
 }
 .agos {
@@ -125,4 +125,9 @@
     background-color: #181818;
     border: 2px solid white;
     box-shadow: 0 0 5px white;
+  }
+
+  .tabla {
+      overflow-y: scroll;
+      height: 400px;
   }
