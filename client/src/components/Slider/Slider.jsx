@@ -7,12 +7,14 @@ import {
   getLoggedUser,
   getCartDB,
   addToCart,
+  callCartDB
 } from "../../redux/actions/index";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import LoadScreen from "../Loading/LoadScreen";
 import NavBar from "../NavBar/NavBar";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Slider = () => {
   const allMovies = useSelector((state) => state.movies);
@@ -28,12 +30,35 @@ const Slider = () => {
     allMovies[4]
   );
   const slideLength = sliderData.length;
-  const userLogged = useSelector((state) => state.user);
-  let cartDB = useSelector((state) => state.cartDB);
 
   const autoScroll = true;
   let slideInterval;
   let intervalTime = 6000;
+
+  const userLogged = useSelector((state) => state.user);
+  let cartDB = useSelector((state) => state.cartDB);
+  const { user, isAuthenticated } = useAuth0();
+  const userLo = useSelector((state) => state.userLo)
+  let count = useSelector((state) => state.count)
+
+  if (isAuthenticated && Object.keys(userLo).length === 0) {
+    // console.log("dispatch user");
+    dispatch(getLoggedUser(user.email));
+    // console.log(userLo);
+  }
+
+  if (isAuthenticated && count === 0 && Object.keys(userLo).length > 0) {
+    console.log("getcartdb desde slider");
+    dispatch(callCartDB(1));
+    dispatch(getCartDB(userLo.id))
+  }
+
+  if (isAuthenticated && cartDB.length > 0) {
+    cartDB.forEach((e) => {
+      dispatch(addToCart(e.MovieId));
+    });
+  }
+
 
   useEffect(() => {
     dispatch(getMovies()).then(setLoading(false));

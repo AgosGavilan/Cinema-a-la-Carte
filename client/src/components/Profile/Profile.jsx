@@ -12,7 +12,7 @@ const Profile = () => {
 
   const { name, picture, email } = user;
 
-  console.log(user)
+  console.log(user);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -21,7 +21,7 @@ const Profile = () => {
   return (
     isAuthenticated && userLogged.email_verified ? (
       <div className={styles.profileCard}>
-        <img src={picture} alt={name} className={styles.picture}/>
+        <img src={picture} alt={name} className={styles.picture} />
         <div className={styles.profileInfo}>
 
         <h1 className={styles.userName}>{name}</h1>
@@ -34,9 +34,8 @@ const Profile = () => {
   <div className={styles.checkEmail}>
 <h1> Please, verify your email account with the link we sent you to continue! </h1>
   </div>  
-   
     )
   );
-}
+};
 
-export default Profile
+export default Profile;

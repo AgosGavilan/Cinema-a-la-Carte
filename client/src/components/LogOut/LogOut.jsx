@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser, addToCartDB } from '../../redux/actions';
 
 const LogOut = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.userLo);
   let cart = useSelector((state) => state.cart);
   let idMovies = cart.map((e) => e.id);
 
