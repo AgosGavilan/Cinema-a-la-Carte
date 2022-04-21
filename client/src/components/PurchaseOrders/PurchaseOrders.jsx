@@ -23,6 +23,9 @@ const PurchaseOrders = () => {
               <th className={styles.eachOrder}>ID</th>
               <th className={styles.eachOrder}>User</th>
               <th className={styles.eachOrder}>Date</th>
+              <th className={styles.eachOrder}>Movies ID</th>
+              <th className={styles.eachOrder}>Movies Title</th>
+              <th className={styles.eachOrder}>Movies Price</th>
               <th className={styles.eachOrder}>Total</th>
             </tr>
           </thead>
@@ -34,7 +37,8 @@ const PurchaseOrders = () => {
               orderId={o.id}
               date={o.order_date}
               userId={o.userId}
-              amount={o.amount}
+              amount={o.Total}
+              status={o.payment_status}
               orderDetail={o.Order_details}
             />
           );

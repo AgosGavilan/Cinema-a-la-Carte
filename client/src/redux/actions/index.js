@@ -173,6 +173,36 @@ export const deleteMovie = (id) => {
     };
 };
 
+export const addToCartDB = (itemId, userId) => {
+    return async (dispatch) => {
+      try {
+        const { data } = await axios.post(`/api/shopping-cart/${userId}`, {
+          MovieId: itemId
+        });
+        dispatch({
+          type: TYPES.ADD_TO_CART_DB,
+          payload: data,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  };
+
+  export const getCartDB = (userId) => {
+    return async (dispatch) => {
+      try {
+        const { data } = await axios.get(`/api/shopping-cart/${userId}`);
+        dispatch({
+          type: TYPES.GET_TO_CART_DB,
+          payload: data,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  };  
+
 export const addToCart = (itemId) => {
     return {
         type: TYPES.ADD_TO_CART,
@@ -402,7 +432,7 @@ export const getOrders = () => {
 export const getUserOrders = (userId) => {
     return async dispatch => {
         try {
-            const { data } = await axios.get(`api/users/${userId}`)
+            const { data } = await axios.get(`api/orders/${userId}`)
             return dispatch({
                 type: TYPES.GET_USER_ORDERS,
                 payload: data
@@ -410,6 +440,21 @@ export const getUserOrders = (userId) => {
         }
         catch (e) {
             console.log("error in getUserOrders", e)
+        }
+    }
+}
+
+export const getCountries = () => {
+    return async dispatch => {
+        try {
+            const { data } = await axios.get("api/countries")
+            return dispatch({
+                type: TYPES.GET_COUNTRIES,
+                payload: data.countries
+            })
+        }
+        catch (e) {
+            console.log("error in getCountries", e)
         }
     }
 }

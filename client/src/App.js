@@ -10,8 +10,10 @@ import User from "./components/User/User";
 import MovieList from "./components/MovieList/MovieList"
 import UserList from "./components/UserList/UserList";
 import Verify from "./components/Mailing/Verify";
+import AboutUs from "./components/Footer/AboutUs/AboutUs"
 import { useSelector } from "react-redux";
 import PurchaseOrders from "./components/PurchaseOrders/PurchaseOrders";
+import MoviePlayer from "./components/MoviePlayer/MoviePlayer";
 
 function App() {
   const userLogged = useSelector((state) => state.user)
@@ -25,14 +27,18 @@ function App() {
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/user" element={<User />} />
         <Route exact path="/verify" element={<Verify />} />
+        <Route exact path="/aboutUs" element={<AboutUs />} />
         <Route exact path="/form" element={userLogged && userLogged.role !== "USER_ROLE" ? <Form /> : <Navigate to="/" />} />
         <Route exact path="/modify" element={userLogged && userLogged.role !== "USER_ROLE" ? <Modify /> : <Navigate to="/" />} />
         <Route exact path="/movielist" element={userLogged && userLogged.role !== "USER_ROLE" ? <MovieList /> : <Navigate to="/" />} />
         <Route exact path="/userlist" element={userLogged && userLogged.role === "SUPER_ROLE" ? <UserList /> : <Navigate to="/" />} />
         <Route exact path="/orders" element={userLogged && userLogged.role !== "USER_ROLE" ? <PurchaseOrders /> : <Navigate to="/" />} />
+        <Route path="/player" element={<MoviePlayer />} />
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+

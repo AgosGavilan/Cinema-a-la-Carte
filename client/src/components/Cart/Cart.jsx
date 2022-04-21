@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CartItem from "./CartItem.jsx/CartItem";
+import CartItem from "./CartItem.jsx/CartItem.jsx";
 import styles from "./Cart.module.css";
 import empty from "../../assets/empty-cart.png";
 import NavBar from "../NavBar/NavBar";
@@ -11,7 +11,6 @@ import { emptyCart } from "../../redux/actions";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  //console.log("esto tengo en el carrito: ", cart)
   const user = useSelector((state) => state.user);
   const { isAuthenticated } = useAuth0();
 
@@ -22,9 +21,9 @@ const Cart = () => {
     userId: user.id,
     orderlines: cart,
   };
-  console.log("soy data: ", data)
+  console.log("soy data: ", data);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let items = 0;
@@ -40,7 +39,7 @@ const Cart = () => {
   }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
 
   async function handleMp() {
-    if(!isAuthenticated) {
+    if (!isAuthenticated) {
       Swal.fire({
         title: "Please, login before checkout",
         icon: "warning",
@@ -48,17 +47,29 @@ const Cart = () => {
         timer: 3000,
         showConfirmButton: false,
         timerProgressBar: true,
-      })
+      });
+      return;
+    } else if (user.email_verified === false) {
+      Swal.fire({
+        title:
+          "Please, check your email to verify your account before checkout",
+        icon: "warning",
+        position: "center",
+        timer: 3000,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      });
+      return;
     } else {
       let orden = await axios.post(`/api/orders`, data);
-  
+
       let info = await axios.get(
         `/api/mercadopago/generate-url/${orden.data.id}`
       );
-  
+
       window.location.href = info.data.init_point;
 
-      dispatch(emptyCart(user.id))
+      dispatch(emptyCart(user.id));
     }
   }
 

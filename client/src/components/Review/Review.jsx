@@ -24,7 +24,6 @@ const style = {
   bgcolor: "black",
   border: "0.5px solid whitesmoke",
   p: 4,
-  //paddingBottom: 32,
   borderRadius: 10,
 };
 
@@ -33,9 +32,12 @@ const Review = () => {
   //console.log("soy todas las reviews: ", allReviews)
   const movieDetail = useSelector((state) => state.details);
   const userLog = useSelector((state) => state.user);
+  //console.log(userLog)
   const { user, isAuthenticated } = useAuth0();
   //console.log("soy user: ", user);
   const dispatch = useDispatch();
+  const allOrders = useSelector(state => state.orders)
+  //console.log(allOrders)
 
   const [open, setOpen] = React.useState(false);
 
@@ -44,7 +46,7 @@ const Review = () => {
   }, [allReviews]);
 
   const handleOpen = () => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated) { //si no esta logueado
       Swal.fire({
         title: "Please, login first",
         icon: "warning",
@@ -53,16 +55,49 @@ const Review = () => {
         showConfirmButton: false,
         timerProgressBar: true,
       });
-    } else {
+    } else if (allOrders?.map(r => r.userId !== allReviews.userId)) { //si no compro la peli
+      Swal.fire({
+        title: "You must buy this movie to leave a review",
+        icon: "warning",
+        position: "center",
+        timer: 3000,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      });
+    } else if(allReviews?.map(e => e.userId === userLog.id)) { //si ya di una review
+        Swal.fire({
+          title: "You can only give one review",
+          icon: "warning",
+          position: "center",
+          timer: 3000,
+          showConfirmButton: false,
+          timerProgressBar: true,
+        })
+    }
+    else {
       setOpen(true);
     }
   };
 
   const handleClose = () => setOpen(false);
 
-//   const handleDelete = () => {
-//       dispatch(deleteReview())
-//   }
+  const handleDelete = (e) => {
+    Swal.fire({
+      title: `Are you sure you want to delete this review?`,
+        icon: "warning",
+        position: "center",
+        showConfirmButton: true,
+        showDenyButton: true,
+        confirmButtonText: "Delete",
+        denyButtonText: "Cancel",
+    }).then(result => {
+      if(result.isConfirmed) {
+        dispatch(deleteReview(e))
+      } else if(result.isDenied){
+        return
+      }
+    })
+  }
 
   return (
     <div>
@@ -79,8 +114,8 @@ const Review = () => {
                           <img src={user ? user.picture : iconuser} />
                         </div>
                         <div className={s.name_user}>
-                          <strong>{user ? user.name : "Usuario logueado"}</strong>
-                          <span>{user?.email}</span>
+                          <strong>{(p.user.name !== null && p.user.lastName !== null) ? p.user.name + " " + p.user.lastName : "Usuario logueado"}</strong>
+                          <span>{p.user?.email}</span>
                         </div>
                       </div>
                       <div>
@@ -90,9 +125,11 @@ const Review = () => {
                     <div className={s.client_comment}>
                       <p>{p.text}</p>
                     </div>
-                    <button /*onClick={handleDelete}*/ className={s.delete}>
-                        <FontAwesomeIcon icon={faTrashCan} />
-                    </button>
+                    {userLog && userLog.role !== "USER_ROLE" ? 
+                      <button onClick={() => handleDelete(p.id)} className={s.delete}>
+                          <FontAwesomeIcon icon={faTrashCan} />
+                      </button> : ""
+                    }
                   </div>
                 </div>
               </section>
@@ -112,7 +149,7 @@ const Review = () => {
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-              <Typography id="modal-modal-description">
+              <Typography id="modal-modal-description" component={"div"}>
                 <PostReview movieDetail={movieDetail} setOpen={setOpen} />
               </Typography>
             </Box>

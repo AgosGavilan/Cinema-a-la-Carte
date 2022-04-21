@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import "./Slider.scss";
-import { getMovies, getLoggedUser } from "../../redux/actions/index";
+import {
+  getMovies,
+  getLoggedUser,
+  getCartDB,
+  addToCart,
+} from "../../redux/actions/index";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
@@ -24,6 +29,7 @@ const Slider = () => {
   );
   const slideLength = sliderData.length;
   const userLogged = useSelector((state) => state.user);
+  let cartDB = useSelector((state) => state.cartDB);
 
   const autoScroll = true;
   let slideInterval;
@@ -35,13 +41,14 @@ const Slider = () => {
       dispatch(getLoggedUser(userLogged.email));
     }
     setCurrentSlide(0);
-  }, [allMovies]);
+  }, []);
 
   const auto = () => {
     slideInterval = setInterval(nextSlide, intervalTime);
   };
 
   useEffect(() => {
+    dispatch(getMovies());
     if (autoScroll) {
       auto();
     }
@@ -81,16 +88,14 @@ const Slider = () => {
                 key={index}
               >
                 {index === currentSlide && (
-                  <div>
-                    <div className="img">
-                      {/* <NavLink to={`/movies/${slide.id}`}> */}
+                  <div className="img">
+                    <NavLink to={`/movies/${slide.id}`}>
                       <img
                         src={slide.img}
                         alt="Slide"
                         className="posterSlide"
                       />
-                      {/* </NavLink> */}
-                    </div>
+                    </NavLink>
                   </div>
                 )}
               </div>

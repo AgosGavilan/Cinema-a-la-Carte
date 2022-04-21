@@ -15,13 +15,19 @@ import {
 import "./NavBar.css";
 import logo from "../../assets/Cine.jpg";
 import logoResponsive from "../../assets/cineicon.ico";
-import { getLoggedUser } from "../../redux/actions";
+import {
+  getLoggedUser,
+  getCartDB,
+  addToCart,
+  emptyCart,
+} from "../../redux/actions";
 
 const NavBar = ({ currentPage }) => {
   const cart = useSelector((state) => state.cart);
   const userLogged = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
+  let cartDB = useSelector((state) => state.cartDB);
 
   const [isActiveMenu, setIsActiveMenu] = useState(false);
 
@@ -32,10 +38,18 @@ const NavBar = ({ currentPage }) => {
     lastName: user ? (user.family_name ? user.family_name : null) : null,
   });
   useEffect(() => {
-    if (user) {
-      dispatch(getLoggedUser(user.email, input));
+    if (isAuthenticated) {
+      dispatch(getLoggedUser(user.email, input))
+        .then(() => dispatch(getCartDB(userLogged.id)))
+        .then(() =>
+          cartDB.forEach((e) => {
+            console.log(e.MovieId);
+            dispatch(addToCart(e.MovieId));
+          })
+        )
+        .then(() => dispatch(emptyCart(userLogged.id)));
     }
-  }, []);
+  }, [userLogged]);
 
   useEffect(() => {
     let menuIcon = document.querySelector(".menu-icon");
@@ -46,11 +60,6 @@ const NavBar = ({ currentPage }) => {
       menu.classList.toggle("is-active-menu");
     });
   }, [isActiveMenu]);
-
-  // const handleClickMenu = () => {
-  //   let aux = isActiveMenu === false ? true : false;
-  //   setIsActiveMenu(aux);
-  // };
 
   return (
     <div className="nav">
@@ -71,9 +80,9 @@ const NavBar = ({ currentPage }) => {
       {/* </Link> */}
 
       <div className="navbar-menu">
-        <Link to="/form">
+        {/* <Link to="/form">
           <FontAwesomeIcon className="movieIcon" icon={faClapperboard} />
-        </Link>
+        </Link> */}
         {isAuthenticated ? (
           <Link to="/user">
             <FontAwesomeIcon className="user" icon={faUser} />
@@ -82,8 +91,8 @@ const NavBar = ({ currentPage }) => {
           <LogIn />
         )}
 
-        {userLogged ? (
-          userLogged.role === "SUPER_ROLE" || userLogged === "ADMIN_ROLE" ? (
+        {isAuthenticated ? (
+          userLogged.role !== "USER_ROLE" ? (
             <AdminPanel />
           ) : (
             ""

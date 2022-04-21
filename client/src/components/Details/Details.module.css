@@ -172,14 +172,22 @@
     color: #ffffff;
   }
   
-  /* .product_btns a {
+  .product_purchased {
+    border: 1px solid #fff;
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 5rem;
+    transition: all 0.5s ease-out;
+    background-color: #910000;
+    color: rgb(255, 255, 255);
     text-decoration: none;
-    color: #fff;
     text-transform: uppercase;
     display: flex;
     align-items: center;
     justify-content: center;
-  } */
+    font-size: 18px;
+    cursor: pointer;
+  }
 
   .nav {
     text-decoration: none;
