@@ -33,10 +33,11 @@ const Verify = () => {
           </div>
         ) : (
           <div>
+            <img src={verify} alt="Verify" className={styles.mailImage} />
             <h1>Your E-mail was already verified</h1>
             <br />
             <NavLink to="/">
-              <button>Go Home</button>
+              <button className={styles.verifyBtn}>Home</button>
             </NavLink>
           </div>
         )}

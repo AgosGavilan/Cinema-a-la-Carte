@@ -3,10 +3,11 @@ import Swal from "sweetalert2"
 import { getMovies, deleteMovie } from "../../redux/actions";
 import styles from "./MovieList.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faTrashCan} from "@fortawesome/free-solid-svg-icons";
+import {faTrashCan, faPlay} from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 
-const EachMovie = ({id, title, release_date, rating, price}) => {
+const EachMovie = ({id, title, release_date, rating, price, movie}) => {
 
     const allMovies = useSelector((state) => state.movies)
     const dispatch = useDispatch()
@@ -41,6 +42,17 @@ const EachMovie = ({id, title, release_date, rating, price}) => {
             <td className={styles.eachMovie}>{rating}</td>
             <td className={styles.eachMovie}>{release_date}</td>
             <td className={styles.eachMovie}>US$ {price}</td>
+            <td className={styles.eachMovie}>
+              <a href={movie? movie : "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}>
+            <button
+              type="button"
+              className={styles.trash}
+            >
+              <FontAwesomeIcon icon={faPlay} />
+            </button>
+            </a>
+            </td>
+            {/* <ReactPlayer className={styles.player} url={movie} /> */}
             <td className={styles.eachMovie}>
             <button
               type="button"

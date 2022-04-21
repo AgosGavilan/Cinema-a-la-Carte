@@ -62,7 +62,7 @@ const NavBar = ({ currentPage }) => {
           <span
             id="cart_menu_num"
             data-action="cart-can"
-            class="badge rounded-circle"
+            className="badge rounded-circle"
           >
             {cart.length}
           </span>

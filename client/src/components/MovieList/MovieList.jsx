@@ -25,6 +25,7 @@ const MovieList = () => {
         <th className={styles.eachMovie}>Rating</th>
         <th className={styles.eachMovie}>Release Date</th>
         <th className={styles.eachMovie}>Price</th>
+        <th className={styles.eachMovie}>Play</th>
         <th className={styles.eachMovie}>Delete</th>
         </tr>
       </thead>
@@ -37,6 +38,7 @@ const MovieList = () => {
           release_date={e.release_date}
           rating={e.vote_average}
           price={e.price}
+          movie={e.urlMovie}
           />
         );
       })}

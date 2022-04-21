@@ -432,7 +432,7 @@ export const getOrders = () => {
 export const getUserOrders = (userId) => {
     return async dispatch => {
         try {
-            const { data } = await axios.get(`api/users/${userId}`)
+            const { data } = await axios.get(`api/orders/${userId}`)
             return dispatch({
                 type: TYPES.GET_USER_ORDERS,
                 payload: data
