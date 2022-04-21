@@ -27,7 +27,7 @@ const NavBar = ({ currentPage }) => {
     lastName: user? user.family_name? user.family_name : null : null,
   })
   useEffect(() => {
-    if (user) {
+    if (isAuthenticated) {
       dispatch(getLoggedUser(user.email, input));
     }
   }, []);
@@ -42,9 +42,9 @@ const NavBar = ({ currentPage }) => {
       <Link to="/home" style={{ textDecoration: "none" }}>
         <SearchBar currentPage={currentPage} />
       </Link>
-      <Link to="/form">
+      {/* <Link to="/form">
         <FontAwesomeIcon className="movieIcon" icon={faClapperboard} />
-      </Link>
+      </Link> */}
       {isAuthenticated ? (
         <Link to="/user">
           <FontAwesomeIcon className="user" icon={faUser} />
@@ -52,7 +52,7 @@ const NavBar = ({ currentPage }) => {
       ) : (
         <LogIn />
       )}
-      {userLogged ? userLogged.role === "SUPER_ROLE" || userLogged === "ADMIN_ROLE" ? <AdminPanel /> : "" : ""}
+      {isAuthenticated ? userLogged ? userLogged.role === "SUPER_ROLE" || userLogged === "ADMIN_ROLE" ? <AdminPanel /> : "" : "" : ""}
 
       <Link to="/cart" className="link">
         <FontAwesomeIcon className="cart" icon={faCartShopping} />

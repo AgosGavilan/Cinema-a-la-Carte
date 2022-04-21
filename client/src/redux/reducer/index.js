@@ -7,13 +7,14 @@ const initialState = {
   actors: [],
   details: [],
   cart: [],
+  cartDB: [],
   currentItem: null,
   reviews: [],
   users: [],
   user: {},
   orders: [],
   userOrders: [],
-
+  countries: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -86,9 +87,7 @@ const rootReducer = (state = initialState, action) => {
     case TYPES.FILTER_GENRES:
       const allMovies = state.moviesBackUp;
       let filterMovieGenres = allMovies.filter((e) =>
-
         e.Genres?.find((g) => g.name === action.payload)
-
       );
       return {
         ...state,
@@ -98,9 +97,7 @@ const rootReducer = (state = initialState, action) => {
     case TYPES.FILTER_YEARS:
       const allMovies1 = state.moviesBackUp;
       let filterMovieYears = allMovies1.filter((e) =>
-
         e.release_date.includes(action.payload)
-
       );
       return {
         ...state,
@@ -110,27 +107,36 @@ const rootReducer = (state = initialState, action) => {
     case TYPES.ADD_TO_CART:
       //checkear si el item ya esta en el carritp
       /*       const inCart = state.cart(item => item.id === action.payload.id ? true : false); */
-      const item = state.movies.find(movie => movie.id === action.payload.id);
-      const inCart = state.cart.find(item => item.id === action.payload.id ? true : false);
+      const item = state.movies.find((movie) => movie.id === action.payload.id);
+      const inCart = state.cart.find((item) =>
+        item.id === action.payload.id ? true : false
+      );
       return {
         ...state,
-        cart: inCart ? state.cart.map(item => item.id === action.payload.id ? { ...item, qty: item.qty + 1 } : item) : [...state.cart, { ...item, qty: 1 }]
+        cart: inCart
+          ? state.cart.map((item) =>
+              item.id === action.payload.id
+                ? { ...item, qty: item.qty + 1 }
+                : item
+            )
+          : [...state.cart, { ...item, qty: 1 }],
         //         : item)
-      }
-    // return {
-    //   ...state,
-    //   cart: [...state.cart, item] /* inCart
-    //     ? state.cart.map((item) =>
-    //       item.id === action.payload.id
-    //         ? { ...item, qty: item.qty + 1 }
-    //         : item
-    //     )
-    //     : [...state.cart, { ...item, qty: 1 }], */
-    // };
+      };
+
+    case TYPES.ADD_TO_CART_DB:
+      return {
+        ...state,
+      };
+    case TYPES.GET_TO_CART_DB:
+      return {
+        ...state,
+        cartDB: action.payload,
+      };
+
     case TYPES.REMOVE_FROM_CART:
       return {
         ...state,
-        cart: state.cart.filter(item => item.id !== action.payload.id)
+        cart: state.cart.filter((item) => item.id !== action.payload.id),
       };
 
     case TYPES.ADJUST_QTY:
@@ -152,89 +158,95 @@ const rootReducer = (state = initialState, action) => {
     case TYPES.CLEAR_MOVIE:
       return {
         ...state,
-        details: []
-      }
+        details: [],
+      };
 
     case TYPES.MODIFY_MOVIE:
       return {
-        ...state
-      }
+        ...state,
+      };
 
     case TYPES.DELETE_MOVIE:
       return {
-        ...state
-      }
+        ...state,
+      };
 
     case TYPES.POST_REVIEW:
       return {
-        ...state
-      }
+        ...state,
+      };
 
     case TYPES.GET_ALL_REVIEWS:
       return {
         ...state,
-        reviews: action.payload
-      }
+        reviews: action.payload,
+      };
 
     case TYPES.GET_USERS:
       return {
         ...state,
-        users: action.payload
-      }
+        users: action.payload,
+      };
 
     case TYPES.DELETE_USER:
       return {
-        ...state
-      }
+        ...state,
+      };
 
     case TYPES.GET_LOGGED_USER:
       return {
         ...state,
-        user: action.payload
-      }
+        user: action.payload,
+      };
 
     case TYPES.PUT_ROLE:
       return {
         ...state,
-      }
+      };
 
     case TYPES.LOGOUT_USER:
       return {
         ...state,
         user: {},
-        cart: []
-      }
+        cart: [],
+      };
 
     case TYPES.EMPTY_CART:
       return {
         ...state,
-      }
-      
+      };
+
     case TYPES.VERIFY_EMAIL:
       return {
-        ...state
-      }
+        ...state,
+      };
 
     case TYPES.RESET_PASSWORD:
       return {
-        ...state
-      }
+        ...state,
+      };
 
     case TYPES.MODIFY_PROFILE:
       return {
-        ...state
-      }
+        ...state,
+      };
 
     case TYPES.GET_ORDERS:
       return {
         ...state,
-        orders: action.payload
-      }
+        orders: action.payload,
+      };
 
     case TYPES.GET_USER_ORDERS:
       return {
         ...state,
-        userOrders: action.payload
+        userOrders: action.payload,
+      };
+
+    case TYPES.GET_COUNTRIES:
+      return {
+        ...state,
+        countries: action.payload
       }
 
     default:

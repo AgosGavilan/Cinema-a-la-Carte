@@ -1,15 +1,19 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import styles from "./LogOut.module.css"
-import { useDispatch } from 'react-redux';
-import { logoutUser } from '../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser, addToCartDB } from '../../redux/actions';
 
 const LogOut = () => {
+  const user = useSelector((state) => state.user);
+  let cart = useSelector((state) => state.cart);
+  let idMovies = cart.map((e) => e.id);
 
 const {logout} = useAuth0();
 const dispatch = useDispatch();
 
 const handleLogout = () => {
+  dispatch(addToCartDB(idMovies, user.id));
   logout({returnTo: window.location.origin})
   dispatch(logoutUser())
 }

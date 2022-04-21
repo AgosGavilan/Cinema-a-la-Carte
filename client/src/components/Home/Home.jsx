@@ -8,6 +8,7 @@ import {
   filterGenres,
   orderMovies,
   clearMovieById,
+  getCountries,
 } from "../../redux/actions";
 import Slider from "../Slider/Slider";
 import CardSmart from "../Card/CardSmart";
@@ -33,6 +34,7 @@ const Home = () => {
     dispatch(getMovies()).then(() => setLoadScreen(false));
     dispatch(getGenres());
     dispatch(getActors());
+    dispatch(getCountries());
     dispatch(clearMovieById());
   }, []);
 
