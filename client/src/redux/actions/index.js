@@ -458,3 +458,10 @@ export const getCountries = () => {
         }
     }
 }
+
+export const callCartDB = (val) => {
+    return {
+      type: TYPES.CALL_CART_DB,
+      payload: val,
+    };
+  };
