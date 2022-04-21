@@ -24,7 +24,6 @@ const style = {
   bgcolor: "black",
   border: "0.5px solid whitesmoke",
   p: 4,
-  //paddingBottom: 32,
   borderRadius: 10,
 };
 
