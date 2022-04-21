@@ -226,6 +226,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       };
 
+    case TYPES.DELETE_REVIEW:
+      return {
+        ...state
+      }
+
     case TYPES.MODIFY_PROFILE:
       return {
         ...state,

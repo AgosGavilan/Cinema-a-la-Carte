@@ -143,17 +143,17 @@ export const clearMovieById = () => {
 export const modifyMovie = (movie) => {
     return async (dispatch) => {
         try {
-            console.log(movie);
-            console.log(movie.id)
+            //console.log(movie);
+            //console.log(movie.id)
             const { data } = axios.put(`/api/movies/${movie.id}`, movie);
             dispatch({
                 type: TYPES.MODIFY_MOVIE,
                 payload: data,
             });
-            console.log(movie);
+            //console.log(movie);
         } catch (e) {
             console.log("Error in modifyMovie");
-            console.log(e);
+            //console.log(e);
         }
     };
 };
@@ -164,7 +164,9 @@ export const deleteMovie = (id) => {
             const { data } = await axios.delete(
                 `/api/movies/delete/${id}`
             );
-            dispatch({ type: TYPES.DELETE_MOVIE, payload: data });
+            dispatch({ 
+                type: TYPES.DELETE_MOVIE, 
+                payload: data });
         } catch (error) {
             console.log("error in deleteMovie", error);
         }
@@ -240,18 +242,22 @@ export const loadCurrentItem = (item) => {
 
 export const emptyCart = (userId) => {
     return async dispatch => {
-        const { data } = axios.delete(`https://proyect-ecommerce.herokuapp.com/api/shopping-cart/items/${userId}`)
-        return dispatch({
-            type: TYPES.EMPTY_CART,
-            payload: data
-        })
+        try {
+            const { data } = axios.delete(`https://proyect-ecommerce.herokuapp.com/api/shopping-cart/items/${userId}`)
+            return dispatch({
+                type: TYPES.EMPTY_CART,
+                payload: data
+            })
+        } catch(e) {
+            console.log("error en empty cart: ", e)
+        }
     }
 }
 
-export const postReview = (review) => { //review es lo que tengo que mandar por body (review.text, review.vote)
+export const postReview = (review, userId) => { //review es lo que tengo que mandar por body (review.text, review.vote)
     return async (dispatch) => {
         try {
-            const { data } = await axios.post(`/api/reviews/${review.userId}`, review)
+            const { data } = await axios.post(`/api/reviews/${userId}`, review)
             return dispatch({
                 type: TYPES.POST_REVIEW,
                 payload: data
@@ -265,16 +271,30 @@ export const postReview = (review) => { //review es lo que tengo que mandar por 
 }
 
 
-export const getAllReviews = (id) => {
+export const getAllReviews = (idMovie) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`api/reviews/reviewsMovie/${id}`)
+            const { data } = await axios.get(`api/reviews/reviewsMovie/${idMovie}`)
             return dispatch({
                 type: TYPES.GET_ALL_REVIEWS,
                 payload: data
             })
         } catch (e) {
             console.log('error en getAllReview', e)
+        }
+    }
+}
+
+export const deleteReview = (reviewId) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.delete(`api/reviews/delete/${reviewId}`)
+            return dispatch({
+                type: TYPES.DELETE_REVIEW,
+                payload: data
+            })
+        } catch(e) {
+            console.log("error en delete review: ", e)
         }
     }
 }
