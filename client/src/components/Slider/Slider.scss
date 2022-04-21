@@ -1,141 +1,138 @@
-
 .landing {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  background-color: rgba(24, 24, 24);
 }
-.slider{
-    grid-column: 2 / 3;
-    width: 100%;
-    height: 90vh;
-    position: fixed;
-    overflow: hidden;
-    background-color: rgba(24, 24, 24);
-    
-}
-
-.slide{
-    position: absolute;
-    top: 0;
-    left: 25%;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transform: translateX(-50%);
-    transition: all .5s ease;
+.slider {
+  // grid-column: 2 / 3;
+  width: 100%;
+  //   height: 100%;
+  //   position: fixed;
+  overflow: hidden;
 }
 
-@media screen and (min-width: 600px){
-    .slide img {
-        width: 100%;
-        height: auto;
-        
-    }
+.slide {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: all 0.5s ease;
+}
+
+@media screen and (min-width: 600px) {
+  .slide img {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .slide img {
-    width: 27.5%;
-    height: auto;
-    border-radius: 5px;
-    margin-top: 7px;
+  width: 27.5%;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 7px;
 }
 
 .posterSlide:hover {
-    box-shadow: 0 0 10px white;
+  box-shadow: 0 0 10px white;
 }
 
+.content {
+  position: absolute;
+  top: 13rem;
+  left: 21rem;
+  color: #fff;
+  margin-bottom: 1rem;
 
-.content{
-    position: absolute;
-    top: 13rem;
-    left: 21rem;
-    color: #fff;
-    margin-bottom: 1rem;
-    
-    width: 50%;
-    padding: 3rem;
-    background: rgba(0,0,0,.3);
-    animation: slide-up 1s ease .5s;
-    animation-fill-mode: forwards;
-    /* visibility: hidden; */
-    opacity: 0;
+  width: 50%;
+  padding: 3rem;
+  background: rgba(0, 0, 0, 0.3);
+  animation: slide-up 1s ease 0.5s;
+  animation-fill-mode: forwards;
+  /* visibility: hidden; */
+  opacity: 0;
 }
 
 @keyframes slide-up {
-    0%{
-        visibility: visible;
-        top: 3rem;
-    }
-    100%{
-        visibility: visible;
-        top: 1.5rem;
-    }
+  0% {
+    visibility: visible;
+    top: 3rem;
+  }
+  100% {
+    visibility: visible;
+    top: 1.5rem;
+  }
 }
 
-@media screen and (max-width: 600px){
-    .content{
+@media screen and (max-width: 600px) {
+  .content {
     width: 50%;
-    }
+  }
 }
 
-
-.current{
-    opacity: 1;
-    transform: translateX(0);
+.current {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-.current .content{
-    opacity: 1;
+.current .content {
+  opacity: 1;
 }
 
-.arrow{
-    border: 2px solid #fff;
-    background-color: transparent;
-    color: #fff;
-    width: 2rem;
-    height: 2rem;
-    cursor: pointer;
-    border-radius: 50%;
-    position: absolute;
-    z-index: 999;
-
+.arrow {
+  border: 2px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 999;
 }
 
-.arrow:hover{
-    background: #fff;
-    color: #777
+.arrow:hover {
+  background: #fff;
+  color: #777;
 }
 
-.next{
-    top: 40%;
-    right: 5%;
+.next {
+  top: 40%;
+  right: 5%;
 }
 
-.prev{
-    top: 40%;
-    left: 55%;
+.prev {
+  top: 40%;
+  left: 55%;
 }
 
 .welcome {
-    color: white;
-    grid-column: 1 / 2;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    z-index: 1;
-    margin-top: 10%;
-    margin-left: 50px;
+  color: white;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .titleLand {
-    font-size: 70px;
-    margin-bottom: 15px;
+  font-size: 60px;
+  margin-bottom: 15px;
 }
 
 .descriptionLand {
-    font-size: 30px;
-    margin-bottom: 35px;
+  font-size: 30px;
+  margin-bottom: 35px;
 }
 
 .playBtn {
-    background-color: #242424;
+  background-color: #242424;
   border-radius: 30%;
   border-style: none;
   box-sizing: border-box;
@@ -167,7 +164,7 @@
 }
 
 .playBtn:hover {
-    background-color: transparent;
-    border: 2px solid white;
-    box-shadow: 0 0 5px white;
-  }
+  background-color: transparent;
+  border: 2px solid white;
+  box-shadow: 0 0 5px white;
+}
