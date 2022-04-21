@@ -23,7 +23,6 @@ const PostReview = ({movieDetail, setOpen}) => {
   const stars = Array(5).fill(0) // [0,0,0,0,0]
   const dispatch = useDispatch()
   const idUser = useSelector(state => state.user)
-  //console.log("soy id del usuario: ", idUser)
 
   const handleText = () => {
     switch (currentValue || hoverValue) {
@@ -82,7 +81,6 @@ const PostReview = ({movieDetail, setOpen}) => {
       return;
     } else {
         dispatch(postReview(input, idUser.id)).then(dispatch(getAllReviews(movieDetail.id)))
-        //console.log(idUser.id)
         setInput({
           vote: 0,
           text: "",
