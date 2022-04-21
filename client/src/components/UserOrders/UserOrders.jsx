@@ -46,7 +46,7 @@ const UserOrders = () => {
             <td className={styles.eachOrder}>{o.id}</td>
             <td className={styles.eachOrder}>{o.order_date.replace("T", " ").split(".")[0]} </td>
             <td className={styles.eachOrder}>US$ {o.Total}</td>
-            <td className={styles.eachOrder}>{o.Order_details.map(el => el.Movie.title).join(", ")}</td>
+            <td className={styles.eachOrder}>{o.Order_details.map(el => <p>{el.Movie.title}</p>)}</td>
           </tr>
           )
         })}

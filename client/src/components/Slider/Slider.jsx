@@ -39,10 +39,6 @@ const Slider = () => {
     dispatch(getMovies()).then(setLoading(false));
     if (userLogged) {
       dispatch(getLoggedUser(userLogged.email));
-      dispatch(getCartDB(userLogged.id));
-      cartDB.forEach((e) => {
-        dispatch(addToCart(e.MovieId));
-      });
     }
     setCurrentSlide(0);
   }, []);
