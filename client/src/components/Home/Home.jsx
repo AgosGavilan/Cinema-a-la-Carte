@@ -43,7 +43,6 @@ const Home = () => {
     dispatch(getCountries());
     dispatch(clearMovieById());
     if(userLogged) {
-      dispatch(getCartDB(userLogged.id));
       dispatch(getUserOrders(userLogged.id))
       cartDB.forEach((e) => {
         dispatch(addToCart(e.MovieId));

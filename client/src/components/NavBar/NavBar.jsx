@@ -14,13 +14,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./NavBar.css";
 import logo from "../../assets/Cine.jpg";
-import { getLoggedUser } from "../../redux/actions";
+import { getLoggedUser, getCartDB, addToCart, emptyCart } from "../../redux/actions";
 
 const NavBar = ({ currentPage }) => {
   const cart = useSelector((state) => state.cart);
   const userLogged = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
+  let cartDB = useSelector((state) => state.cartDB);
   const [input, setInput] = useState({
     nickname: user? user.nickname? user.nickname : null : null,
     name: user? user.given_name? user.given_name : null : null,
@@ -28,9 +29,15 @@ const NavBar = ({ currentPage }) => {
   })
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(getLoggedUser(user.email, input));
+      dispatch(getLoggedUser(user.email, input)).then(() => dispatch(getCartDB(userLogged.id)))
+      .then(() => (
+        cartDB.forEach((e) => {
+          console.log(e.MovieId)
+          dispatch(addToCart(e.MovieId))
+        }))
+        ).then(() => dispatch(emptyCart(userLogged.id)));
     }
-  }, []);
+  }, [userLogged.id]);
 
   return (
     <div className="nav">

@@ -13,6 +13,7 @@ const {logout} = useAuth0();
 const dispatch = useDispatch();
 
 const handleLogout = () => {
+  console.log(idMovies)
   dispatch(addToCartDB(idMovies, user.id));
   logout({returnTo: window.location.origin})
   dispatch(logoutUser())
