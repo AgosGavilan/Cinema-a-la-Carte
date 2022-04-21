@@ -12,6 +12,8 @@ const initialState = {
   reviews: [],
   users: [],
   user: {},
+  userLo: {},
+  count: 0,
   orders: [],
   userOrders: [],
   countries: [],
@@ -197,6 +199,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
+        userLo: action.payload
       };
 
     case TYPES.PUT_ROLE:
@@ -210,6 +213,7 @@ const rootReducer = (state = initialState, action) => {
         user: {},
         cart: [],
         cartDB: [],
+        count: 0,
       };
 
     case TYPES.EMPTY_CART:
@@ -253,6 +257,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         countries: action.payload
+      }
+
+    case TYPES.CALL_CART_DB:
+      return {
+        ...state,
+        count: action.payload
       }
 
     default:
