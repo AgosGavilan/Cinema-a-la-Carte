@@ -11,7 +11,7 @@ const UserList = () => {
 
   useEffect(() => {
     dispatch(getUsers());
-  }, [dispatch]);
+  }, [dispatch, allUsers]);
 
   return (
     <div>

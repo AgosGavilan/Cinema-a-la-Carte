@@ -15,6 +15,11 @@
     font-size: 18px;
 }
 
+.body {
+    border: 2px solid black;
+    font-size: 18px;
+}
+
 .eachOrder {
     border: 1px solid white;
 }

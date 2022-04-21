@@ -5,6 +5,7 @@ import styles from "./MovieList.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faTrashCan, faPlay} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import ReactPlayer from "react-player";
 
 
 const EachMovie = ({id, title, release_date, rating, price, movie}) => {

@@ -10,7 +10,8 @@ import {
   clearMovieById,
   getCountries,
   getCartDB,
-  getUserOrders
+  getUserOrders,
+  addToCart
 } from "../../redux/actions";
 import Slider from "../Slider/Slider";
 import CardSmart from "../Card/CardSmart";
@@ -27,6 +28,7 @@ const Home = () => {
   let [, setOrder] = useState("");
   const allMovies = useSelector((state) => state.movies);
   const userLogged = useSelector((state) => state.user);
+  let cartDB = useSelector((state) => state.cartDB);
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage, setMoviesPerPage] = useState(12);
   const [loadScreen, setLoadScreen] = useState(true);
@@ -43,6 +45,9 @@ const Home = () => {
     if(userLogged) {
       dispatch(getCartDB(userLogged.id));
       dispatch(getUserOrders(userLogged.id))
+      cartDB.forEach((e) => {
+        dispatch(addToCart(e.MovieId));
+      });
     }
   }, []);
 

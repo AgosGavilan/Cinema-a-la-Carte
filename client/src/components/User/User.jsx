@@ -17,11 +17,7 @@ const User = () => {
 
   const { isAuthenticated, isLoading } = useAuth0();
   const user = useSelector((state) => state.user)
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUserOrders(user.id))
-  }, []);
 
   if (isLoading) {
     return <LoadScreen/>;
@@ -40,9 +36,9 @@ const User = () => {
       :  <LogIn/>
       }
       </div>
-      <div className={styles.userOrders}>
+      {/* <div className={styles.userOrders}>
         <UserOrders/>
-      </div>
+      </div> */}
       </div>
       <div className={styles.userForm}>
       <UserForm/>
