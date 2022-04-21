@@ -6,18 +6,18 @@ import styles from "./UserOrders.module.css"
 import NavBar from "../NavBar/NavBar";
 
 const UserOrders = () => {
+  const user = useSelector((state) => state.user)
   const userOrders = useSelector((state) => state.userOrders);
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user)
-
 
   useEffect(() => {
     dispatch(getUserOrders(user.id))
   }, []);
 
+  if(!userOrders) return "You have no orders, what are you waiting for?"
+
   return (
     <div>
-      <NavBar />
       <div className={styles.background}>
         <table className={styles.orderList}>
           <thead className={styles.headers}>
@@ -34,7 +34,7 @@ const UserOrders = () => {
               key={o.id}
               orderId={o.id}
               date={o.order_date}
-              amount={o.amount}
+              amount={o.Total}
               orderDetail={o.Order_details}
             />
           );

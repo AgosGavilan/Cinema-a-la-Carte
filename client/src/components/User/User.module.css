@@ -20,6 +20,7 @@
     border-radius: 10px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     height: fit-content;
     margin: 50px;
 }
@@ -32,6 +33,15 @@
     display: flex;
     justify-content: center;
     height: fit-content;
+    margin: 50px;
+}
+
+.userOrders {
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
     margin: 50px;
 }
 

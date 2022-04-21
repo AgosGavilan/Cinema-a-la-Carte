@@ -6,13 +6,25 @@ import LogOut from '../LogOut/LogOut'
 import Profile from '../Profile/Profile'
 import { useAuth0 } from '@auth0/auth0-react'
 import UserForm from './UserForm'
+import UserOrders from '../UserOrders/UserOrders'
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserOrders } from "../../redux/actions";
+import LoadScreen from "../Loading/LoadScreen"
+
 
 const User = () => {
 
   const { isAuthenticated, isLoading } = useAuth0();
+  const user = useSelector((state) => state.user)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserOrders(user.id))
+  }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadScreen/>;
   }
 
 
@@ -21,11 +33,16 @@ const User = () => {
     <NavBar />
     <div className={styles.user}>
       <div className={styles.profileContainer}>
+        <div>
       <Profile/>
       {isAuthenticated 
       ?  <LogOut/> 
       :  <LogIn/>
       }
+      </div>
+      <div className={styles.userOrders}>
+        <UserOrders/>
+      </div>
       </div>
       <div className={styles.userForm}>
       <UserForm/>

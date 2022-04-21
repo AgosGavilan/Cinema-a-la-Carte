@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { modifyProfile } from "../../redux/actions";
+import { getCountries, modifyProfile } from "../../redux/actions";
 import Swal from "sweetalert2";
 import styles from "./User.module.css";
 
 const UserForm = () => {
   const currentUser = useSelector((state) => state.user);
+  const allCountries = useSelector((state) => state.countries);
   const [input, setInput] = useState({
     name: currentUser.name,
     lastName: currentUser.lastName,
@@ -13,6 +14,10 @@ const UserForm = () => {
     date_of_birth: currentUser.date_of_birth,
   });
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCountries());
+  }, []);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -41,7 +46,7 @@ const UserForm = () => {
       <h1 className={styles.editTitle}>Edit Profile</h1>
       <div>
         <form onSubmit={handleSubmit}>
-            <h4 className={styles.titles}>Name:</h4>
+          <h4 className={styles.titles}>Name:</h4>
           <input
             type="text"
             name="name"
@@ -60,11 +65,19 @@ const UserForm = () => {
           <h4 className={styles.titles}>Nationality:</h4>
           <input
             type="text"
+            list="nationality"
             name="nationality"
             onChange={handleChange}
             value={input.nationality}
             className={styles.input}
           />
+          <datalist id="nationality">
+            {allCountries?.map((e) => (
+              <option value={e.name_en} key={e.name_es} name="nationality">
+                {e.name_en}
+              </option>
+            ))}
+          </datalist>
           <h4 className={styles.titles}>Birth Date:</h4>
           <input
             type="date"
@@ -73,7 +86,9 @@ const UserForm = () => {
             value={input.date_of_birth}
             className={styles.input}
           />
-          <button type="submit" className={styles.updateBtn}>Update</button>
+          <button type="submit" className={styles.updateBtn}>
+            Update
+          </button>
         </form>
       </div>
     </div>

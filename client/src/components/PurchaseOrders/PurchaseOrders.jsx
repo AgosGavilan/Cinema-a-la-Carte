@@ -34,7 +34,8 @@ const PurchaseOrders = () => {
               orderId={o.id}
               date={o.order_date}
               userId={o.userId}
-              amount={o.amount}
+              amount={o.Total}
+              status={o.payment_status}
               orderDetail={o.Order_details}
             />
           );
