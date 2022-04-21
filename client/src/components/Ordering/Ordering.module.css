@@ -29,3 +29,10 @@
 /* .selectOrder:focus{
     outline: none;
 } */
+
+@media (max-width: 380px) {
+  .order{
+    display: block;
+    margin: auto;
+  }
+}

@@ -126,12 +126,12 @@ const Details = () => {
               <img
                 src={movieDetail.img ? movieDetail.img : poster}
                 className={s.backImg}
-                alt="Back Image"
+                alt="Back"
               />
               <img
                 src={movieDetail.img ? movieDetail.img : poster}
                 className={s.frontImg}
-                alt="Front Image"
+                alt="Front"
               />
               {/* <ReactPlayer className={s.player} url="https://www.youtube.com/watch?v=OGca96afgtM" /> */}
             </div>
