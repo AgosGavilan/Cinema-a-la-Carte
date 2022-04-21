@@ -52,7 +52,7 @@ const NavBar = ({ currentPage }) => {
       ) : (
         <LogIn />
       )}
-      {isAuthenticated ? userLogged ? userLogged.role === "SUPER_ROLE" || userLogged === "ADMIN_ROLE" ? <AdminPanel /> : "" : "" : ""}
+      {isAuthenticated ? userLogged.role !== "USER_ROLE"? <AdminPanel /> : "" : ""}
 
       <Link to="/cart" className="link">
         <FontAwesomeIcon className="cart" icon={faCartShopping} />

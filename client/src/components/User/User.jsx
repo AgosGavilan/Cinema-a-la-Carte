@@ -12,17 +12,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserOrders } from "../../redux/actions";
 import LoadScreen from "../Loading/LoadScreen"
 
-
 const User = () => {
 
   const { isAuthenticated, isLoading } = useAuth0();
   const user = useSelector((state) => state.user)
-  const dispatch = useDispatch();
 
   if (isLoading) {
     return <LoadScreen/>;
   }
-
 
   return (
     <div>

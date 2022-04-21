@@ -3,8 +3,11 @@ import Swal from "sweetalert2";
 import { getMovies, deleteMovie } from "../../redux/actions";
 import styles from "./MovieList.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+import ReactPlayer from "react-player";
 import { faTrashCan, faPlay } from "@fortawesome/free-solid-svg-icons";
 import Player from "./Player"
+
 
 const EachMovie = ({ id, title, release_date, rating, price, movie }) => {
   const allMovies = useSelector((state) => state.movies);
