@@ -17,3 +17,11 @@
 .eachOrder {
     border: 1px solid white;
 }
+
+.body {
+    overflow-y: scroll;
+}
+
+.peliculas {
+    margin: 5px;
+}

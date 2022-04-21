@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserOrders } from "../../redux/actions";
 import styles from "./UserOrders.module.css"
 import NavBar from "../NavBar/NavBar";
+import Player from "./Player"
 
 const UserOrders = () => {
   const user = useSelector((state) => state.user)
@@ -28,7 +29,7 @@ const UserOrders = () => {
               <th className={styles.eachOrder}>Details</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className={styles.body}>
         {/* {userOrders?.map((o) => {
           return (
             <EachUserOrder
@@ -46,7 +47,7 @@ const UserOrders = () => {
             <td className={styles.eachOrder}>{o.id}</td>
             <td className={styles.eachOrder}>{o.order_date.replace("T", " ").split(".")[0]} </td>
             <td className={styles.eachOrder}>US$ {o.Total}</td>
-            <td className={styles.eachOrder}>{o.Order_details.map(el => el.Movie.title).join(", ")}</td>
+            <td className={styles.eachOrder}>{o.Order_details.map(el => <p className={styles.peliculas}><Player movie={el.Movie.title} url={el.Movie.urlMovie}/></p>)}</td>
           </tr>
           )
         })}
