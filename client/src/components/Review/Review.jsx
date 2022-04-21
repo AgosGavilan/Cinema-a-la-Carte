@@ -33,6 +33,7 @@ const Review = () => {
   //console.log("soy todas las reviews: ", allReviews)
   const movieDetail = useSelector((state) => state.details);
   const userLog = useSelector((state) => state.user);
+  //console.log(userLog)
   const { user, isAuthenticated } = useAuth0();
   //console.log("soy user: ", user);
   const dispatch = useDispatch();
@@ -60,9 +61,23 @@ const Review = () => {
 
   const handleClose = () => setOpen(false);
 
-//   const handleDelete = () => {
-//       dispatch(deleteReview())
-//   }
+  const handleDelete = (e) => {
+    Swal.fire({
+      title: `Are you sure you want to delete this review?`,
+        icon: "warning",
+        position: "center",
+        showConfirmButton: true,
+        showDenyButton: true,
+        confirmButtonText: "Delete",
+        denyButtonText: "Cancel",
+    }).then(result => {
+      if(result.isConfirmed) {
+        dispatch(deleteReview(e))
+      } else if(result.isDenied){
+        return
+      }
+    })
+  }
 
   return (
     <div>
@@ -79,8 +94,8 @@ const Review = () => {
                           <img src={user ? user.picture : iconuser} />
                         </div>
                         <div className={s.name_user}>
-                          <strong>{user ? user.name : "Usuario logueado"}</strong>
-                          <span>{user?.email}</span>
+                          <strong>{p.user ? p.user.name + " " + p.user.lastName : "Usuario logueado"}</strong>
+                          <span>{p.user?.email}</span>
                         </div>
                       </div>
                       <div>
@@ -90,9 +105,11 @@ const Review = () => {
                     <div className={s.client_comment}>
                       <p>{p.text}</p>
                     </div>
-                    <button /*onClick={handleDelete}*/ className={s.delete}>
-                        <FontAwesomeIcon icon={faTrashCan} />
-                    </button>
+                    {userLog && userLog.role !== "USER_ROLE" ? 
+                      <button onClick={() => handleDelete(p.id)} className={s.delete}>
+                          <FontAwesomeIcon icon={faTrashCan} />
+                      </button> : ""
+                    }
                   </div>
                 </div>
               </section>
@@ -112,7 +129,7 @@ const Review = () => {
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-              <Typography id="modal-modal-description">
+              <Typography id="modal-modal-description" component={"div"}>
                 <PostReview movieDetail={movieDetail} setOpen={setOpen} />
               </Typography>
             </Box>
