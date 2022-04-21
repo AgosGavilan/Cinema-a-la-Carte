@@ -36,6 +36,8 @@ const Review = () => {
   const { user, isAuthenticated } = useAuth0();
   //console.log("soy user: ", user);
   const dispatch = useDispatch();
+  const allOrders = useSelector(state => state.orders)
+  //console.log(allOrders)
 
   const [open, setOpen] = React.useState(false);
 
@@ -44,7 +46,7 @@ const Review = () => {
   }, [allReviews]);
 
   const handleOpen = () => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated) { //si no esta logueado
       Swal.fire({
         title: "Please, login first",
         icon: "warning",
@@ -53,7 +55,26 @@ const Review = () => {
         showConfirmButton: false,
         timerProgressBar: true,
       });
-    } else {
+    } else if (allOrders?.map(r => r.userId !== allReviews.userId)) { //si no compro la peli
+      Swal.fire({
+        title: "You must buy this movie to leave a review",
+        icon: "warning",
+        position: "center",
+        timer: 3000,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      });
+    } else if(allReviews?.map(e => e.userId === userLog.id)) { //si ya di una review
+        Swal.fire({
+          title: "You can only give one review",
+          icon: "warning",
+          position: "center",
+          timer: 3000,
+          showConfirmButton: false,
+          timerProgressBar: true,
+        })
+    }
+    else {
       setOpen(true);
     }
   };
@@ -93,7 +114,7 @@ const Review = () => {
                           <img src={user ? user.picture : iconuser} />
                         </div>
                         <div className={s.name_user}>
-                          <strong>{p.user ? p.user.name + " " + p.user.lastName : "Usuario logueado"}</strong>
+                          <strong>{(p.user.name !== null && p.user.lastName !== null) ? p.user.name + " " + p.user.lastName : "Usuario logueado"}</strong>
                           <span>{p.user?.email}</span>
                         </div>
                       </div>
