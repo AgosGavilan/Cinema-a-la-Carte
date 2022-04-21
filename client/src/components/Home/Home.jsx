@@ -9,11 +9,11 @@ import {
   orderMovies,
   clearMovieById,
   getCountries,
-  getCartDB,
+  // getCartDB,
   getUserOrders,
   addToCart
 } from "../../redux/actions";
-import Slider from "../Slider/Slider";
+// import Slider from "../Slider/Slider";
 import CardSmart from "../Card/CardSmart";
 import styles from "./Home.module.css";
 import Paginate from "../Paginate/Paginate";

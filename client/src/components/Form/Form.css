@@ -7,11 +7,11 @@
 .posterBack {
   background: #2b2828;
   height: 110%;
+  width: 100%;
 }
 
 .posterImg {
-    height: 700px;
-    width: auto;
+  height: 700px;
 }
 
 .bodyForm {
@@ -40,7 +40,7 @@
 .form {
   background: none;
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(1rem);
+  /* backdrop-filter: blur(1rem); */
   margin: auto;
   width: 100%;
   max-width: 700px;
@@ -167,7 +167,7 @@
 .selectCreate {
   padding: 10px;
   background: #242424;
-  width: 40%;
+  width: 60% !important;
   font-size: 18px;
   outline: none;
   color: #dddddd;
@@ -232,4 +232,28 @@
 
 .btn_remove:hover {
   opacity: 1;
+}
+
+@media (max-width: 800px) {
+  .bodyForm {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  .posterBack {
+    display: none;
+  }
+
+  .selectCreate {
+    width: 60% !important;
+  }
+
+  .buttonCreate {
+    width: 150px !important;
+    height: 40px !important;
+  }
+
+  .containerform {
+    height: 100vh !important;
+  }
 }

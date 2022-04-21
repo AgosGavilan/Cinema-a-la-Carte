@@ -32,7 +32,7 @@ const UserList = () => {
             </tr>
           </thead>
           <tbody>
-            {allUsers?.map((e) => {
+            {allUsers?.map((e, i) => {
               return (
                 <EachUser
                   key={e.id}
