@@ -52,6 +52,7 @@ const Slider = () => {
   };
 
   useEffect(() => {
+    dispatch(getMovies())
     if (autoScroll) {
       auto();
     }
@@ -93,13 +94,13 @@ const Slider = () => {
                 {index === currentSlide && (
                   <div>
                     <div className="img">
-                      {/* <NavLink to={`/movies/${slide.id}`}> */}
+                      <NavLink to={`/movies/${slide.id}`}>
                       <img
                         src={slide.img}
                         alt="Slide"
                         className="posterSlide"
                       />
-                      {/* </NavLink> */}
+                      </NavLink>
                     </div>
                   </div>
                 )}

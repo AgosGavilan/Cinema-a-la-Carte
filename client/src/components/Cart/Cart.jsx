@@ -50,7 +50,19 @@ const Cart = () => {
         showConfirmButton: false,
         timerProgressBar: true,
       })
-    } else {
+      return
+    } else if (user.email_verified === false) {
+      Swal.fire({
+        title: "Please, check your email to verify your account before checkout",
+        icon: "warning",
+        position: "center",
+        timer: 3000,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      })
+      return
+    } 
+    else {
       let orden = await axios.post(`/api/orders`, data);
   
       let info = await axios.get(
