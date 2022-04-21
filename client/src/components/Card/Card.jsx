@@ -20,6 +20,7 @@ const Card = ({ id, title, img, vote_average, price }) => {
     e.Order_details?.map((o) => o.Movie)
   );
   const findMovie = userMovies?.find((m) => m.id === id);
+  let user = useSelector((state) => state.user)
 
   function addCart(e) {
     e.preventDefault();
@@ -44,8 +45,6 @@ const Card = ({ id, title, img, vote_average, price }) => {
         timerProgressBar: true,
       });
       return;
-    } else if (isAuthenticated) {
-      dispatch(addToCartDB(id));
     } else {
       dispatch(addToCart(id));
     }
