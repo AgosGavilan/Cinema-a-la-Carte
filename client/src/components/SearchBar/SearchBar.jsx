@@ -14,10 +14,11 @@ export default function SearchBar({ currentPage }) {
     const { value } = e.target;
     setTitle(value);
     if (value.length > 1) {
-      dispatch(getMovieByTitle(title));
-      currentPage(1);
+      dispatch(getMovieByTitle(title))
+      .then(() => currentPage(1))
     } else if (value.length < 1) {
-      dispatch(getMovies());
+      dispatch(getMovies())
+      .then(() => currentPage(1))
     }
   };
 

@@ -101,6 +101,15 @@
 }
 
 .delete {
+    width: 37px;
+    font-size: 1.5rem;
+    margin-left: 5px;
+    align-items: center;
+    background-color: transparent;
     cursor: pointer;
-    font-size: 20px;
+    border: none;
+    color: rgb(18, 18, 18);
+}
+.delete:hover {
+    filter: drop-shadow(0 0 0.5rem rgb(255, 255, 255));
 }
