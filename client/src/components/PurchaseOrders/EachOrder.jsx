@@ -27,7 +27,7 @@ const EachOrder = ({ orderId, date, userId, amount, status, orderDetail }) => {
         <td className={styles.eachOrder}>
       {orderDetail?.map(d => {
         return(
-              <p className={styles.eachOrder}>{d.Movie.title}</p>
+              <p className={styles.eachOrder}>{d.Movie?.title}</p>
               )
             })}
             </td>

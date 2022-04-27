@@ -46,7 +46,7 @@ const UserOrders = () => {
           <tr key={o.id} className={styles.eachOrder}>
             <td className={styles.eachOrder}>{o.id}</td>
             <td className={styles.eachOrder}>{o.order_date.replace("T", " ").split(".")[0]} </td>
-            <td className={styles.eachOrder}>US$ {o.Total}</td>
+            <td className={styles.eachOrder}>US$ {Math.round(o.Total * 100) / 100}</td>
             <td className={styles.eachOrder}>{o.Order_details.map(el => <p className={styles.peliculas}><Player movie={el.Movie.title} url={el.Movie.urlMovie}/></p>)}</td>
           </tr>
           )

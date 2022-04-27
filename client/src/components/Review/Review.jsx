@@ -12,7 +12,7 @@ import { getAllReviews, deleteReview } from "../../redux/actions";
 import StarRating from "./StarRating/StarRating";
 import iconuser from "../../assets/user-icon-user-profile-icon-png.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faTrashCan} from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 const style = {
   position: "absolute",
@@ -36,7 +36,7 @@ const Review = () => {
   const { user, isAuthenticated } = useAuth0();
   //console.log("soy user: ", user);
   const dispatch = useDispatch();
-  const allOrders = useSelector(state => state.orders)
+  const allOrders = useSelector((state) => state.userOrders);
   //console.log(allOrders)
 
   const [open, setOpen] = React.useState(false);
@@ -46,7 +46,10 @@ const Review = () => {
   }, [allReviews]);
 
   const handleOpen = () => {
-    if (!isAuthenticated) { //si no esta logueado
+    let searchOrder = allOrders?.map((r) => r.Order_details);
+    let searchMovie = searchOrder?.find((m) => m.MovieId === movieDetail.id);
+    if (!isAuthenticated) {
+      //si no esta logueado
       Swal.fire({
         title: "Please, login first",
         icon: "warning",
@@ -55,7 +58,8 @@ const Review = () => {
         showConfirmButton: false,
         timerProgressBar: true,
       });
-    } else if (allOrders?.map(r => r.userId !== allReviews.userId)) { //si no compro la peli
+    } else if (searchMovie) {
+      //si no compro la peli
       Swal.fire({
         title: "You must buy this movie to leave a review",
         icon: "warning",
@@ -64,17 +68,17 @@ const Review = () => {
         showConfirmButton: false,
         timerProgressBar: true,
       });
-    } else if(allReviews?.map(e => e.userId === userLog.id)) { //si ya di una review
-        Swal.fire({
-          title: "You can only give one review",
-          icon: "warning",
-          position: "center",
-          timer: 3000,
-          showConfirmButton: false,
-          timerProgressBar: true,
-        })
-    }
-    else {
+    } else if (allReviews?.map((e) => e.userId === userLog.id)) {
+      //si ya di una review
+      Swal.fire({
+        title: "You can only give one review",
+        icon: "warning",
+        position: "center",
+        timer: 3000,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      });
+    } else {
       setOpen(true);
     }
   };
@@ -84,20 +88,20 @@ const Review = () => {
   const handleDelete = (e) => {
     Swal.fire({
       title: `Are you sure you want to delete this review?`,
-        icon: "warning",
-        position: "center",
-        showConfirmButton: true,
-        showDenyButton: true,
-        confirmButtonText: "Delete",
-        denyButtonText: "Cancel",
-    }).then(result => {
-      if(result.isConfirmed) {
-        dispatch(deleteReview(e))
-      } else if(result.isDenied){
-        return
+      icon: "warning",
+      position: "center",
+      showConfirmButton: true,
+      showDenyButton: true,
+      confirmButtonText: "Delete",
+      denyButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteReview(e));
+      } else if (result.isDenied) {
+        return;
       }
-    })
-  }
+    });
+  };
 
   return (
     <div>
@@ -114,7 +118,11 @@ const Review = () => {
                           <img src={user ? user.picture : iconuser} />
                         </div>
                         <div className={s.name_user}>
-                          <strong>{(p.user.name !== null && p.user.lastName !== null) ? p.user.name + " " + p.user.lastName : "Usuario logueado"}</strong>
+                          <strong>
+                            {p.user.name !== null && p.user.lastName !== null
+                              ? p.user.name + " " + p.user.lastName
+                              : "Usuario logueado"}
+                          </strong>
                           <span>{p.user?.email}</span>
                         </div>
                       </div>
@@ -125,11 +133,16 @@ const Review = () => {
                     <div className={s.client_comment}>
                       <p>{p.text}</p>
                     </div>
-                    {userLog && userLog.role !== "USER_ROLE" ? 
-                      <button onClick={() => handleDelete(p.id)} className={s.delete}>
-                          <FontAwesomeIcon icon={faTrashCan} />
-                      </button> : ""
-                    }
+                    {userLog && userLog.role === "USER_ROLE" ? (
+                      ""
+                    ) : (
+                      <button
+                        onClick={() => handleDelete(p.id)}
+                        className={s.delete}
+                      >
+                        <FontAwesomeIcon icon={faTrashCan} />
+                      </button>
+                    )}
                   </div>
                 </div>
               </section>
