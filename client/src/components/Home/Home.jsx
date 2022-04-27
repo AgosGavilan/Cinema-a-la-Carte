@@ -9,7 +9,6 @@ import {
   orderMovies,
   clearMovieById,
   getCountries,
-  // getCartDB,
   getUserOrders,
   addToCart
 } from "../../redux/actions";
@@ -42,6 +41,7 @@ const Home = () => {
     dispatch(getActors());
     dispatch(getCountries());
     dispatch(clearMovieById());
+    dispatch(getUserOrders(userLogged.id))
   }, []);
 
   const handleYears = (e) => {

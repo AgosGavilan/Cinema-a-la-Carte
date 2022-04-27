@@ -6,10 +6,10 @@ import NavBar from "../NavBar/NavBar";
 import Player from "./Player"
 
 const UserOrders = () => {
-  const user = useSelector((state) => state.user)
   const userOrders = useSelector((state) => state.userOrders);
   console.log("soy user oreders: ",userOrders)
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user)
 
   useEffect(() => {
     dispatch(getUserOrders(user.id))

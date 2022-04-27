@@ -7,7 +7,7 @@ import {
   getLoggedUser,
   getCartDB,
   addToCart,
-  callCartDB
+  callCartDB,
 } from "../../redux/actions/index";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

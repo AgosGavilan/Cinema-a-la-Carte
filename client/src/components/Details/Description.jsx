@@ -12,11 +12,11 @@ const Description = ({ movieDetail, id }) => {
   let searchCartDB = cartDB.find((e) => e.id === movieDetail.id);
   let searchCart = cart.find((e) => e.id === movieDetail.id);
   const { isAuthenticated } = useAuth0();
-  let userOrders = useSelector((state) => state.userOrders);
-  const userMovies = userOrders.forEach((e) =>
-    e.Order_details?.map((o) => o.Movie)
-  );
-  const findMovie = userMovies?.find((m) => m.id === movieDetail.id);
+  let allOrders = useSelector((state) => state.userOrders);
+  let movielist = []
+  let searchOrder = allOrders?.map((r) => r.Order_details?.map(r => movielist.push(r)));
+  let findMovie = movielist?.find((m) => m.MovieId === movieDetail.id);
+  console.log(findMovie)
 
   function addCart(e) {
     e.preventDefault();
@@ -31,7 +31,7 @@ const Description = ({ movieDetail, id }) => {
       });
       return;
     }
-    if (searchCart || searchCartDB) {
+    else if (searchCart) {
       Swal.fire({
         title: "Movie Already In Cart",
         icon: "warning",
@@ -41,8 +41,6 @@ const Description = ({ movieDetail, id }) => {
         timerProgressBar: true,
       });
       return;
-    } else if (isAuthenticated) {
-      dispatch(addToCartDB(movieDetail.id));
     } else {
       dispatch(addToCart(movieDetail.id));
     }
@@ -66,7 +64,7 @@ const Description = ({ movieDetail, id }) => {
       <div className={s.product_btns}>
         <button
           className={
-            searchCart || searchCartDB
+            searchCart
               ? s.product_incart
               : findMovie
               ? s.product_purchased
@@ -74,10 +72,10 @@ const Description = ({ movieDetail, id }) => {
           }
           onClick={(e) => addCart(e)}
         >
-          {searchCart || searchCartDB
-            ? "In Cart"
-            : findMovie
+          {findMovie
             ? "Purchased"
+            : searchCart
+            ? "In Cart"
             : "Add To Cart"}
         </button>
       </div>
