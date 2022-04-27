@@ -37,19 +37,19 @@ const NavBar = ({ currentPage }) => {
     name: user ? (user.given_name ? user.given_name : null) : null,
     lastName: user ? (user.family_name ? user.family_name : null) : null,
   });
-  useEffect(() => {
-    if (isAuthenticated) {
-      dispatch(getLoggedUser(user.email, input))
-        .then(() => dispatch(getCartDB(userLogged.id)))
-        .then(() =>
-          cartDB.forEach((e) => {
-            console.log(e.MovieId);
-            dispatch(addToCart(e.MovieId));
-          })
-        )
-        .then(() => dispatch(emptyCart(userLogged.id)));
-    }
-  }, [userLogged]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     dispatch(getLoggedUser(user.email, input))
+  //       .then(() => dispatch(getCartDB(userLogged.id)))
+  //       .then(() =>
+  //         cartDB.forEach((e) => {
+  //           console.log(e.MovieId);
+  //           dispatch(addToCart(e.MovieId));
+  //         })
+  //       )
+  //       .then(() => dispatch(emptyCart(userLogged.id)));
+  //   }
+  // }, [userLogged]);
 
   useEffect(() => {
     let menuIcon = document.querySelector(".menu-icon");
