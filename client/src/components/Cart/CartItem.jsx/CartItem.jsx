@@ -16,11 +16,13 @@ const CartItem = ({ item }) => {
     <div className={styles.cartItem}>
       <img className={styles.cartItem__image} src={item.img} alt={item.title} />
       {/* <div className={styles.data__container}> */}
+      <div className={styles.divTitleAndPrice}>
       <div className={styles.div_tipre}>
         <p className={styles.details__title}>{item.title}</p>
       </div>
       <div className={styles.div_tipre}>
         <p className={styles.details__price}>$ {item.price}</p>
+      </div>
       </div>
       <div className={styles.cartItem__actions}>
         <button onClick={(e) => remove(e)} className={styles.trash}>
