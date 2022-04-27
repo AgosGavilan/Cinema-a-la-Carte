@@ -15,11 +15,14 @@ const UserOrders = () => {
     dispatch(getUserOrders(user.id))
   }, []);
 
-  //if(!userOrders) return "You have no orders, what are you waiting for?"
+  //useOrders.lenght
+  if(!userOrders) return "You have no orders, what are you waiting for?"
 
   return (
-    <div>
-      <div className={styles.background}>
+       userOrders.length?
+       (
+     <div>         
+       <div className={styles.background}>
         <table className={styles.orderList}>
           <thead className={styles.headers}>
             <tr>
@@ -55,7 +58,17 @@ const UserOrders = () => {
         </table>
       </div>
     </div>
+      ) : (
+      
+        <div className={styles.noOrders}>
+        <h1> You have no orders, 
+          <br /><br />
+          what are you waiting for? </h1>
+          </div> 
+      )       
   );
 };
 
 export default UserOrders;
+
+/*  className={styles.checkEmail} */

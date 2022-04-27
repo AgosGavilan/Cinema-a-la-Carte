@@ -7,16 +7,25 @@ import Profile from "../Profile/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserForm from "./UserForm";
 import UserOrders from '../UserOrders/UserOrders'
-// import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { getUserOrders } from "../../redux/actions";
+import { getUserOrders } from "../../redux/actions";
 import LoadScreen from "../Loading/LoadScreen";
 
-const User = () => {
-  const { isAuthenticated, isLoading } = useAuth0();
-  const user = useSelector((state) => state.user);
 
-  if (isLoading) {
+const User = () => {
+  const { isAuthenticated } = useAuth0();
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false)
+ 
+  useEffect(() => {
+    dispatch(getUserOrders(user.id))
+  }, []);
+  
+  const userOrders = useSelector((state) => state.userOrders)
+
+  if (loading) {
     return <LoadScreen />;
   }
 
@@ -26,13 +35,18 @@ const User = () => {
       <div className={styles.user}>
         <div className={styles.profileContainer}>
           <div className={styles.agos}>
-            <Profile />
-            {isAuthenticated ? <LogOut /> : <LogIn />}
+          <Profile/>
+      {isAuthenticated 
+      ?  <LogOut loading={loading} setLoading={setLoading}    /> 
+      :  <LogIn/>
+      }
           </div>
+          
           <div className={styles.tabla}>
             <UserOrders />
-          </div>
-        </div>
+           </div>
+          
+            </div>
         <div className={styles.userForm}>
           <UserForm />
         </div>
@@ -42,3 +56,8 @@ const User = () => {
 };
 
 export default User;
+
+
+
+/* condicion para que no se muestre el componente si no tiene ordenes de compra el usuario */
+
