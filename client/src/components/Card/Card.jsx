@@ -15,12 +15,11 @@ const Card = ({ id, title, img, vote_average, price }) => {
   let searchCartDB = cartDB.find((e) => e.id === id);
   let searchCart = cart.find((e) => e.id === id);
   const { isAuthenticated } = useAuth0();
-  let userOrders = useSelector((state) => state.userOrders);
-  const userMovies = userOrders.forEach((e) =>
-    e.Order_details?.map((o) => o.Movie)
-  );
-  const findMovie = userMovies?.find((m) => m.id === id);
   let user = useSelector((state) => state.user)
+  const allOrders = useSelector((state) => state.userOrders);
+  let movielist = []
+  let searchOrder = allOrders?.map((r) => r.Order_details?.map(r => movielist.push(r)));
+  let findMovie = movielist?.find((m) => m.MovieId === id);
 
   function addCart(e) {
     e.preventDefault();

@@ -214,6 +214,7 @@ const rootReducer = (state = initialState, action) => {
         cart: [],
         cartDB: [],
         count: 0,
+        userOrders: []
       };
 
     case TYPES.EMPTY_CART:

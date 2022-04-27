@@ -29,25 +29,21 @@ const style = {
 
 const Review = () => {
   const allReviews = useSelector((state) => state.reviews);
-  //console.log("soy todas las reviews: ", allReviews)
   const movieDetail = useSelector((state) => state.details);
   const userLog = useSelector((state) => state.user);
-  //console.log(userLog)
   const { user, isAuthenticated } = useAuth0();
-  //console.log("soy user: ", user);
   const dispatch = useDispatch();
-  const allOrders = useSelector((state) => state.userOrders);
-  //console.log(allOrders)
-
   const [open, setOpen] = React.useState(false);
+  const allOrders = useSelector((state) => state.userOrders);
+  let movielist = []
+  let searchOrder = allOrders?.map((r) => r.Order_details?.map(r => movielist.push(r)));
+  let searchMovie = movielist?.find((m) => m.MovieId === movieDetail.id);
 
   useEffect(() => {
     dispatch(getAllReviews(movieDetail.id));
-  }, [allReviews]);
+  }, [])
 
   const handleOpen = () => {
-    let searchOrder = allOrders?.map((r) => r.Order_details);
-    let searchMovie = searchOrder?.find((m) => m.MovieId === movieDetail.id);
     if (!isAuthenticated) {
       //si no esta logueado
       Swal.fire({
@@ -58,7 +54,8 @@ const Review = () => {
         showConfirmButton: false,
         timerProgressBar: true,
       });
-    } else if (searchMovie) {
+      return
+    } else if (!searchMovie) {
       //si no compro la peli
       Swal.fire({
         title: "You must buy this movie to leave a review",
@@ -68,7 +65,8 @@ const Review = () => {
         showConfirmButton: false,
         timerProgressBar: true,
       });
-    } else if (allReviews?.map((e) => e.userId === userLog.id)) {
+      return
+    } else if (allReviews?.find((e) => e.userId === userLog.id)) {
       //si ya di una review
       Swal.fire({
         title: "You can only give one review",
@@ -78,6 +76,7 @@ const Review = () => {
         showConfirmButton: false,
         timerProgressBar: true,
       });
+      return
     } else {
       setOpen(true);
     }
@@ -107,15 +106,15 @@ const Review = () => {
     <div>
       <div className={s.product_main}>
         {allReviews.length ? (
-          allReviews.map((p) => (
-            <div key={p.vote}>
+          allReviews?.map((p) => (
+            <div key={p.id}>
               <section id="testimonials">
                 <div className={s.testimonial_box_container}>
                   <div className={s.testimonial_box}>
                     <div className={s.box_top}>
                       <div className={s.profile}>
                         <div className={s.profile_img}>
-                          <img src={user ? user.picture : iconuser} />
+                          <img src={iconuser} />
                         </div>
                         <div className={s.name_user}>
                           <strong>
@@ -133,7 +132,7 @@ const Review = () => {
                     <div className={s.client_comment}>
                       <p>{p.text}</p>
                     </div>
-                    {userLog && userLog.role === "USER_ROLE" ? (
+                    {!user || userLog?.role === "USER_ROLE" ? (
                       ""
                     ) : (
                       <button
