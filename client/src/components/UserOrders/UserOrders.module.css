@@ -25,3 +25,10 @@
 .peliculas {
     margin: 5px;
 }
+
+.noOrders{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 5px;
+    margin: 40px;
+    margin-top: 90px;
+}
