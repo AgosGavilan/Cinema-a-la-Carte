@@ -177,7 +177,7 @@ export const addToCartDB = (itemId, userId) => {
     return async (dispatch) => {
       try {
         const { data } = await axios.post(`/api/shopping-cart/${userId}`, {
-          MovieId: itemId,
+          MovieId: itemId
         });
         dispatch({
           type: TYPES.ADD_TO_CART_DB,
@@ -458,3 +458,10 @@ export const getCountries = () => {
         }
     }
 }
+
+export const callCartDB = (val) => {
+    return {
+      type: TYPES.CALL_CART_DB,
+      payload: val,
+    };
+  };

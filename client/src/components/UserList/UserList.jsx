@@ -11,7 +11,7 @@ const UserList = () => {
 
   useEffect(() => {
     dispatch(getUsers());
-  }, [dispatch]);
+  }, [dispatch, allUsers]);
 
   return (
     <div>
@@ -32,7 +32,7 @@ const UserList = () => {
             </tr>
           </thead>
           <tbody>
-            {allUsers?.map((e) => {
+            {allUsers?.map((e, i) => {
               return (
                 <EachUser
                   key={e.id}

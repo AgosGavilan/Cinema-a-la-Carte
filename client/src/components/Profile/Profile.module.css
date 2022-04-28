@@ -19,3 +19,11 @@
 .userName {
     padding: 5px;
 }
+
+.checkEmail{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 15px;
+    background-color: rgb(170, 25, 25);
+    border-radius: 4px;
+    margin: 50px;
+}

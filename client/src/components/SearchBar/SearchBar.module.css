@@ -1,63 +1,77 @@
 :root {
-  --input-color: #99A3BA;
-  --input-border: #CDD9ED;
+  --input-color: #99a3ba;
+  --input-border: #cdd9ed;
   --input-background: #fff;
-  --input-placeholder: #CBD1DC;
-  --input-border-focus: #275EFE;
+  --input-placeholder: #cbd1dc;
+  --input-border-focus: #275efe;
 }
 
 .searchBar {
-    display: flex;
-    font-size: 25px;
-    margin-left: 5vh;
-    margin-top: 1px;
+  display: flex;
+  font-size: 25px;
+  /* margin-left: 5vh; */
+  margin-top: 1px;
+}
+
+.btnClear {
+  border-radius: 25px;
+  height: 32px;
+  width: 37px;
+  margin-top: 2.5px;
+  margin-left: -40px;
+  border: solid 2px;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b983ff;
+  transition: background-color 0.25s;
+  cursor: pointer;
+  color: rgb(24, 24, 24);
+}
+
+.btnClear:hover {
+  background-color: whitesmoke;
+  color: whitesmoke;
+}
+
+.inputSearch {
+  border: 1px solid var(--input-border);
+  width: 350px;
+  padding: 8px 16px;
+  line-height: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: 6px;
+  margin-left: -5px;
+  -webkit-appearance: none;
+  color: var(--input-color);
+  background: var(--input-background);
+  transition: border 0.3s ease;
+}
+
+.btnSearch {
+  position: absolute;
+  height: 45px;
+  left: 70;
+  font-size: 1.8rem;
+  margin-left: 5px;
+  align-items: center;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  color: rgb(255, 255, 255);
+}
+
+@media (max-width: 570px) {
+  .inputSearch{
+    width: 250px;
   }
-  
-  .btnClear {
-    border-radius: 25px;
-    height: 32px;
-    width: 37px;
-    margin-top: 2.5px;
-    margin-left: -40px;
-    border: solid 2px;
-    font-size: 1.1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #b983ff;
-    transition: background-color 0.25s;
-    cursor: pointer;
-    color: rgb(24, 24, 24);
+}
+
+@media (max-width: 400px) {
+  .inputSearch{
+    width: 180px;
   }
-  
-  .btnClear:hover {
-    background-color: whitesmoke;
-    color: whitesmoke;
-  }
-  
-  .inputSearch {
-    border: 1px solid var(--input-border);
-    width: 350px;
-    padding: 8px 16px;
-    line-height: 25px;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: inherit;
-    border-radius: 6px;
-    margin-left: -5px;
-    -webkit-appearance: none;
-    color: var(--input-color);
-    background: var(--input-background);
-    transition: border .3s ease;
-  }
-  
-  .btnSearch {
-    width: 37px;
-    font-size: 1.5rem;
-    margin-left: 5px;
-    align-items: center;
-    background-color: transparent;
-    cursor: pointer;
-    border: none;
-    color: rgb(255, 255, 255);
-  }
+}
