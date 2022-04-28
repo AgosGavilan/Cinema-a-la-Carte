@@ -197,14 +197,6 @@
   text-decoration: none;
 }
 
-.navspan {
-  float: left;
-  margin-right: 10px;
-  font-size: 29px;
-  margin-right: 10px;
-  color: whitesmoke;
-}
-
 @media (max-width: 1200px) {
   .card {
     flex-wrap: wrap;
@@ -250,4 +242,19 @@
   .header h1 {
     font-size: 1.8rem;
   }
-}
+
+  .navspan {
+    float: left;
+    margin-right: 10px;
+    font-size: 29px;
+    margin-right: 10px;
+    color: whitesmoke;
+  }
+
+  .avatar {
+    height: 70px;
+    width: 65px;
+    border-radius: 100%;
+    cursor: pointer;
+    margin-right: 20px;
+  }

@@ -4,8 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { addToCart, addToCartDB } from "../../redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
+import Tooltip from "@mui/material/Tooltip";
+
 
 const Description = ({ movieDetail, id }) => {
+  
   let dispatch = useDispatch();
   let cart = useSelector((state) => state.cart);
   let cartDB = useSelector((state) => state.cartDB);
@@ -16,7 +19,6 @@ const Description = ({ movieDetail, id }) => {
   let movielist = []
   let searchOrder = allOrders?.map((r) => r.Order_details?.map(r => movielist.push(r)));
   let findMovie = movielist?.find((m) => m.MovieId === movieDetail.id);
-  console.log(findMovie)
 
   function addCart(e) {
     e.preventDefault();
@@ -46,14 +48,19 @@ const Description = ({ movieDetail, id }) => {
     }
   }
 
-  return (
+   return (
     <div>
       <div className={s.product_main}>
         <p>{movieDetail.overview}</p>
-        <p>{movieDetail.Actors?.map((a) => a.name).join(", ")}</p>
+        {movieDetail.Actors?.map((el) => (
+        <Tooltip title={el.name}>
+            <a href={el.imdb_id} target="_blank">
+              <img src={el.profile_path} alt="actors" className={s.avatar} />
+            </a>
+        </Tooltip>
+          ))}
         <p>Release: {movieDetail.release_date}</p>
       </div>
-
       <div className={s.product_details}>
         <div className={s.product_total}>
           <h3>Total Price</h3>

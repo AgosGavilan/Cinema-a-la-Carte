@@ -55,8 +55,6 @@ const Details = () => {
   const [loadScreen, setLoadScreen] = useState(true);
   const movieDetail = useSelector((state) => state.details);
   let cart = useSelector((state) => state.cart);
-  // let searchCart = cart.find((e) => e.id === movieDetail.id);
-  //const allReviews = useSelector((state) => state.reviews);
 
   const [value, setValue] = React.useState(0);
 
@@ -69,24 +67,9 @@ const Details = () => {
     dispatch(getAllReviews(id));
   }, [dispatch, id]);
 
-  // function addCart(e) {
-  //   e.preventDefault();
-  //   if (searchCart) {
-  //     Swal.fire({
-  //       title: "Movie Already In Cart",
-  //       icon: "warning",
-  //       position: "center",
-  //       timer: 2000,
-  //       showConfirmButton: false,
-  //       timerProgressBar: true,
-  //     });
-  //     return;
-  //   } else {
-  //     dispatch(addToCart(movieDetail.id));
-  //   }
-  // }
-
   if (loadScreen) return <LoadScreen />;
+
+
   return (
     <div>
       <NavBar />
